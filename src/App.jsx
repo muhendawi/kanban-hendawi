@@ -1,6 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import MainPage from "./pages/MainPage";
 import StyledGlobals from "./styles/Globals.styled";
+import NoBoardsPage from "./pages/NoBoardsPage";
 
 const theme = {
   colors: {
@@ -20,8 +21,8 @@ const theme = {
   sizes: {
     fsXl: "24px",
     fsL: "18px",
-    fsM: ".8em",
-    fsS: ".7em",
+    fsM: "15px",
+    fsS: "12px",
 
     lhXl: "30px",
     lhL: "23px",
@@ -37,6 +38,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <StyledGlobals />
       <MainPage />
+      {/* <NoBoardsPage /> */}
     </ThemeProvider>
   );
 }

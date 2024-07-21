@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import StyledButton from "../styles/StyledButton.styled";
+import Nav from "../components/Nav";
 const StyledMainPage = styled.div`
   /* display: grid;
   grid-template-columns: 200px 1fr;
@@ -10,7 +10,7 @@ const StyledMainPage = styled.div`
 function MainPage() {
   return (
     <StyledMainPage>
-      <StyledButton $btnType="destructive">Hello</StyledButton>
+      <Nav />
     </StyledMainPage>
   );
 }
