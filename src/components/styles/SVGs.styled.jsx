@@ -11,11 +11,6 @@ const ThreeDots = styled.img`
   }
 `;
 
-const MainLogo = styled.img`
-  width: auto;
-  margin: 0 1em;
-  /* @media (max-width: 768px) {
-    display: none;
-  } */
-`;
+const MainLogo = styled.img``;
+
 export { ThreeDots, MainLogo };
