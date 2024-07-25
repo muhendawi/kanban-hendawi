@@ -23,6 +23,7 @@ html {
   --grey: #2B2C37;
   --lightGrey: #3E3F4E;
   --veryLightGrey: #828FA3;
+  --hoverGrey: #E4EBFA;
   --hoverIndigoGrey: #c9c9f3;
   --lightSilver: #F4F7FD;
   --white: #FFFFFF;
@@ -56,7 +57,7 @@ blockquote,
 dl,
 dd {
   margin-block-end: 0;
- 
+  
   
 }
 
@@ -73,7 +74,7 @@ body {
   min-height: 100vh;
   line-height: 1.5;
   margin: 0;
-  $padding: 0; 
+  padding: 0; 
 }
 
 /* Set shorter line heights on headings and interactive elements */

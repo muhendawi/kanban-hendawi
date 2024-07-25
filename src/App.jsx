@@ -1,5 +1,5 @@
 import MainPage from "./pages/MainPage";
-import StyledGlobals from "./components/Globals";
+import StyledGlobals from "./components/GlobalStyles";
 import NoBoardsPage from "./pages/NoBoardsPage";
 
 function App() {

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const ThreeDots = styled.img`
   cursor: pointer;
@@ -10,7 +10,9 @@ const ThreeDots = styled.img`
     transform: scale(0.8);
   }
 `;
-
 const MainLogo = styled.img``;
 
-export { ThreeDots, MainLogo };
+const NightIcon = styled.img``;
+const DayIcon = styled.img``;
+
+export { ThreeDots, MainLogo, NightIcon, DayIcon };

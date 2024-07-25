@@ -9,13 +9,13 @@ const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 0.9rem;
+  padding: 1rem 1.1rem 0.8rem 0.9rem;
   border-bottom: 2px solid var(--lightSilver);
   background-color: var(--white);
   & > div {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.7rem;
   }
 `;
 

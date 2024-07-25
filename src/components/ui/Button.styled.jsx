@@ -8,7 +8,7 @@ const sizes = {
   `,
   medium: css`
     font-size: var(--fsM);
-    padding: 0.8rem 1.7rem;
+    padding: 0.7rem 1.7rem;
     font-weight: 500;
   `,
   large: css`
