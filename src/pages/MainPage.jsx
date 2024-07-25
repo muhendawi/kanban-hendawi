@@ -25,7 +25,8 @@ const StyledMainPage = styled.div`
     background-color: var(--white);
     grid-column: 1/2;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 0 1.7rem;
     align-items: center;
     @media (max-width: 768px) {
       display: none;

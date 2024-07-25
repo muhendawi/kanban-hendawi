@@ -4,7 +4,6 @@ import BoardName from "./BoardName";
 
 //===========================================================>
 const StyledSidebarBoardItem = styled.div`
-  /* border: 1px solid red; */
   min-height: 3rem;
   width: 100%;
   padding: 0.8rem 1.7rem;

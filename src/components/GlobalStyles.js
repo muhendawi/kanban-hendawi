@@ -6,7 +6,7 @@ const StyledGlobals = createGlobalStyle`
 *::after {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  /* border: 1px solid salmon; */
+
 }
 /* Prevent font size inflation */
 html {
