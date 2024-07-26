@@ -8,7 +8,7 @@ import Wrapper from "../components/Wrapper";
 const StyledMainPage = styled.div`
   display: grid;
   grid-template-columns: 270px 1fr;
-  grid-template-rows: auto calc(100vh - 5rem);
+  grid-template-rows: auto calc(100vh - 4.7rem);
   & > nav {
     background-color: var(--white);
     grid-column: 2/3;

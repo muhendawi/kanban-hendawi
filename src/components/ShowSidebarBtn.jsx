@@ -10,7 +10,7 @@ const StyledShowSidebarBtn = styled.div`
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
   position: fixed;
-  bottom: 3rem;
+  bottom: 4.5rem;
   left: 0;
   &:hover {
     background-color: var(--hoverIndigo);

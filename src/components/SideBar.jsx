@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import SidebarBoardItem from "./SidebarBoardItem";
 import SidebarHeader from "./SidebarHeader";
 import ToggleItem from "./ToggleItem";
@@ -10,6 +10,7 @@ import { useState } from "react";
 import ShowSidebarBtn from "./ShowSidebarBtn";
 
 const StyledSidebar = styled.aside`
+  height: 100%;
   > div {
     height: 100%;
     display: flex;
