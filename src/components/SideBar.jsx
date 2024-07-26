@@ -15,6 +15,10 @@ const StyledSidebar = styled.aside`
   align-items: center;
   border-right: 2px solid var(--lightSilver);
 
+  & > div {
+    width: 100%;
+  }
+
   @media (max-width: 768px) {
     display: none;
   }
