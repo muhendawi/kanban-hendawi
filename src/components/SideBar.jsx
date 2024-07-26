@@ -5,9 +5,7 @@ import ToggleItem from "./ToggleItem";
 import CreateNewBoard from "./CreateNewBoard";
 import iconBoard from "../assets/icon-board.svg";
 import iconHideSidebar from "../assets/icon-hide-sidebar.svg";
-
 import Wrapper from "./Wrapper";
-import { ImOpt } from "react-icons/im";
 
 const StyledSidebar = styled.aside`
   padding: 1.5rem 1.5rem 2rem 0;
@@ -16,15 +14,6 @@ const StyledSidebar = styled.aside`
   justify-content: space-between;
   align-items: center;
   border-right: 2px solid var(--lightSilver);
-  /* & > img {
-    margin-top: 0.5rem;
-  } */
-  & > h3 {
-    /* align-self: flex-start; */
-  }
-  & > div {
-    width: 100%;
-  }
 
   @media (max-width: 768px) {
     display: none;
