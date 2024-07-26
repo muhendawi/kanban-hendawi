@@ -33,9 +33,9 @@ const StyledSidebarBoardItem = styled.div`
     `}
 `;
 
-function SidebarBoardItem({ itemIcon, text, active }) {
+function SidebarBoardItem({ itemIcon, onClick, text, active }) {
   return (
-    <StyledSidebarBoardItem $active={active}>
+    <StyledSidebarBoardItem $active={active} onClick={onClick}>
       <IconBoard src={itemIcon} alt="sidebar board icon" />
       <BoardName text={text} />
     </StyledSidebarBoardItem>
