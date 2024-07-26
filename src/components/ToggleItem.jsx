@@ -13,6 +13,7 @@ const StyledToggleItem = styled.div`
   background-color: var(--lightSilver);
   width: 95%;
   margin-left: 1rem;
+  margin-bottom: 0.5rem;
   border-radius: 0.4rem;
   &:active {
     /* outline: none; */
@@ -22,7 +23,7 @@ const StyledToggleItem = styled.div`
     display: flex;
     align-items: center;
     height: 3rem;
-    margin-left: -0.6rem;
+    margin-left: -0.3rem;
   }
 `;
 

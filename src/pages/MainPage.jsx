@@ -42,6 +42,7 @@ function MainPage() {
       </Wrapper>
       <NavBar />
       <SideBar />
+      {/* <AppBody /> */}
     </StyledMainPage>
   );
 }

@@ -4,6 +4,7 @@ import iconThreeDots from "../assets/icon-vertical-ellipsis.svg";
 import Button from "./ui/Button.styled";
 import { FaPlus } from "react-icons/fa6";
 import Wrapper from "./Wrapper";
+import NavBoardTile from "./NavBoardTile";
 
 const StyledNav = styled.nav`
   display: flex;
@@ -42,7 +43,7 @@ const DesktopNavBtn = styled(Button)`
 function NavBar() {
   return (
     <StyledNav>
-      <p>Baord Name(placeHolder)</p>
+      <NavBoardTile />
       <Wrapper>
         <DesktopNavBtn $variation="primary" $size="medium">
           <FaPlus size={12} /> Add New Task

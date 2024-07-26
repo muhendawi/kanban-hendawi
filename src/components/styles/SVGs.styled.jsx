@@ -14,5 +14,6 @@ const MainLogo = styled.img``;
 
 const NightIcon = styled.img``;
 const DayIcon = styled.img``;
+const IconBoard = styled.img``;
 
-export { ThreeDots, MainLogo, NightIcon, DayIcon };
+export { ThreeDots, MainLogo, NightIcon, DayIcon, IconBoard };

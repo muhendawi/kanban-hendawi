@@ -2,20 +2,30 @@ import styled from "styled-components";
 import SidebarBoardItem from "./SidebarBoardItem";
 import SidebarHeader from "./SidebarHeader";
 import ToggleItem from "./ToggleItem";
+import CreateNewBoard from "./CreateNewBoard";
+import iconBoard from "../assets/icon-board.svg";
+import iconHideSidebar from "../assets/icon-hide-sidebar.svg";
+
+import Wrapper from "./Wrapper";
+import { ImOpt } from "react-icons/im";
 
 const StyledSidebar = styled.aside`
   padding: 1.5rem 1.5rem 2rem 0;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   border-right: 2px solid var(--lightSilver);
-
-  & > img {
+  /* & > img {
     margin-top: 0.5rem;
-  }
+  } */
   & > h3 {
-    align-self: flex-start;
+    /* align-self: flex-start; */
   }
+  & > div {
+    width: 100%;
+  }
+
   @media (max-width: 768px) {
     display: none;
   }
@@ -24,11 +34,23 @@ const StyledSidebar = styled.aside`
 function SideBar() {
   return (
     <StyledSidebar>
-      <SidebarHeader>All Boards ({3})</SidebarHeader>
-      <SidebarBoardItem text="Platform Launch" active={true} />
-      <SidebarBoardItem text="Marketing Plan" />
-      <SidebarBoardItem text="Roadmap" />
-      <ToggleItem />
+      <Wrapper>
+        <SidebarHeader>All Boards ({3})</SidebarHeader>
+        <Wrapper>
+          <SidebarBoardItem
+            itemIcon={iconBoard}
+            text="Platform Launch"
+            active={true}
+          />
+          <SidebarBoardItem itemIcon={iconBoard} text="Marketing Plan" />
+          <SidebarBoardItem itemIcon={iconBoard} text="Roadmap" />
+        </Wrapper>
+        <CreateNewBoard />
+      </Wrapper>
+      <Wrapper>
+        <ToggleItem />
+        <SidebarBoardItem itemIcon={iconHideSidebar} text="Hide Sidebar" />
+      </Wrapper>
     </StyledSidebar>
   );
 }

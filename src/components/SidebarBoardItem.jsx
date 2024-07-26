@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
-import iconBoard from "../assets/icon-board.svg";
 import BoardName from "./BoardName";
+import { IconBoard } from "../components/styles/SVGs.styled";
 
 //===========================================================>
 const StyledSidebarBoardItem = styled.div`
@@ -17,6 +17,9 @@ const StyledSidebarBoardItem = styled.div`
   }
   &:hover {
     background-color: var(--hoverGrey);
+    & > p {
+      color: var(--darkIndigo);
+    }
     transition: ease 0.4s;
   }
   /* Just to test the selected board */
@@ -30,12 +33,10 @@ const StyledSidebarBoardItem = styled.div`
     `}
 `;
 
-const IconBoard = styled.img``;
-
-function SidebarBoardItem({ text, active }) {
+function SidebarBoardItem({ itemIcon, text, active }) {
   return (
     <StyledSidebarBoardItem $active={active}>
-      <IconBoard src={iconBoard} alt="sidebar board icon" />
+      <IconBoard src={itemIcon} alt="sidebar board icon" />
       <BoardName text={text} />
     </StyledSidebarBoardItem>
   );
