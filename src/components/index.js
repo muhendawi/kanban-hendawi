@@ -14,7 +14,7 @@ export {
 } from "./styles/Icons.styled";
 
 // ui folder exports --------------------------------------->
-export { Button } from "../components/ui/Button.styled";
+export { Button } from "./universal/Button.styled";
 
 // components exports (regular react components) ----------->
 

@@ -4,18 +4,22 @@ import Header from "./Header.styled";
 import LightDarkToggleItem from "./LightDarkToggleItem";
 import CreateNewBoard from "./CreateNewBoard";
 import Wrapper from "../../universal/Wrapper";
-import { useState } from "react";
 import ToggleSidebarBtn from "./ToggleSidebarBtn";
 import { BoardIcon, HideSidebarIcon } from "../..";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleSidebar } from "../../../store/board/board.slice";
 
 function Sidebar() {
-  const [isSidebarHidden, setIsSidebareHidden] = useState(false);
+  const isItHidden = useSelector((store) => store.boards.isSidebarVisible);
+  const dispatch = useDispatch();
+  function handleToggleSidebar() {
+    dispatch(toggleSidebar());
+  }
+
   return (
     <>
-      {isSidebarHidden ? (
-        <ToggleSidebarBtn
-          onClick={() => setIsSidebareHidden(!isSidebarHidden)}
-        />
+      {isItHidden ? (
+        <ToggleSidebarBtn onClick={handleToggleSidebar} />
       ) : (
         <StyledSidebar>
           <Wrapper>
@@ -36,9 +40,7 @@ function Sidebar() {
             </Wrapper>
             <Wrapper>
               <LightDarkToggleItem />
-              <BoardItem
-                text="Hide Sidebar"
-                onClick={() => setIsSidebareHidden(!isSidebarHidden)}>
+              <BoardItem text="Hide Sidebar" onClick={handleToggleSidebar}>
                 <HideSidebarIcon />
               </BoardItem>
             </Wrapper>

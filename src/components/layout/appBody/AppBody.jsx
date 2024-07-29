@@ -1,9 +1,7 @@
-import styled from "styled-components";
-
-const StyledAppBody = styled.main``;
+import StyledAppBody from "./AppBody.styled";
 
 function AppBody() {
-  return <StyledAppBody></StyledAppBody>;
+  return <StyledAppBody>Hello</StyledAppBody>;
 }
 
 export default AppBody;

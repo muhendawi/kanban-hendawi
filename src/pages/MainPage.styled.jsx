@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledMainPage = styled.div`
   display: grid;
@@ -26,5 +26,15 @@ export const StyledMainPage = styled.div`
     @media (max-width: 768px) {
       display: none;
     }
+  }
+  & > main {
+    ${({ $isItHidden }) =>
+      $isItHidden
+        ? css`
+            grid-column: 1/3;
+          `
+        : css`
+            grid-column: 2/3;
+          `}
   }
 `;

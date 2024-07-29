@@ -67,7 +67,10 @@ export function ChevronUpIcon() {
   return <StyledChevronUpIcon src={chevronUpIcon} alt="the chevron up icon" />;
 }
 // the show sidebar btn
-const StyledShowSidebarIcon = styled.img``;
+const StyledShowSidebarIcon = styled.img`
+  width: 30px;
+  margin-left: 0.7rem;
+`;
 export function ShowSidebarIcon() {
   return (
     <StyledShowSidebarIcon src={showSidebarIcon} alt="the show sidebar icon" />

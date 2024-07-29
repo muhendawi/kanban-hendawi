@@ -15,6 +15,7 @@ const boardsSlice = createSlice({
     },
   },
 });
+console.log(initialState.boards);
 
 export default boardsSlice.reducer;
 export const { toggleSidebar } = boardsSlice.actions;

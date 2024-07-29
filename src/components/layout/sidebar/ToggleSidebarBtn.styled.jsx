@@ -9,8 +9,8 @@ export const StyledToggleSidebarBtn = styled.div`
   border-bottom-right-radius: 2rem;
   position: fixed;
   bottom: 4.5rem;
-  left: 0;
+  left: -1.1rem;
   &:hover {
-    background-color: var(--hoverIndigo);
+    background: var(--hoverIndigo);
   }
 `;
