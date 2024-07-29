@@ -1,14 +1,16 @@
 import MainPage from "./pages/MainPage";
-import StyledGlobals from "./components/GlobalStyles";
+import GlobalStyles from "./components/universal/GlobalStyles";
 import NoBoardsPage from "./pages/NoBoardsPage";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
   return (
-    <>
-      <StyledGlobals />
+    <Provider store={store}>
+      <GlobalStyles />
       <MainPage />
       {/* <NoBoardsPage /> */}
-    </>
+    </Provider>
   );
 }
 

@@ -42,7 +42,7 @@ const variations = {
   `,
 };
 
-const Button = styled.button`
+export const Button = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -54,5 +54,3 @@ const Button = styled.button`
     transition: ease 0.4s;
   }
 `;
-
-export default Button;
