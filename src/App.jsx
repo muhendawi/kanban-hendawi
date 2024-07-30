@@ -1,6 +1,6 @@
-import MainPage from "./pages/MainPage";
+import Main from "./pages/Main";
 import GlobalStyles from "./components/universal/GlobalStyles";
-import NoBoardsPage from "./pages/NoBoardsPage";
+import NoData from "./pages/NoData";
 import { Provider } from "react-redux";
 import store from "./store/store";
 
@@ -8,8 +8,14 @@ function App() {
   return (
     <Provider store={store}>
       <GlobalStyles />
-      <MainPage />
-      {/* <NoBoardsPage /> */}
+      {store.getState().boards.boards.length === 0 ? (
+        <NoData
+          text="There are no boards available. Create a new board to get started"
+          btnText="Add New Board"
+        />
+      ) : (
+        <Main />
+      )}
     </Provider>
   );
 }

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const StyledNoBoardsPage = styled.div`
-  height: 100vh;
+export const StyledNoData = styled.div`
+  height: 100%;
   margin: 0 auto;
-  width: 100vw;
+  width: 100%;
   padding: 5rem;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@ export const StyledNoBoardsPage = styled.div`
   align-items: center;
   gap: 1em;
   & > p {
-    font-size: var(--fsXl);
+    font-size: var(--fsL);
     color: var(--veryLightGrey);
     text-align: center;
   }

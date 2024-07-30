@@ -7,15 +7,25 @@ import Wrapper from "../../universal/Wrapper";
 import ToggleSidebarBtn from "./ToggleSidebarBtn";
 import { BoardIcon, HideSidebarIcon } from "../..";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleSidebar } from "../../../store/board/board.slice";
+import {
+  toggleSidebar,
+  setSelectedItem,
+} from "../../../store/board/board.slice";
+import BoardName from "./BoardName";
 
 function Sidebar() {
   const isItHidden = useSelector((store) => store.boards.isSidebarVisible);
+  const boardsStore = useSelector((store) => store.boards);
   const dispatch = useDispatch();
+
   function handleToggleSidebar() {
     dispatch(toggleSidebar());
   }
 
+  function handleBoardItemClick(id) {
+    dispatch(setSelectedItem(id));
+  }
+  console.log(boardsStore.selectedItem);
   return (
     <>
       {isItHidden ? (
@@ -24,24 +34,25 @@ function Sidebar() {
         <StyledSidebar>
           <Wrapper>
             <Wrapper>
-              <Header>All Boards ({3})</Header>
+              <Header>All Boards ({boardsStore.boards.length})</Header>
               <Wrapper>
-                <BoardItem text="Platform Launch" active={true}>
-                  <BoardIcon />
-                </BoardItem>
-                <BoardItem text="Marketing Plan">
-                  <BoardIcon />
-                </BoardItem>
-                <BoardItem text="Roadmap">
-                  <BoardIcon />
-                </BoardItem>
+                {boardsStore.boards.map((board, index) => (
+                  <BoardItem
+                    key={index}
+                    onClick={() => handleBoardItemClick(index)}
+                    active={index === boardsStore.selectedItem}>
+                    <BoardIcon />
+                    <BoardName boardName={board.name} />
+                  </BoardItem>
+                ))}
               </Wrapper>
               <CreateNewBoard />
             </Wrapper>
             <Wrapper>
               <LightDarkToggleItem />
-              <BoardItem text="Hide Sidebar" onClick={handleToggleSidebar}>
+              <BoardItem onClick={handleToggleSidebar}>
                 <HideSidebarIcon />
+                <BoardName boardName="Hide Sidebar" />
               </BoardItem>
             </Wrapper>
           </Wrapper>

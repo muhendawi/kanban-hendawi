@@ -1,7 +1,7 @@
 import { StyledBoardName } from "./BoardName.styled";
 
-function BoardName({ text }) {
-  return <StyledBoardName>{text}</StyledBoardName>;
+function BoardName({ boardName }) {
+  return <StyledBoardName>{boardName}</StyledBoardName>;
 }
 
 export default BoardName;

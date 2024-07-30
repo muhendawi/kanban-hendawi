@@ -4,6 +4,7 @@ import data from "../../data/data.json";
 const initialState = {
   boards: data.boards,
   isSidebarVisible: false,
+  selectedItem: 0,
 };
 
 const boardsSlice = createSlice({
@@ -13,9 +14,13 @@ const boardsSlice = createSlice({
     toggleSidebar(state) {
       state.isSidebarVisible = !state.isSidebarVisible;
     },
+    setSelectedItem(state, action) {
+      state.selectedItem = action.payload;
+    },
   },
 });
+
 console.log(initialState.boards);
 
 export default boardsSlice.reducer;
-export const { toggleSidebar } = boardsSlice.actions;
+export const { toggleSidebar, setSelectedItem } = boardsSlice.actions;

@@ -7,7 +7,7 @@ function CreateNewBoard() {
   return (
     <StyledCreateNewBoard>
       <BoardIcon />
-      <BoardName text="+ Create New Board " />
+      <BoardName boardName="+ Create New Board " />
     </StyledCreateNewBoard>
   );
 }

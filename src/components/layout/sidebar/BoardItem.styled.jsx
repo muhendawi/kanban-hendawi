@@ -10,8 +10,6 @@ export const StyledBoardItem = styled.div`
   cursor: pointer;
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
-  & > img {
-  }
   &:hover {
     background-color: var(--hoverGrey);
     & > p {
