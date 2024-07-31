@@ -11,6 +11,7 @@ export const StyledTaskCard = styled.div`
   justify-content: center;
   gap: 0.4rem;
   padding: 1rem;
+  cursor: pointer;
   overflow: auto;
   > h4 {
     margin: 0;

@@ -2,17 +2,34 @@ import StyledAppBody from "./AppBody.styled";
 import NoData from "../../../pages/NoData";
 import { useSelector } from "react-redux";
 import TaskCard from "./TaskCard";
+import BoardColumn from "./BoardColumn";
 
 function AppBody() {
-  const boardsStore = useSelector((store) => store.boards);
+  const boardsSlice = useSelector((store) => store.boards);
   // console.log(boards.boards);
-  console.log(boardsStore.boards[boardsStore.selectedItem]);
+  console.log(boardsSlice.boards[boardsSlice.selectedItem]);
   return (
     <StyledAppBody>
-      {/* <NoData
-        text="This board is empty, create a new column to get started."
-        btnText="Add New Column"
-      /> */}
+      {boardsSlice.boards[boardsSlice.selectedItem].columns.map(
+        (column, index) => (
+          <BoardColumn
+            key={index}
+            columnName={column.name}
+            tasksNo={column.tasks.length}>
+            {column.tasks.map((task, index) => (
+              <TaskCard
+                key={index}
+                title={task.title}
+                completedSubTasks={0}
+                totalSubTasks={task.subtasks.length}
+              />
+            ))}
+          </BoardColumn>
+        )
+      )}
+      <BoardColumn>
+        <p>+ New Column</p>
+      </BoardColumn>
     </StyledAppBody>
   );
 }

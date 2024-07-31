@@ -35,6 +35,9 @@ export const StyledMain = styled.div`
           `
         : css`
             grid-column: 2/3;
-          `}
+          `};
+    @media (max-width: 768px) {
+      grid-column: 1/3;
+    }
   }
 `;

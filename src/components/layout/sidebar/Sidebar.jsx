@@ -15,7 +15,7 @@ import BoardName from "./BoardName";
 
 function Sidebar() {
   const isItHidden = useSelector((store) => store.boards.isSidebarVisible);
-  const boardsStore = useSelector((store) => store.boards);
+  const boardsSlice = useSelector((store) => store.boards);
   const dispatch = useDispatch();
 
   function handleToggleSidebar() {
@@ -25,7 +25,7 @@ function Sidebar() {
   function handleBoardItemClick(id) {
     dispatch(setSelectedItem(id));
   }
-  console.log(boardsStore.selectedItem);
+  console.log(boardsSlice.selectedItem);
   return (
     <>
       {isItHidden ? (
@@ -34,13 +34,13 @@ function Sidebar() {
         <StyledSidebar>
           <Wrapper>
             <Wrapper>
-              <Header>All Boards ({boardsStore.boards.length})</Header>
+              <Header>All Boards ({boardsSlice.boards.length})</Header>
               <Wrapper>
-                {boardsStore.boards.map((board, index) => (
+                {boardsSlice.boards.map((board, index) => (
                   <BoardItem
                     key={index}
                     onClick={() => handleBoardItemClick(index)}
-                    active={index === boardsStore.selectedItem}>
+                    active={index === boardsSlice.selectedItem}>
                     <BoardIcon />
                     <BoardName boardName={board.name} />
                   </BoardItem>

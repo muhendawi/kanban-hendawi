@@ -26,6 +26,7 @@ html {
   --hoverGrey: #E4EBFA;
   --hoverIndigoGrey: #c9c9f3;
   --lightSilver: #F4F7FD;
+  --verylightSliver: #ecf2fc;
   --white: #FFFFFF;
   --darkRedOrange: #EA5555;
   --hoverRedOrange: #FF9898;

@@ -7,7 +7,7 @@ export const StyledSidebar = styled.aside`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 1.5rem 2rem 0;
+    padding: 1rem 1.5rem 2rem 0;
     border-right: 2px solid var(--lightSilver);
     > div {
       width: 100%;
