@@ -14,4 +14,7 @@ export const StyledToggleSidebarBtn = styled.div`
   &:hover {
     background: var(--hoverIndigo) !important;
   }
+  @media (max-width: 768px) {
+    left: -20rem;
+  }
 `;

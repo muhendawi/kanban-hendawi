@@ -22,7 +22,7 @@ export const StyledModal = styled.div`
     border-radius: 0.5rem;
     background-color: var(--white);
     @media (max-width: 768px) {
-      width: 343px;
+      max-width: 343px;
     }
   }
   ${({ $isNewBoardOpen }) =>

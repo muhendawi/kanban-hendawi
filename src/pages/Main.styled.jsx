@@ -15,7 +15,7 @@ export const StyledMain = styled.div`
     background-color: var(--white);
     grid-row: 2/3;
   }
-  > div {
+  > div:first-child {
     border-right: 2px solid var(--lightSilver);
     background-color: var(--white);
     grid-column: 1/2;
