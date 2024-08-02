@@ -3,14 +3,20 @@ import NoData from "../../../pages/NoData";
 import { useSelector } from "react-redux";
 import TaskCard from "./TaskCard";
 import BoardColumn from "./BoardColumn";
+import Modal from "../../universal/Modal-v1";
+import boardSlice, {
+  toggleNewBoardModal,
+} from "../../../store/board/board.slice";
 
 function AppBody() {
   const boardsSlice = useSelector((store) => store.boards);
   // console.log(boards.boards);
   console.log(boardsSlice.boards[boardsSlice.selectedItem]);
+  console.log(boardsSlice.isNewBoardModalOpen);
+
   return (
     <StyledAppBody>
-      {boardsSlice.boards[boardsSlice.selectedItem].columns.map(
+      {boardsSlice.boards[boardsSlice.selectedBoardIndex].columns.map(
         (column, index) => (
           <BoardColumn
             key={index}
@@ -30,6 +36,11 @@ function AppBody() {
       <BoardColumn>
         <p>+ New Column</p>
       </BoardColumn>
+      {/* {boardsSlice.isNewBoardModalOpen && (
+        <Modal>
+          <p>hello</p>
+        </Modal>
+      )} */}
     </StyledAppBody>
   );
 }

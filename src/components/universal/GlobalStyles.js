@@ -72,7 +72,7 @@ ol[role="list"] {
 body {
   font-family: "Plus Jakarta Sans", sans-serif;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   line-height: 1.5;
   margin: 0;
   padding: 0; 

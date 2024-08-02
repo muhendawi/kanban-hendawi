@@ -15,13 +15,14 @@ export const StyledBoardItem = styled.div`
     & > p {
       color: var(--darkIndigo);
     }
-    transition: ease 0.4s;
+    transition: ease-in 0.4s;
   }
   /* Just to test the selected board */
   ${({ $active }) =>
     $active &&
     css`
       background-color: var(--darkIndigo);
+      transition: ease-in 0.3s;
       & > p {
         color: var(--white);
       }

@@ -10,10 +10,6 @@ export const StyledLightDarkToggleItem = styled.div`
   margin-left: 1rem;
   margin-bottom: 0.5rem;
   border-radius: 0.4rem;
-  &:active {
-    /* outline: none; */
-    /* touch-action: none; */
-  }
   & > div {
     display: flex;
     align-items: center;

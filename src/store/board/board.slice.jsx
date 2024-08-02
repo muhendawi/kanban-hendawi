@@ -4,7 +4,11 @@ import data from "../../data/data.json";
 const initialState = {
   boards: data.boards,
   isSidebarVisible: false,
-  selectedItem: 0,
+  selectedBoardIndex: 0,
+  selectedTask: 0,
+  isNewBoardModalOpen: false,
+  isNewTaskModalOpen: false,
+  isTaskModalOpen: false,
 };
 
 const boardsSlice = createSlice({
@@ -14,13 +18,18 @@ const boardsSlice = createSlice({
     toggleSidebar(state) {
       state.isSidebarVisible = !state.isSidebarVisible;
     },
-    setSelectedItem(state, action) {
+    setSelectedBoardIndex(state, action) {
+      state.selectedBoardIndex = action.payload;
+    },
+    setSelectedTask(state, action) {
       state.selectedItem = action.payload;
+    },
+    toggleNewBoardModal(state) {
+      state.isNewBoardModalOpen = !state.isNewBoardModalOpen;
     },
   },
 });
 
-console.log(initialState.boards);
-
 export default boardsSlice.reducer;
-export const { toggleSidebar, setSelectedItem } = boardsSlice.actions;
+export const { toggleSidebar, setSelectedBoardIndex, toggleNewBoardModal } =
+  boardsSlice.actions;

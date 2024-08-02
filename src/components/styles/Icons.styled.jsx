@@ -84,7 +84,9 @@ export function HideSidebarIcon() {
   );
 }
 // the mobile logo
-const StyledMobileLogo = styled.img``;
+const StyledMobileLogo = styled.img`
+  display: flex;
+`;
 export function MobileLogo() {
   return <StyledMobileLogo src={mobileLogo} alt="the mobile logo" />;
 }

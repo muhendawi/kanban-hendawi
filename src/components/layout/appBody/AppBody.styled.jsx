@@ -26,6 +26,12 @@ const StyledAppBody = styled.main`
       font-weight: 700;
       color: var(--veryLightGrey);
     }
+    &:hover {
+      > p {
+        color: var(--darkIndigo);
+        transition: ease-in 0.3s;
+      }
+    }
   }
 `;
 

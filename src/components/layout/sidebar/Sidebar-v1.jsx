@@ -1,4 +1,4 @@
-import { StyledSidebar } from "./Sidebar.styled";
+import { StyledSidebar } from "./Sidebar-v1.styled";
 import BoardItem from "./BoardItem";
 import Header from "./Header.styled";
 import LightDarkToggleItem from "./LightDarkToggleItem";
@@ -16,7 +16,9 @@ import {
 } from "../../../store/board/board.slice";
 
 function Sidebar() {
-  const isItHidden = useSelector((store) => store.boards.isSidebarVisible);
+  const isSidebarVisible = useSelector(
+    (store) => store.boards.isSidebarVisible
+  );
   const boardsSlice = useSelector((store) => store.boards);
   const dispatch = useDispatch();
 
@@ -34,36 +36,33 @@ function Sidebar() {
   console.log(boardsSlice.selectedBoardIndex);
   return (
     <>
-      {isItHidden ? (
-        <ToggleSidebarBtn onClick={handleToggleSidebar} />
-      ) : (
-        <StyledSidebar>
+      <ToggleSidebarBtn onClick={handleToggleSidebar} />
+      <StyledSidebar $isSidebarVisible={isSidebarVisible}>
+        <Wrapper>
           <Wrapper>
+            <Header>All Boards ({boardsSlice.boards.length})</Header>
             <Wrapper>
-              <Header>All Boards ({boardsSlice.boards.length})</Header>
-              <Wrapper>
-                {boardsSlice.boards.map((board, index) => (
-                  <BoardItem
-                    key={index}
-                    onClick={() => handleSelectBoardIndex(index)}
-                    active={index === boardsSlice.selectedBoardIndex}>
-                    <BoardIcon />
-                    <BoardName boardName={board.name} />
-                  </BoardItem>
-                ))}
-              </Wrapper>
-              <CreateNewBoard onClick={handleToggleModal} />
+              {boardsSlice.boards.map((board, index) => (
+                <BoardItem
+                  key={index}
+                  onClick={() => handleSelectBoardIndex(index)}
+                  active={index === boardsSlice.selectedBoardIndex}>
+                  <BoardIcon />
+                  <BoardName boardName={board.name} />
+                </BoardItem>
+              ))}
             </Wrapper>
-            <Wrapper>
-              <LightDarkToggleItem />
-              <BoardItem onClick={handleToggleSidebar}>
-                <HideSidebarIcon />
-                <BoardName boardName="Hide Sidebar" />
-              </BoardItem>
-            </Wrapper>
+            <CreateNewBoard onClick={handleToggleModal} />
           </Wrapper>
-        </StyledSidebar>
-      )}
+          <Wrapper>
+            <LightDarkToggleItem />
+            <BoardItem onClick={handleToggleSidebar}>
+              <HideSidebarIcon />
+              <BoardName boardName="Hide Sidebar" />
+            </BoardItem>
+          </Wrapper>
+        </Wrapper>
+      </StyledSidebar>
     </>
   );
 }
