@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 export const StyledModal = styled.div`
   position: fixed;
   inset: 0;
+  height: 150%;
   opacity: 0;
   z-index: -100;
   background-color: rgb(0, 0, 0, 0.45) !important;
