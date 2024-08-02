@@ -23,4 +23,9 @@ export const StyledTaskCard = styled.div`
     font-weight: 700;
     color: var(--veryLightGrey);
   }
+  &:hover {
+    > h4 {
+      color: var(--darkIndigo);
+    }
+  }
 `;

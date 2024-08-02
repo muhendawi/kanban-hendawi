@@ -3,7 +3,7 @@ import data from "../../data/data.json";
 
 const initialState = {
   boards: data.boards,
-  isSidebarVisible: false,
+  isSidebarHidden: false,
   selectedBoardIndex: 0,
   selectedTask: 0,
   isNewBoardModalOpen: false,
@@ -16,7 +16,7 @@ const boardsSlice = createSlice({
   initialState,
   reducers: {
     toggleSidebar(state) {
-      state.isSidebarVisible = !state.isSidebarVisible;
+      state.isSidebarHidden = !state.isSidebarHidden;
     },
     setSelectedBoardIndex(state, action) {
       state.selectedBoardIndex = action.payload;

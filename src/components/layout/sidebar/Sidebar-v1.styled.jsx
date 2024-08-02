@@ -5,8 +5,8 @@ export const StyledSidebar = styled.aside`
   transform: translateX(0);
   transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   position: initial;
-  ${({ $isSidebarVisible }) =>
-    $isSidebarVisible &&
+  ${({ $isSidebarHidden }) =>
+    $isSidebarHidden &&
     css`
       opacity: 0;
       transform: translateX(-100%);

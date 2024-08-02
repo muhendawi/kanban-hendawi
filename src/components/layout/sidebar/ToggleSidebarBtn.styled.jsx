@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledToggleSidebarBtn = styled.div`
   height: 3rem;
@@ -7,9 +7,10 @@ export const StyledToggleSidebarBtn = styled.div`
   background-color: var(--darkIndigo) !important;
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
-  position: fixed;
+  position: absolute;
   bottom: 3rem;
-  left: -1.2rem; //
+  left: -1.2rem;
+  /* transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); */
   &:hover {
     background: var(--hoverIndigo) !important;
   }

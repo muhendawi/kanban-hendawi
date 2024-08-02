@@ -8,7 +8,6 @@ import ToggleSidebarBtn from "./ToggleSidebarBtn";
 import { BoardIcon, HideSidebarIcon } from "../..";
 import { useSelector, useDispatch } from "react-redux";
 import BoardName from "./BoardName";
-import Modal from "../../universal/Modal-v1";
 import {
   toggleSidebar,
   setSelectedBoardIndex,
@@ -16,9 +15,7 @@ import {
 } from "../../../store/board/board.slice";
 
 function Sidebar() {
-  const isSidebarVisible = useSelector(
-    (store) => store.boards.isSidebarVisible
-  );
+  const isSidebarHidden = useSelector((store) => store.boards.isSidebarHidden);
   const boardsSlice = useSelector((store) => store.boards);
   const dispatch = useDispatch();
 
@@ -34,10 +31,16 @@ function Sidebar() {
     dispatch(toggleNewBoardModal());
   }
   console.log(boardsSlice.selectedBoardIndex);
+  console.log(boardsSlice.isSidebarHidden);
   return (
     <>
-      <ToggleSidebarBtn onClick={handleToggleSidebar} />
-      <StyledSidebar $isSidebarVisible={isSidebarVisible}>
+      {isSidebarHidden && (
+        <ToggleSidebarBtn
+          onClick={handleToggleSidebar}
+          isSidebarHidden={isSidebarHidden}
+        />
+      )}
+      <StyledSidebar $isSidebarHidden={isSidebarHidden}>
         <Wrapper>
           <Wrapper>
             <Header>All Boards ({boardsSlice.boards.length})</Header>

@@ -10,7 +10,7 @@ import Modal from "../components/universal/Modal-v2";
 function Main() {
   const boardsSlice = useSelector((store) => store.boards);
   return (
-    <StyledMain $isItHidden={boardsSlice.isSidebarVisible}>
+    <StyledMain $isItHidden={boardsSlice.isSidebarHidden}>
       <Wrapper>
         <DarkLogo />
       </Wrapper>
