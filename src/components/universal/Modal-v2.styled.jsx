@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 export const StyledModal = styled.div`
   position: fixed;
   inset: 0;
-  height: 150%;
   opacity: 0;
   z-index: -100;
   background-color: rgb(0, 0, 0, 0.45) !important;
@@ -19,11 +18,13 @@ export const StyledModal = styled.div`
     margin: auto;
     width: 480px;
     padding: 32px;
-    min-height: 450px;
+    height: 450px;
     border-radius: 0.5rem;
     background-color: var(--white);
     @media (max-width: 768px) {
       max-width: 343px;
+      inset: 10%;
+      height: 500px;
     }
   }
   ${({ $isNewBoardOpen }) =>
