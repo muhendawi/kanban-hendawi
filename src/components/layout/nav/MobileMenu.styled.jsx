@@ -5,7 +5,7 @@ const StyledMobileMenu = styled.div`
   top: 4rem;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: -5rem;
   background-color: rgb(0, 0, 0, 0.45);
   opacity: 0;
   z-index: -101;
