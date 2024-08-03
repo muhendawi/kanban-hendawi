@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import addTaskMobileIcon from "../../assets/icon-add-task-mobile.svg";
 import boardIcon from "../../assets/icon-board.svg";
 import checkIcon from "../../assets/icon-check.svg";
@@ -62,16 +62,23 @@ const StyledChevronDownIcon = styled.img`
   height: 10%; */
   cursor: pointer;
   transition: all ease 0.3s;
-
-  &:hover {
-    transition: all ease 0.3s;
-    transform: rotate(180deg);
-  }
-  /* border: 1px solid blue; */
+  ${({ $isMobileMenuToggled }) =>
+    $isMobileMenuToggled
+      ? css`
+          transform: rotate(180deg);
+        `
+      : css`
+          transform: rotate(0deg);
+        `}/* border: 1px solid blue; */
 `;
-export function ChevronDownIcon() {
+export function ChevronDownIcon({ onClick, isMobileMenutoggled }) {
   return (
-    <StyledChevronDownIcon src={chevronDownIcon} alt="the chevron down icon" />
+    <StyledChevronDownIcon
+      $isMobileMenuToggled={isMobileMenutoggled}
+      onClick={onClick}
+      src={chevronDownIcon}
+      alt="the chevron down icon"
+    />
   );
 }
 // the chevron up icon for nav menu on mobile view

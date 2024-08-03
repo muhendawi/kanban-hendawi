@@ -11,6 +11,7 @@ import LightDarkToggleItem from "../sidebar/LightDarkToggleItem";
 import {
   setSelectedBoardIndex,
   toggleNewBoardModal,
+  toggleMobileMenu,
 } from "../../../store/board/board.slice";
 
 function MobileMenu() {
@@ -24,9 +25,14 @@ function MobileMenu() {
   function handleToggleModal() {
     dispatch(toggleNewBoardModal());
   }
+
+  function handleToggleMobileMenu() {
+    dispatch(toggleMobileMenu());
+  }
+  console.log(boardsSlice.isMobileMenuOpen);
   return (
-    <StyledMobileMenu>
-      <Wrapper></Wrapper>
+    <StyledMobileMenu $isMobileMenuOpen={boardsSlice.isMobileMenuOpen}>
+      <Wrapper onClick={handleToggleMobileMenu}></Wrapper>
       <Wrapper>
         <Header>All Boards ({boardsSlice.boards.length})</Header>
         {boardsSlice.boards.map((board, index) => (

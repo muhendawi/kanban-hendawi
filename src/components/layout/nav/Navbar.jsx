@@ -28,7 +28,7 @@ function Navbar() {
         </MobileNavBtn>
         <VerticalEllipsis />
       </Wrapper>
-      {/* <MobileMenu /> */}
+      <MobileMenu />
     </StyledNav>
   );
 }

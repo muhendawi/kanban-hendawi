@@ -5,7 +5,7 @@ export const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.3rem 1rem 1.5rem;
   background-color: var(--white);
   // laid out the NavBoardTitle and its adjacent Wrapper
   > div {

@@ -9,6 +9,7 @@ const initialState = {
   isNewBoardModalOpen: false,
   isNewTaskModalOpen: false,
   isTaskModalOpen: false,
+  isMobileMenuOpen: false,
 };
 
 const boardsSlice = createSlice({
@@ -26,10 +27,19 @@ const boardsSlice = createSlice({
     },
     toggleNewBoardModal(state) {
       state.isNewBoardModalOpen = !state.isNewBoardModalOpen;
+      // to close the mobile menu when newboard modal is opened
+      state.isMobileMenuOpen = false;
+    },
+    toggleMobileMenu(state) {
+      state.isMobileMenuOpen = !state.isMobileMenuOpen;
     },
   },
 });
 
 export default boardsSlice.reducer;
-export const { toggleSidebar, setSelectedBoardIndex, toggleNewBoardModal } =
-  boardsSlice.actions;
+export const {
+  toggleSidebar,
+  setSelectedBoardIndex,
+  toggleNewBoardModal,
+  toggleMobileMenu,
+} = boardsSlice.actions;
