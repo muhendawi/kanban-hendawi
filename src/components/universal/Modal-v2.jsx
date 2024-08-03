@@ -6,7 +6,7 @@ import { toggleNewBoardModal } from "../../store/board/board.slice";
 function Modal({ children }) {
   const boardsSlice = useSelector((store) => store.boards);
   const dispatch = useDispatch();
-  console.log(boardsSlice.isNewBoardModalOpen);
+
   return (
     <StyledModal $isNewBoardOpen={boardsSlice.isNewBoardModalOpen}>
       <div

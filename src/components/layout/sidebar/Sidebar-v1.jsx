@@ -31,8 +31,7 @@ function Sidebar() {
   function handleToggleModal() {
     dispatch(toggleNewBoardModal());
   }
-  console.log(boardsSlice.selectedBoardIndex);
-  console.log(boardsSlice.isSidebarHidden);
+
   return (
     <>
       {isSidebarHidden && (

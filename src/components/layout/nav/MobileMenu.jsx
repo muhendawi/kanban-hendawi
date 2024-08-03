@@ -29,7 +29,7 @@ function MobileMenu() {
   function handleToggleMobileMenu() {
     dispatch(toggleMobileMenu());
   }
-  console.log(boardsSlice.isMobileMenuOpen);
+
   return (
     <StyledMobileMenu $isMobileMenuOpen={boardsSlice.isMobileMenuOpen}>
       <Wrapper onClick={handleToggleMobileMenu}></Wrapper>

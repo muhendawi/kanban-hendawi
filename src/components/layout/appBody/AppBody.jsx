@@ -10,9 +10,6 @@ import boardSlice, {
 
 function AppBody() {
   const boardsSlice = useSelector((store) => store.boards);
-  // console.log(boards.boards);
-  console.log(boardsSlice.boards[boardsSlice.selectedItem]);
-  console.log(boardsSlice.isNewBoardModalOpen);
 
   return (
     <StyledAppBody>
