@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const StyledNoData = styled.div`
-  height: 100%;
+  height: 100vh;
   margin: 0 auto;
-  width: 100%;
-  padding: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +14,7 @@ export const StyledNoData = styled.div`
     text-align: center;
   }
   @media (max-width: 768px) {
-    width: 400px;
+    min-width: 200px;
     padding: 1rem;
   }
 `;

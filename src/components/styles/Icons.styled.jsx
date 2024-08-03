@@ -17,6 +17,7 @@ import plusSvgRepoComIcon from "../../assets/plus-svgrepo-com.svg";
 //------------------------------------------------------------------------->
 // the three dots menu (vertical ellipsis)
 const StyledVerticalEllipsisIcon = styled.img`
+  padding: 0.5rem;
   cursor: pointer;
   &:hover {
     transition: ease 0.4s;
@@ -55,7 +56,19 @@ export function BoardIcon() {
   return <StyledBoardIcon src={boardIcon} alt="the board icon" />;
 }
 // the chevron down icon for nav menu on mobile view
-const StyledChevronDownIcon = styled.img``;
+const StyledChevronDownIcon = styled.img`
+  padding: 0.5rem;
+  /* width: 10%;
+  height: 10%; */
+  cursor: pointer;
+  transition: all ease 0.3s;
+
+  &:hover {
+    transition: all ease 0.3s;
+    transform: rotate(180deg);
+  }
+  /* border: 1px solid blue; */
+`;
 export function ChevronDownIcon() {
   return (
     <StyledChevronDownIcon src={chevronDownIcon} alt="the chevron down icon" />
@@ -68,8 +81,9 @@ export function ChevronUpIcon() {
 }
 // the show sidebar btn
 const StyledShowSidebarIcon = styled.img`
-  width: 30px;
-  margin-left: 0.7rem;
+  width: 20px;
+  margin-top: 1.1rem;
+  margin-left: 2.3rem;
 `;
 export function ShowSidebarIcon() {
   return (
@@ -84,9 +98,7 @@ export function HideSidebarIcon() {
   );
 }
 // the mobile logo
-const StyledMobileLogo = styled.img`
-  display: flex;
-`;
+const StyledMobileLogo = styled.img``;
 export function MobileLogo() {
   return <StyledMobileLogo src={mobileLogo} alt="the mobile logo" />;
 }

@@ -5,18 +5,26 @@ export const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.1rem 0.8rem 0.9rem;
+  padding: 1rem 1.5rem;
   background-color: var(--white);
-  & > div {
+  // laid out the NavBoardTitle and its adjacent Wrapper
+  > div {
     display: flex;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.8rem;
+    @media (max-width: 768px) {
+      gap: 0.5rem;
+    }
+  }
+  /* Adjusting the nav padding for mobile */
+  @media (max-width: 768px) {
+    padding: 1rem 1rem 1rem 0.8rem;
   }
 `;
 
 // nav button - tablet/mobile verison
 export const MobileNavBtn = styled(Button)`
-  margin-right: 0.3rem;
+  padding: 0.6rem 1rem;
   @media (min-width: 769px) {
     display: none;
   }
@@ -24,10 +32,6 @@ export const MobileNavBtn = styled(Button)`
 
 // nav button - desktop verison
 export const DesktopNavBtn = styled(Button)`
-  margin-right: 0.3rem;
-  & svg {
-    margin-right: 0.2rem;
-  }
   @media (max-width: 768px) {
     display: none;
     transition: ease 0.3s;

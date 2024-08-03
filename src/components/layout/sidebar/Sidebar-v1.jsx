@@ -8,6 +8,7 @@ import ToggleSidebarBtn from "./ToggleSidebarBtn";
 import { BoardIcon, HideSidebarIcon } from "../..";
 import { useSelector, useDispatch } from "react-redux";
 import BoardName from "./BoardName";
+
 import {
   toggleSidebar,
   setSelectedBoardIndex,

@@ -5,7 +5,7 @@ export const StyledModal = styled.div`
   inset: 0;
   opacity: 0;
   z-index: -100;
-  background-color: rgb(0, 0, 0, 0.45) !important;
+  background-color: rgb(0, 0, 0, 0.45);
   transform: scale(0.5);
   transition: all 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   & div:first-child {
@@ -16,15 +16,16 @@ export const StyledModal = styled.div`
     position: absolute;
     inset: 25%;
     margin: auto;
-    width: 480px;
+    max-width: 480px;
     padding: 32px;
-    height: 450px;
+    min-height: 200px;
     border-radius: 0.5rem;
     background-color: var(--white);
+    overflow: auto;
     @media (max-width: 768px) {
       max-width: 343px;
-      inset: 10%;
-      height: 500px;
+      inset: 0;
+      height: 70%;
     }
   }
   ${({ $isNewBoardOpen }) =>

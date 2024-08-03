@@ -36,11 +36,6 @@ function AppBody() {
       <BoardColumn>
         <p>+ New Column</p>
       </BoardColumn>
-      {/* {boardsSlice.isNewBoardModalOpen && (
-        <Modal>
-          <p>hello</p>
-        </Modal>
-      )} */}
     </StyledAppBody>
   );
 }

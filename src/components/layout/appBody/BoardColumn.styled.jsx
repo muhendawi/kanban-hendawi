@@ -12,4 +12,28 @@ export const StyledBoardColumn = styled.div`
     margin-bottom: 0.5rem;
     padding-left: 0;
   }
+  &:last-child {
+    height: calc(100% - 2.4rem);
+    margin-top: 2.4rem;
+    border-radius: 0.5rem;
+    background-color: var(--verylightSliver);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    > h3 {
+      display: none;
+    }
+    > p {
+      font-size: var(--fsXl);
+      font-weight: 700;
+      color: var(--veryLightGrey);
+    }
+    &:hover {
+      > p {
+        color: var(--darkIndigo);
+        transition: ease-in 0.3s;
+      }
+    }
+  }
 `;

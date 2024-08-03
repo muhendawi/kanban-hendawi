@@ -14,6 +14,7 @@ export const StyledTaskCard = styled.div`
   cursor: pointer;
   overflow: auto;
   > h4 {
+    font-size: var(--fsM);
     margin: 0;
     padding: 0;
   }

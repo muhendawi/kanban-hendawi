@@ -1,20 +1,24 @@
+import { StyledNav, DesktopNavBtn, MobileNavBtn } from "./Navbar.styled";
 import { VerticalEllipsis } from "../..";
 import { FaPlus } from "react-icons/fa6";
 import Wrapper from "../../universal/Wrapper";
-import NavBoardTile from "./BoardItem";
-import { StyledNav, DesktopNavBtn, MobileNavBtn } from "./Navbar.styled";
+import NavBoardItem from "./NavBoardItem";
 import { useDispatch } from "react-redux";
 import { toggleNewBoardModal } from "../../../store/board/board.slice";
+import MobileMenu from "./MobileMenu";
 //--------------------------------------------------------------->
 
 function Navbar() {
   const dispatch = useDispatch();
   return (
     <StyledNav>
-      <NavBoardTile />
+      <NavBoardItem />
       <Wrapper>
-        <DesktopNavBtn $variation="primary" $size="medium">
-          <FaPlus size={12} /> Add New Task
+        <DesktopNavBtn
+          $variation="primary"
+          $size="medium"
+          onClick={() => dispatch(toggleNewBoardModal())}>
+          + Add New Task
         </DesktopNavBtn>
         <MobileNavBtn
           $variation="primary"
@@ -24,6 +28,7 @@ function Navbar() {
         </MobileNavBtn>
         <VerticalEllipsis />
       </Wrapper>
+      {/* <MobileMenu /> */}
     </StyledNav>
   );
 }

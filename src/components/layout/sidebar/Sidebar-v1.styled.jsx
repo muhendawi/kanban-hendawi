@@ -3,8 +3,9 @@ import styled, { css } from "styled-components";
 export const StyledSidebar = styled.aside`
   opacity: 1;
   transform: translateX(0);
-  transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  position: initial;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  background-color: var(--white);
+  /* position: initial; */
   ${({ $isSidebarHidden }) =>
     $isSidebarHidden &&
     css`
@@ -14,7 +15,6 @@ export const StyledSidebar = styled.aside`
       top: 5rem;
       bottom: 0;
     `}
-
   > div {
     height: 100%;
     display: flex;
