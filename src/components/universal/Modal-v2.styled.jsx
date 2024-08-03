@@ -20,14 +20,14 @@ export const StyledModal = styled.div`
     margin: auto;
     max-width: 480px;
     padding: 32px;
-    min-height: 200px;
+    height: 40%;
     border-radius: 0.5rem;
     background-color: var(--white);
     overflow: auto;
     @media (max-width: 768px) {
       max-width: 343px;
       inset: 0;
-      height: 70%;
+      height: 60%;
     }
   }
   ${({ $isNewBoardOpen }) =>

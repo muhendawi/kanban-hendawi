@@ -57,7 +57,8 @@ export function BoardIcon() {
 }
 // the chevron down icon for nav menu on mobile view
 const StyledChevronDownIcon = styled.img`
-  padding: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  margin-left: -0.5rem;
   /* width: 10%;
   height: 10%; */
   cursor: pointer;

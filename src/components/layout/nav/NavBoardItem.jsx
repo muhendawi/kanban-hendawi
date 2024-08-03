@@ -12,12 +12,15 @@ function NavBoardItem() {
     dispatch(toggleMobileMenu());
   }
   return (
-    <StyledNavBoardItem onClick={handleToggleMobileMenu}>
+    <StyledNavBoardItem>
       <MobileLogo />
       <NavBoardTitle>
         {boardsSlice.boards.at(boardsSlice.selectedBoardIndex).name}
       </NavBoardTitle>
-      <ChevronDownIcon isMobileMenutoggled={boardsSlice.isMobileMenuOpen} />
+      <ChevronDownIcon
+        isMobileMenutoggled={boardsSlice.isMobileMenuOpen}
+        onClick={handleToggleMobileMenu}
+      />
     </StyledNavBoardItem>
   );
 }
