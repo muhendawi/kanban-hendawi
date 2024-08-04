@@ -34,8 +34,8 @@ const StyledMobileMenu = styled.div`
     background-color: var(--white);
     position: fixed;
     top: 3%;
-    right: 8%;
-    left: 8%;
+    right: 5%;
+    left: 5%;
     > h3 {
       align-self: flex-start;
     }

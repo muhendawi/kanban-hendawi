@@ -22,7 +22,9 @@ export const StyledBoardColumn = styled.div`
     align-items: center;
     cursor: pointer;
     border-bottom: 2px solid transparent;
-    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* box-shadow: 0 4px 5px -2px rgba(54, 78, 126, 0.102); */
+    box-shadow: 0 4px 6px rgba(54, 78, 126, 0.102);
     > h3 {
       display: none;
     }
@@ -32,11 +34,13 @@ export const StyledBoardColumn = styled.div`
       color: var(--veryLightGrey);
     }
     &:hover {
-      box-shadow: 0 4px 5px -2px rgb(99, 95, 199, 0.5);
       > p {
         color: var(--darkIndigo);
         transition: ease-in 0.2s;
       }
+    }
+    &:active {
+      transform: scale(0.95);
     }
   }
 `;

@@ -50,7 +50,11 @@ export const Button = styled.button`
   border-radius: 2em;
   ${({ $variation }) => variations[$variation]}
   ${({ $size }) => sizes[$size]}
-  &:hover {
+  transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  /* &:hover {
     transition: ease 0.4s;
+  } */
+  &:active {
+    transform: scale(0.93);
   }
 `;
