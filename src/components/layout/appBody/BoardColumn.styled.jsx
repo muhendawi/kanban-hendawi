@@ -21,6 +21,7 @@ export const StyledBoardColumn = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    border-bottom: 2px solid transparent;
     > h3 {
       display: none;
     }
@@ -30,9 +31,10 @@ export const StyledBoardColumn = styled.div`
       color: var(--veryLightGrey);
     }
     &:hover {
+      border-bottom: 2px solid var(--darkIndigo);
       > p {
         color: var(--darkIndigo);
-        transition: ease-in 0.3s;
+        transition: ease-in 0.2s;
       }
     }
   }

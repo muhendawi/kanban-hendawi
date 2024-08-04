@@ -1,9 +1,9 @@
 import Header from "../sidebar/Header.styled";
 import { StyledBoardColumn } from "./BoardColumn.styled";
 
-function BoardColumn({ columnName, tasksNo, children }) {
+function BoardColumn({ onClick, columnName, tasksNo, children }) {
   return (
-    <StyledBoardColumn>
+    <StyledBoardColumn onClick={onClick}>
       <Header>
         {columnName} ({tasksNo})
       </Header>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledLightDarkToggleBtn = styled.div`
   & label {
@@ -8,8 +8,6 @@ export const StyledLightDarkToggleBtn = styled.div`
     display: block;
     background-color: var(--darkIndigo);
     border-radius: 1em;
-    /* box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4),
-      inset 0px -5px 15px rgba(255, 255, 255, 0.4); */
     cursor: pointer;
     transition: 0.3s;
   }
@@ -27,17 +25,26 @@ export const StyledLightDarkToggleBtn = styled.div`
     width: 0.8rem;
     height: 0.8rem;
     top: 0.2em;
-    left: 0.2em;
+
     border-radius: 1rem;
     background-color: var(--lightSilver);
     transition: 0.3s;
   }
   & input:checked + label {
   }
-  input:checked + label::after {
-    left: 2.3rem;
-    transform: translateX(-100%);
-  }
+  ${({ $isLightDarkBtnToggled }) =>
+    $isLightDarkBtnToggled
+      ? css`
+          label::after {
+            left: 2.3rem;
+            transform: translateX(-100%);
+          }
+        `
+      : css`
+          label::after {
+            left: 0.2em;
+          }
+        `}
   & label:active:after {
     width: 1.3rem;
   }

@@ -13,6 +13,7 @@ function Navbar() {
   return (
     <StyledNav>
       <NavBoardItem />
+
       <Wrapper>
         <DesktopNavBtn
           $variation="primary"

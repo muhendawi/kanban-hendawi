@@ -14,6 +14,7 @@ export const StyledSidebar = styled.aside`
       position: fixed;
       top: 5rem;
       bottom: 0;
+      z-index: 800;
     `}
   > div {
     height: 100%;

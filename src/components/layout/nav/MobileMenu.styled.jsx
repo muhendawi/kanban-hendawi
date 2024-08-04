@@ -49,8 +49,9 @@ const StyledMobileMenu = styled.div`
       z-index: 700;
     `}
   @media (min-width: 768px) {
-    display: none;
+    opacity: 0;
     top: -1000px;
+    z-index: -1000;
   }
 `;
 

@@ -1,17 +1,20 @@
-import { useState } from "react";
 import { StyledLightDarkToggleItem } from "./LightDarkToggleItem.styled";
 import LightDarkToggleBtn from "./LightDarkToggleBtn";
 import { DarkthemeIcon, LightThemeIcon } from "../..";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleDarkTheme } from "../../../store/board/board.slice";
 
 function LightDarkToggleItem() {
-  const [isToggle, setIsToggle] = useState(false);
-  function handleToggling() {
-    setIsToggle(!isToggle);
+  const isDarkThemeOn = useSelector((store) => store.boards.isDarkThemeOn);
+  const dispatch = useDispatch();
+  function handleToggleDarkMode() {
+    dispatch(toggleDarkTheme());
   }
+  console.log(isDarkThemeOn);
   return (
     <StyledLightDarkToggleItem>
       <LightThemeIcon />
-      <LightDarkToggleBtn handleToggling={handleToggling} />
+      <LightDarkToggleBtn handleToggling={handleToggleDarkMode} />
       <DarkthemeIcon />
     </StyledLightDarkToggleItem>
   );

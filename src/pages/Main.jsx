@@ -1,7 +1,5 @@
 import { StyledMain } from "./Main.styled";
 import Sidebar from "../components/layout/sidebar/Sidebar-v1";
-import Wrapper from "../components/universal/Wrapper";
-
 import Navbar from "../components/layout/nav/Navbar";
 import AppBody from "../components/layout/appBody/AppBody";
 import { useSelector } from "react-redux";

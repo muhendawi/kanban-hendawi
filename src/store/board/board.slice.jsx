@@ -3,6 +3,7 @@ import data from "../../data/data.json";
 
 const initialState = {
   boards: data.boards,
+  isDarkThemeOn: false,
   isSidebarHidden: false,
   selectedBoardIndex: 0,
   selectedTask: 0,
@@ -33,6 +34,9 @@ const boardsSlice = createSlice({
     toggleMobileMenu(state) {
       state.isMobileMenuOpen = !state.isMobileMenuOpen;
     },
+    toggleDarkTheme(state) {
+      state.isDarkThemeOn = !state.isDarkThemeOn;
+    },
   },
 });
 
@@ -42,4 +46,5 @@ export const {
   setSelectedBoardIndex,
   toggleNewBoardModal,
   toggleMobileMenu,
+  toggleDarkTheme,
 } = boardsSlice.actions;

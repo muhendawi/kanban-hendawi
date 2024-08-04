@@ -7,9 +7,11 @@ import Modal from "../../universal/Modal-v1";
 import boardSlice, {
   toggleNewBoardModal,
 } from "../../../store/board/board.slice";
+import { useDispatch } from "react-redux";
 
 function AppBody() {
   const boardsSlice = useSelector((store) => store.boards);
+  const dispatch = useDispatch();
 
   return (
     <StyledAppBody>
@@ -30,7 +32,7 @@ function AppBody() {
           </BoardColumn>
         )
       )}
-      <BoardColumn>
+      <BoardColumn onClick={() => dispatch(toggleNewBoardModal())}>
         <p>+ New Column</p>
       </BoardColumn>
     </StyledAppBody>
