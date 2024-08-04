@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa6";
 import Wrapper from "../../universal/Wrapper";
 import NavBoardItem from "./NavBoardItem";
 import MobileMenu from "./MobileMenu";
-import NewTaskModal from "../../forms/NewTaskModal";
+import Modal from "../../forms/Modal";
 import { useState } from "react";
 //--------------------------------------------------------------->
 
@@ -27,7 +27,10 @@ function Navbar() {
         <MobileNavBtn
           $variation="primary"
           $size="small"
-          onClick={() => setNewTaskModal(!newTaskModalToggled)}>
+          onClick={() => {
+            setMobileMenu(false);
+            setNewTaskModal(!newTaskModalToggled);
+          }}>
           <FaPlus size={15} />
         </MobileNavBtn>
         <VerticalEllipsis />
@@ -36,14 +39,13 @@ function Navbar() {
         onClick={() => setMobileMenu(!mobileMenuToggled)}
         isMobileMenuOpen={mobileMenuToggled}
       />
-      <NewTaskModal
+      <Modal
         onClick={() => {
-          setMobileMenu(false);
           setNewTaskModal(!newTaskModalToggled);
         }}
-        isNewTaskOpen={newTaskModalToggled}>
+        isModalOpen={newTaskModalToggled}>
         New Task 📝
-      </NewTaskModal>
+      </Modal>
     </StyledNav>
   );
 }

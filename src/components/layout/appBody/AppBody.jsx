@@ -3,46 +3,53 @@ import NoData from "../../../pages/NoData";
 import { useSelector } from "react-redux";
 import TaskCard from "./TaskCard";
 import BoardColumn from "./BoardColumn";
-
-import boardSlice, {
-  toggleNewBoardModal,
-} from "../../../store/board/board.slice";
-import { useDispatch } from "react-redux";
-import NewColumnModal from "../../forms/NewColumnModal";
+import Modal from "../../forms/Modal";
 import { useState } from "react";
 
 function AppBody() {
   const [newColumnModalToggled, setNewColumnModal] = useState(false);
   const boardsSlice = useSelector((store) => store.boards);
+  const selectedColumn = boardsSlice.boards.at(
+    boardsSlice.selectedBoardIndex
+  ).columns;
+
   return (
     <>
-      <StyledAppBody>
-        {boardsSlice.boards
-          .at(boardsSlice.selectedBoardIndex)
-          .columns.map((column, index) => (
+      <StyledAppBody $columnLength={selectedColumn.length}>
+        {selectedColumn.length !== 0 ? (
+          <>
+            {selectedColumn.map((column, index) => (
+              <BoardColumn
+                key={index}
+                columnName={column.name}
+                tasksNo={column.tasks.length}>
+                {column.tasks.map((task, index) => (
+                  <TaskCard
+                    key={index}
+                    title={task.title}
+                    completedSubTasks={0}
+                    totalSubTasks={task.subtasks.length}
+                  />
+                ))}
+              </BoardColumn>
+            ))}
             <BoardColumn
-              key={index}
-              columnName={column.name}
-              tasksNo={column.tasks.length}>
-              {column.tasks.map((task, index) => (
-                <TaskCard
-                  key={index}
-                  title={task.title}
-                  completedSubTasks={0}
-                  totalSubTasks={task.subtasks.length}
-                />
-              ))}
+              onClick={() => setNewColumnModal(!newColumnModalToggled)}>
+              <p>+ New Column</p>
             </BoardColumn>
-          ))}
-        <BoardColumn onClick={() => setNewColumnModal(!newColumnModalToggled)}>
-          <p>+ New Column</p>
-        </BoardColumn>
+          </>
+        ) : (
+          <NoData
+            text="This board is empty. Create a new column to get started."
+            btnText="+ Add New Column"
+          />
+        )}
       </StyledAppBody>
-      <NewColumnModal
+      <Modal
         onClick={() => setNewColumnModal(!newColumnModalToggled)}
-        isNewColumnModalOpen={newColumnModalToggled}>
+        isModalOpen={newColumnModalToggled}>
         New Column 💂
-      </NewColumnModal>
+      </Modal>
     </>
   );
 }

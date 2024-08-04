@@ -7,6 +7,7 @@ import MainLogo from "../components/universal/MainLogo";
 
 function Main() {
   const boardsSlice = useSelector((store) => store.boards);
+
   // const [isMainExpanded, setIsMainExpanded] = useState(false);
   // useEffect(() => {
   //   setTimeout(() => {

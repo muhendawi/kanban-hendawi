@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const StyledNoData = styled.div`
-  height: 100vh;
-  margin: 0 auto;
+  height: 100%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

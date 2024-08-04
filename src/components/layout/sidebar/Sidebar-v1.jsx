@@ -8,19 +8,17 @@ import ToggleSidebarBtn from "./ToggleSidebarBtn";
 import { BoardIcon, HideSidebarIcon } from "../..";
 import { useSelector, useDispatch } from "react-redux";
 import BoardName from "./BoardName";
-
+import { toggleNewBoardModal } from "../../../store/board/board.slice";
 import {
   toggleSidebar,
   setSelectedBoardIndex,
 } from "../../../store/board/board.slice";
-import NewBoardModal from "../../forms/NewBoardModal";
-import { useState } from "react";
+import Modal from "../../forms/Modal";
 
 function Sidebar() {
   const isSidebarHidden = useSelector((store) => store.boards.isSidebarHidden);
   const boardsSlice = useSelector((store) => store.boards);
   const dispatch = useDispatch();
-  const [newBoardModalToggled, setNewBoardModal] = useState(false);
 
   function handleToggleSidebar() {
     dispatch(toggleSidebar());
@@ -53,9 +51,7 @@ function Sidebar() {
                 </BoardItem>
               ))}
             </Wrapper>
-            <CreateNewBoard
-              onClick={() => setNewBoardModal(!newBoardModalToggled)}
-            />
+            <CreateNewBoard onClick={() => dispatch(toggleNewBoardModal())} />
           </Wrapper>
           <Wrapper>
             <LightDarkToggleItem />
@@ -66,11 +62,11 @@ function Sidebar() {
           </Wrapper>
         </Wrapper>
       </StyledSidebar>
-      <NewBoardModal
-        onClick={() => setNewBoardModal(!newBoardModalToggled)}
-        isNewBoardModalOpen={newBoardModalToggled}>
+      <Modal
+        onClick={() => dispatch(toggleNewBoardModal())}
+        isModalOpen={boardsSlice.isNewBoardModalOpen}>
         New Board 🎲
-      </NewBoardModal>
+      </Modal>
     </>
   );
 }

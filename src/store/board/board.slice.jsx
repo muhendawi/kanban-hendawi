@@ -7,7 +7,7 @@ const initialState = {
   isSidebarHidden: false,
   selectedBoardIndex: 0,
   selectedTask: 0,
-  // isNewBoardModalOpen: false,
+  isNewBoardModalOpen: false,
   // isNewTaskModalOpen: false,
   // isTaskModalOpen: false,
   // isMobileMenuOpen: false,
@@ -26,11 +26,10 @@ const boardsSlice = createSlice({
     setSelectedTask(state, action) {
       state.selectedItem = action.payload;
     },
-    // toggleNewBoardModal(state) {
-    //   state.isNewBoardModalOpen = !state.isNewBoardModalOpen;
-    //   // to close the mobile menu when newboard modal is opened
-    //   state.isMobileMenuOpen = false;
-    // },
+    toggleNewBoardModal(state) {
+      // to close the mobile menu when newboard modal is opened
+      state.isNewBoardModalOpen = !state.isNewBoardModalOpen;
+    },
     // toggleNewTaskModal(state) {
     //   state.isNewTaskModalOpen = !state.isNewTaskModalOpen;
     // },
@@ -48,7 +47,6 @@ export const {
   toggleSidebar,
   setSelectedBoardIndex,
   toggleNewBoardModal,
-  toggleNewTaskModal,
   toggleMobileMenu,
   toggleDarkTheme,
 } = boardsSlice.actions;

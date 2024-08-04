@@ -1,8 +1,8 @@
 import StyledModal from "./Modal.styled";
 
-function NewTaskModal({ onClick, isNewTaskOpen, children }) {
+function Modal({ onClick, isModalOpen, children }) {
   return (
-    <StyledModal $isModalOpen={isNewTaskOpen}>
+    <StyledModal $isModalOpen={isModalOpen}>
       <div onClick={onClick}></div>
       <div
         tabIndex="0"
@@ -17,4 +17,4 @@ function NewTaskModal({ onClick, isNewTaskOpen, children }) {
   );
 }
 
-export default NewTaskModal;
+export default Modal;

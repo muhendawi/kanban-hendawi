@@ -71,7 +71,7 @@ ol[role="list"] {
 /* Set core body defaults */
 body {
   font-family: "Plus Jakarta Sans", sans-serif;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   line-height: 1.5;
   margin: 0;
