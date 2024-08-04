@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 import { toggleMobileMenu } from "../../../store/board/board.slice";
 import { useDispatch } from "react-redux";
 
-function NavBoardItem() {
+function NavBoardItem({ onClick, isMobileMenuOpen }) {
   const boardsSlice = useSelector((store) => store.boards);
   const dispatch = useDispatch();
-  function handleToggleMobileMenu() {
-    dispatch(toggleMobileMenu());
-  }
+  // function handleToggleMobileMenu() {
+  //   dispatch(toggleMobileMenu());
+  // }
   return (
     <StyledNavBoardItem>
       <MobileLogo />
@@ -18,8 +18,8 @@ function NavBoardItem() {
         {boardsSlice.boards.at(boardsSlice.selectedBoardIndex).name}
       </NavBoardTitle>
       <ChevronDownIcon
-        isMobileMenutoggled={boardsSlice.isMobileMenuOpen}
-        onClick={handleToggleMobileMenu}
+        isMobileMenutoggled={isMobileMenuOpen}
+        onClick={onClick}
       />
     </StyledNavBoardItem>
   );

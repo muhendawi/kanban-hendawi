@@ -15,8 +15,8 @@ export const StyledMain = styled.div`
     grid-row: 2/3;
   }
   > main {
-    ${({ $isItHidden }) =>
-      $isItHidden &&
+    ${({ $isSidebarHidden }) =>
+      $isSidebarHidden &&
       css`
         grid-column: 1/3;
       `};

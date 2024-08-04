@@ -1,11 +1,11 @@
 import { StyledCreateNewBoard } from "./CreateNewBoard.styled";
 import BoardName from "./BoardName";
-import { BoardIcon } from "../../index";
+import IconBoard from "../../../assets/IconBoardSVG";
 
 function CreateNewBoard({ onClick }) {
   return (
     <StyledCreateNewBoard onClick={onClick}>
-      <BoardIcon />
+      <IconBoard color="#635FC7" />
       <BoardName boardName="+ Create New Board " />
     </StyledCreateNewBoard>
   );

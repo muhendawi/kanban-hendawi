@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const StyledModal = styled.div`
+const StyledModal = styled.div`
   position: fixed;
   inset: 0;
   top: -5rem;
@@ -8,19 +8,19 @@ export const StyledModal = styled.div`
   opacity: 0;
   z-index: -100;
   background-color: rgb(0, 0, 0, 0.45);
-  transform: scale(0.5);
-  transition: all 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform: scale(0.8);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   & div:first-child {
     position: fixed;
     inset: 0;
   }
   & div:last-child {
     position: absolute;
-    inset: 25%;
+    inset: 30%;
     margin: auto;
     max-width: 480px;
     padding: 32px;
-    height: 40%;
+    min-height: 300px;
     border-radius: 0.5rem;
     background-color: var(--white);
     overflow: auto;
@@ -30,12 +30,14 @@ export const StyledModal = styled.div`
       height: 60%;
     }
   }
-  ${({ $isNewBoardOpen }) =>
-    $isNewBoardOpen &&
+  ${({ $isModalOpen }) =>
+    $isModalOpen &&
     css`
       opacity: 1;
       transform: scale(1);
-      z-index: 800;
+      z-index: 801;
       /* left: 0; */
     `}
 `;
+
+export default StyledModal;

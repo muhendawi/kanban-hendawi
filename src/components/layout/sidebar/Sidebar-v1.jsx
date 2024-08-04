@@ -12,13 +12,15 @@ import BoardName from "./BoardName";
 import {
   toggleSidebar,
   setSelectedBoardIndex,
-  toggleNewBoardModal,
 } from "../../../store/board/board.slice";
+import NewBoardModal from "../../forms/NewBoardModal";
+import { useState } from "react";
 
 function Sidebar() {
   const isSidebarHidden = useSelector((store) => store.boards.isSidebarHidden);
   const boardsSlice = useSelector((store) => store.boards);
   const dispatch = useDispatch();
+  const [newBoardModalToggled, setNewBoardModal] = useState(false);
 
   function handleToggleSidebar() {
     dispatch(toggleSidebar());
@@ -26,10 +28,6 @@ function Sidebar() {
 
   function handleSelectBoardIndex(id) {
     dispatch(setSelectedBoardIndex(id));
-  }
-
-  function handleToggleModal() {
-    dispatch(toggleNewBoardModal());
   }
 
   return (
@@ -55,7 +53,9 @@ function Sidebar() {
                 </BoardItem>
               ))}
             </Wrapper>
-            <CreateNewBoard onClick={handleToggleModal} />
+            <CreateNewBoard
+              onClick={() => setNewBoardModal(!newBoardModalToggled)}
+            />
           </Wrapper>
           <Wrapper>
             <LightDarkToggleItem />
@@ -66,6 +66,11 @@ function Sidebar() {
           </Wrapper>
         </Wrapper>
       </StyledSidebar>
+      <NewBoardModal
+        onClick={() => setNewBoardModal(!newBoardModalToggled)}
+        isNewBoardModalOpen={newBoardModalToggled}>
+        New Board 🎲
+      </NewBoardModal>
     </>
   );
 }

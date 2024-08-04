@@ -22,6 +22,7 @@ export const StyledBoardColumn = styled.div`
     align-items: center;
     cursor: pointer;
     border-bottom: 2px solid transparent;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     > h3 {
       display: none;
     }
@@ -31,7 +32,7 @@ export const StyledBoardColumn = styled.div`
       color: var(--veryLightGrey);
     }
     &:hover {
-      border-bottom: 2px solid var(--darkIndigo);
+      box-shadow: 0 4px 5px -2px rgb(99, 95, 199, 0.5);
       > p {
         color: var(--darkIndigo);
         transition: ease-in 0.2s;

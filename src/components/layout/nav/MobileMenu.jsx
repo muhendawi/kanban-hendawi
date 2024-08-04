@@ -14,7 +14,7 @@ import {
   toggleMobileMenu,
 } from "../../../store/board/board.slice";
 
-function MobileMenu() {
+function MobileMenu({ onClick, isMobileMenuOpen }) {
   const boardsSlice = useSelector((store) => store.boards);
   const dispatch = useDispatch();
 
@@ -26,19 +26,22 @@ function MobileMenu() {
     dispatch(toggleNewBoardModal());
   }
 
-  function handleToggleMobileMenu() {
-    dispatch(toggleMobileMenu());
-  }
+  // function handleToggleMobileMenu() {
+  //   dispatch(toggleMobileMenu());
+  // }
 
   return (
-    <StyledMobileMenu $isMobileMenuOpen={boardsSlice.isMobileMenuOpen}>
-      <Wrapper onClick={handleToggleMobileMenu}></Wrapper>
+    <StyledMobileMenu $isMobileMenuOpen={isMobileMenuOpen}>
+      <Wrapper onClick={onClick}></Wrapper>
       <Wrapper>
         <Header>All Boards ({boardsSlice.boards.length})</Header>
         {boardsSlice.boards.map((board, index) => (
           <BoardItem
             key={index}
-            onClick={() => handleSelectBoardIndex(index)}
+            onClick={() => {
+              handleSelectBoardIndex(index);
+              onClick();
+            }}
             active={index === boardsSlice.selectedBoardIndex}>
             <BoardIcon />
             <BoardName boardName={board.name} />

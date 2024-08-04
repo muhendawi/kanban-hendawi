@@ -11,7 +11,7 @@ const StyledMobileMenu = styled.div`
   z-index: -101;
   /* transform: scale(0.5); */
   transform: translateY(-5%);
-  transition: all 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   > div:first-child {
     position: fixed;
     top: 0;
