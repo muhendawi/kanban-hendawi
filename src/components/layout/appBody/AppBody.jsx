@@ -15,8 +15,9 @@ function AppBody() {
 
   return (
     <StyledAppBody>
-      {boardsSlice.boards[boardsSlice.selectedBoardIndex].columns.map(
-        (column, index) => (
+      {boardsSlice.boards
+        .at(boardsSlice.selectedBoardIndex)
+        .columns.map((column, index) => (
           <BoardColumn
             key={index}
             columnName={column.name}
@@ -30,8 +31,7 @@ function AppBody() {
               />
             ))}
           </BoardColumn>
-        )
-      )}
+        ))}
       <BoardColumn onClick={() => dispatch(toggleNewBoardModal())}>
         <p>+ New Column</p>
       </BoardColumn>

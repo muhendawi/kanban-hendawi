@@ -10,7 +10,6 @@ function LightDarkToggleItem() {
   function handleToggleDarkMode() {
     dispatch(toggleDarkTheme());
   }
-  console.log(isDarkThemeOn);
   return (
     <StyledLightDarkToggleItem>
       <LightThemeIcon />
