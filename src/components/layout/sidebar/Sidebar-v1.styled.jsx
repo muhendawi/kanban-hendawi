@@ -10,7 +10,7 @@ export const StyledSidebar = styled.aside`
     $isSidebarHidden &&
     css`
       opacity: 0;
-      transform: translateX(-60%);
+      transform: translateX(-100%);
       position: fixed;
       top: 5rem;
       bottom: 0;

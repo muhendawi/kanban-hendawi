@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const StyledToggleSidebarBtn = styled.div`
   height: 3rem;
