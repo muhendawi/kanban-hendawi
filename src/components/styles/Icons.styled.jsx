@@ -58,11 +58,11 @@ export function BoardIcon() {
 // the chevron down icon for nav menu on mobile view
 const StyledChevronDownIcon = styled.img`
   padding: 0.5rem 0.8rem;
-  margin-left: -0.5rem;
-  /* width: 10%;
-  height: 10%; */
+  margin-left: -0.6rem;
+  /* width: 16%; */
+  /* height: 10%; */
   cursor: pointer;
-  transition: all ease 0.3s;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   ${({ $isMobileMenuToggled }) =>
     $isMobileMenuToggled
       ? css`
@@ -106,8 +106,26 @@ export function HideSidebarIcon() {
   );
 }
 // the mobile logo
-const StyledMobileLogo = styled.img``;
-export function MobileLogo() {
-  return <StyledMobileLogo src={mobileLogo} alt="the mobile logo" />;
+const StyledMobileLogo = styled.img`
+  cursor: pointer;
+  /* transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55); */
+  ${({ $isMobileMenuToggled }) =>
+    $isMobileMenuToggled
+      ? css`
+          transform: rotate(180deg);
+        `
+      : css`
+          transform: rotate(0deg);
+        `}
+`;
+export function MobileLogo({ onClick, isMobileMenutoggled }) {
+  return (
+    <StyledMobileLogo
+      src={mobileLogo}
+      alt="the mobile logo"
+      onClick={onClick}
+      $isMobileMenuToggled={isMobileMenutoggled}
+    />
+  );
 }
 //

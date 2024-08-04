@@ -13,7 +13,7 @@ function NavBoardItem({ onClick, isMobileMenuOpen }) {
   // }
   return (
     <StyledNavBoardItem>
-      <MobileLogo />
+      <MobileLogo isMobileMenutoggled={isMobileMenuOpen} onClick={onClick} />
       <NavBoardTitle>
         {boardsSlice.boards.at(boardsSlice.selectedBoardIndex).name}
       </NavBoardTitle>
