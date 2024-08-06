@@ -30,7 +30,8 @@ html {
   --white: #FFFFFF;
   --darkRedOrange: #EA5555;
   --hoverRedOrange: #FF9898;
-
+  --formPlaceholder: #e0e3e8;
+  
   --fsXl: 24px;
   --fsL: 18px;
   --fsM: 15px;

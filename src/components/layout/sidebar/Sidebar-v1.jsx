@@ -64,9 +64,8 @@ function Sidebar() {
       </StyledSidebar>
       <Modal
         onClick={() => dispatch(toggleNewBoardModal())}
-        isModalOpen={boardsSlice.isNewBoardModalOpen}>
-        New Board 🎲
-      </Modal>
+        isModalOpen={boardsSlice.isNewBoardModalOpen}
+      />
     </>
   );
 }

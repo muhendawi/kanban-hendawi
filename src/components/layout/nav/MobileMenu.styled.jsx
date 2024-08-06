@@ -9,9 +9,11 @@ const StyledMobileMenu = styled.div`
   background-color: rgb(0, 0, 0, 0.45);
   opacity: 0;
   z-index: -101;
+  transition: ease-out 0.15s;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
   /* transform: scale(0.5); */
-  transform: translateY(-5%);
-  transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
   > div:first-child {
     position: fixed;
     top: 0;
@@ -24,6 +26,8 @@ const StyledMobileMenu = styled.div`
     }
   }
   > div:last-child {
+    transform: translateY(-15%);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,8 +36,8 @@ const StyledMobileMenu = styled.div`
     min-height: 10rem;
     border-radius: 0.5rem;
     background-color: var(--white);
-    position: fixed;
-    top: 3%;
+    position: absolute;
+    top: 2%;
     right: 5%;
     left: 5%;
     > h3 {
@@ -43,16 +47,22 @@ const StyledMobileMenu = styled.div`
   ${({ $isMobileMenuOpen }) =>
     $isMobileMenuOpen &&
     css`
-      opacity: 1;
-      /* transform: scale(1); */
-      transform: translateX(0);
-      z-index: 700;
+      > div:last-child {
+        transform: translateX(0);
+      }
     `}
   @media (min-width: 768px) {
     opacity: 0;
     top: -1000px;
     z-index: -1000;
   }
+  ${({ $isMobileMenuOpen }) =>
+    $isMobileMenuOpen &&
+    css`
+      opacity: 1;
+      /* transform: scale(1); */
+      z-index: 700;
+    `}
 `;
 
 export default StyledMobileMenu;

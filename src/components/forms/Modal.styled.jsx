@@ -8,33 +8,71 @@ const StyledModal = styled.div`
   opacity: 0;
   z-index: -100;
   background-color: rgb(0, 0, 0, 0.45);
-  transform: scale(0.8);
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: ease-out 0.15s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
   & div:first-child {
     position: fixed;
     inset: 0;
   }
   & div:last-child {
-    position: absolute;
-    inset: 30%;
-    margin: auto;
-    max-width: 480px;
-    padding: 32px;
-    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 480px;
+    max-height: calc(90% - 10rem);
+    padding: 2rem;
     border-radius: 0.5rem;
     background-color: var(--white);
-    overflow: auto;
+    overflow-y: scroll;
+    transform: scale(0.7);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    > * {
+      width: 100%;
+    }
+    > h3 {
+      margin: 0;
+      margin-bottom: 0.8rem;
+    }
+    > label {
+      color: var(--veryLightGrey);
+      font-size: var(--fsS);
+      font-weight: 700;
+      margin-bottom: -0.3rem;
+    }
+    > input {
+      height: 40px;
+      border: 1px solid var(--formPlaceholder);
+      border-radius: 0.3rem;
+      padding: 1rem;
+      font-size: var(--fsS);
+      font-weight: 500;
+      margin-bottom: 1rem;
+
+      &::placeholder {
+        color: var(--formPlaceholder);
+      }
+      &:active {
+        border: 1px solid var(--darkIndigo);
+      }
+    }
+
     @media (max-width: 768px) {
       max-width: 343px;
-      inset: 0;
-      height: 60%;
+      min-height: 200px;
+      padding: 1.5rem;
     }
   }
   ${({ $isModalOpen }) =>
     $isModalOpen &&
     css`
+      & div:last-child {
+        transform: scale(1);
+      }
       opacity: 1;
-      transform: scale(1);
       z-index: 801;
       /* left: 0; */
     `}

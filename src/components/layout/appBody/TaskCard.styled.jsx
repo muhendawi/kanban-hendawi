@@ -13,7 +13,7 @@ export const StyledTaskCard = styled.div`
   padding: 1rem;
   cursor: pointer;
   overflow: auto;
-  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   > h4 {
     font-size: var(--fsM);
     margin: 0;
@@ -37,6 +37,6 @@ export const StyledTaskCard = styled.div`
     }
   }
   &:active {
-    transform: scale(0.95);
+    transform: scale(0.96);
   }
 `;

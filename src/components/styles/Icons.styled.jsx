@@ -129,3 +129,16 @@ export function MobileLogo({ onClick, isMobileMenutoggled }) {
   );
 }
 //
+
+const StyledCrossIcon = styled.img`
+  cursor: pointer;
+  margin: auto;
+
+  transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  &:active {
+    transform: scale(0.9);
+  }
+`;
+export function CrossIcon() {
+  return <StyledCrossIcon src={crossIcon} alt="cross icon" />;
+}

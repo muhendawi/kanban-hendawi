@@ -16,6 +16,11 @@ const sizes = {
     padding: 0.5rem 4rem;
     font-weight: 500;
   `,
+  formSpecific: css`
+    font-size: 13.5px;
+    padding: 0.5rem 1.6rem;
+    font-weight: 600;
+  `,
 };
 
 const variations = {
@@ -45,6 +50,7 @@ const variations = {
 export const Button = styled.button`
   display: flex;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
   border: none;
   border-radius: 2em;
@@ -55,6 +61,6 @@ export const Button = styled.button`
     transition: ease 0.4s;
   } */
   &:active {
-    transform: scale(0.95);
+    transform: scale(0.97);
   }
 `;

@@ -1,17 +1,36 @@
+import { useState } from "react";
 import StyledModal from "./Modal.styled";
+import ColumnAddRemove from "./textField/ColumnAddRemove";
+import { Button } from "../universal/Button.styled";
 
-function Modal({ onClick, isModalOpen, children }) {
+function Modal({ onClick, isModalOpen }) {
+  const [boardName, setBoardName] = useState("");
+  console.log(boardName);
   return (
     <StyledModal $isModalOpen={isModalOpen}>
       <div onClick={onClick}></div>
-      <div
-        tabIndex="0"
-        onKeyDown={(e) => {
-          if (e.key === "Escape") {
-            onClick(); // it should make opacity to 0 and z-index to -100
-          }
-        }}>
-        {children}
+      <div>
+        <h3>Add new Board</h3>
+        <label htmlFor="bName">Board Name</label>
+        <input
+          placeholder="e.g. Web Design"
+          type="text"
+          id="bName"
+          value={boardName}
+          onChange={(e) => setBoardName(e.target.value)}
+        />
+        <label>Board Columns</label>
+        <ColumnAddRemove />
+        <ColumnAddRemove />
+        <ColumnAddRemove />
+        <ColumnAddRemove />
+        <ColumnAddRemove />
+        <Button $variation="primary" $size="formSpecific">
+          + Add New Column
+        </Button>
+        <Button $variation="primary" $size="formSpecific">
+          Create New Board
+        </Button>
       </div>
     </StyledModal>
   );
