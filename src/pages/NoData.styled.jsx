@@ -12,6 +12,7 @@ export const StyledNoData = styled.div`
     font-size: var(--fsL);
     color: var(--veryLightGrey);
     text-align: center;
+    font-weight: 600;
   }
   @media (max-width: 768px) {
     min-width: 200px;

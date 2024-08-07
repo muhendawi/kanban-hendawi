@@ -55,7 +55,7 @@ const StyledModal = styled.div`
       &::placeholder {
         color: var(--formPlaceholder);
       }
-      &:active {
+      &:focus {
         border: 1px solid var(--darkIndigo);
       }
     }

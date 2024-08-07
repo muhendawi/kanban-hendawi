@@ -7,6 +7,7 @@ const StyledColumnAddRemove = styled.div`
   > input {
     width: 100%;
     height: 40px;
+    padding: 1rem;
     border: 1px solid var(--formPlaceholder);
     border-radius: 0.3rem;
     font-size: var(--fsS);

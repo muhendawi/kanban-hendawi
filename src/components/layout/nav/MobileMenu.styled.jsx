@@ -16,7 +16,7 @@ const StyledMobileMenu = styled.div`
 
   > div:first-child {
     position: fixed;
-    top: 0;
+    top: 4rem;
     left: 0;
     right: 0;
     bottom: 0;
@@ -37,7 +37,7 @@ const StyledMobileMenu = styled.div`
     border-radius: 0.5rem;
     background-color: var(--white);
     position: absolute;
-    top: 2%;
+    top: 3%;
     right: 5%;
     left: 5%;
     > h3 {
