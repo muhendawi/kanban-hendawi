@@ -9,6 +9,7 @@ const StyledModal = styled.div`
   z-index: -100;
   background-color: rgb(0, 0, 0, 0.45);
   transition: ease-out 0.15s;
+  transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,7 +30,7 @@ const StyledModal = styled.div`
     background-color: var(--white);
     overflow-y: scroll;
     transform: scale(0.7);
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     > * {
       width: 100%;
     }
@@ -51,7 +52,7 @@ const StyledModal = styled.div`
       font-size: var(--fsS);
       font-weight: 500;
       margin-bottom: 1rem;
-
+      outline: none;
       &::placeholder {
         color: var(--formPlaceholder);
       }

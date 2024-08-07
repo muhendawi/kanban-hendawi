@@ -12,9 +12,12 @@ const StyledColumnAddRemove = styled.div`
     border-radius: 0.3rem;
     font-size: var(--fsS);
     font-weight: 500;
-
+    outline: none;
     &::placeholder {
       color: var(--formPlaceholder);
+    }
+    &:focus {
+      border: 1px solid var(--darkIndigo);
     }
   }
 `;
