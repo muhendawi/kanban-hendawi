@@ -12,7 +12,7 @@ export const StyledBoardItem = styled.div`
   border-bottom-right-radius: 2rem;
   &:hover {
     background-color: var(--hoverGrey);
-    & > p {
+    > p {
       color: var(--darkIndigo);
     }
     transition: ease-in 0.4s;

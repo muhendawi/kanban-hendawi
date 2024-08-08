@@ -33,21 +33,22 @@ Before you can run this project locally, ensure you have the following installed
 ### Installation
 
 1. Clone this repository to your local machine:
-    ```bash
-    git clone https://github.com/muhendawi/kanban-hendawi.git
-    ```
+   ```bash
+   git clone https://github.com/muhendawi/kanban-hendawi.git
+   ```
 2. Navigate to the project directory:
-    ```bash
-    cd kanban-hendawi
-    ```
+   ```bash
+   cd kanban-hendawi
+   ```
 3. Install the necessary dependencies:
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
 ### Running the Application
 
 To start the development server, run:
+
 ```bash
 npm run dev
 ```
@@ -57,6 +58,7 @@ The application will be available at `http://localhost:5173`.
 ### Building for Production
 
 To create a production build, use:
+
 ```bash
 npm run build
 ```
@@ -65,7 +67,3 @@ If you have any questions, feel free to reach out via:
 
 - **Email**: [muhendawi@gmail.com](mailto:muhendawi@gmail.com)
 - **GitHub**: [muhendawi](https://github.com/muhendawi)
-
----
-
-Feel free to modify any section as needed!
