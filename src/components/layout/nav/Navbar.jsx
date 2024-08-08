@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa6";
 import Wrapper from "../../universal/Wrapper";
 import NavBoardItem from "./NavBoardItem";
 import MobileMenu from "./MobileMenu";
-import Modal from "../../forms/Modal";
+import ExModal from "../../forms/ExModal";
 import { useState } from "react";
 //--------------------------------------------------------------->
 
@@ -39,13 +39,13 @@ function Navbar() {
         onClick={() => setMobileMenu(!mobileMenuToggled)}
         isMobileMenuOpen={mobileMenuToggled}
       />
-      <Modal
+      <ExModal
         onClick={() => {
           setNewTaskModal(!newTaskModalToggled);
         }}
         isModalOpen={newTaskModalToggled}>
         New Task 📝
-      </Modal>
+      </ExModal>
     </StyledNav>
   );
 }

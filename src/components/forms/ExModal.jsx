@@ -3,7 +3,7 @@ import StyledModal from "./Modal.styled";
 import ColumnAddRemove from "./textField/ColumnAddRemove";
 import { Button } from "../universal/Button.styled";
 
-function Modal({ onClick, isModalOpen }) {
+function ExModal({ onClick, isModalOpen }) {
   const [boardName, setBoardName] = useState("");
   console.log(boardName);
   return (
@@ -36,4 +36,4 @@ function Modal({ onClick, isModalOpen }) {
   );
 }
 
-export default Modal;
+export default ExModal;

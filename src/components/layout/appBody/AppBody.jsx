@@ -3,7 +3,7 @@ import NoData from "../../../pages/NoData";
 import { useSelector } from "react-redux";
 import TaskCard from "./TaskCard";
 import BoardColumn from "./BoardColumn";
-import Modal from "../../forms/Modal";
+import ExModal from "../../forms/ExModal";
 import { useState } from "react";
 
 function AppBody() {
@@ -45,11 +45,11 @@ function AppBody() {
           />
         )}
       </StyledAppBody>
-      <Modal
+      <ExModal
         onClick={() => setNewColumnModal(!newColumnModalToggled)}
         isModalOpen={newColumnModalToggled}>
         New Column 💂
-      </Modal>
+      </ExModal>
     </>
   );
 }

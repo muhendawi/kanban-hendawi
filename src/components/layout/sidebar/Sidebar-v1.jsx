@@ -13,7 +13,7 @@ import {
   toggleSidebar,
   setSelectedBoardIndex,
 } from "../../../store/board/board.slice";
-import Modal from "../../forms/Modal";
+import ExModal from "../../forms/ExModal";
 
 function Sidebar() {
   const isSidebarHidden = useSelector((store) => store.boards.isSidebarHidden);
@@ -62,7 +62,7 @@ function Sidebar() {
           </Wrapper>
         </Wrapper>
       </StyledSidebar>
-      <Modal
+      <ExModal
         onClick={() => dispatch(toggleNewBoardModal())}
         isModalOpen={boardsSlice.isNewBoardModalOpen}
       />

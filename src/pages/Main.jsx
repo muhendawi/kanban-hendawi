@@ -20,10 +20,6 @@ function Main() {
       <Navbar />
       <Sidebar />
       <AppBody />
-      {/* <Modal>
-        {boardsSlice.isNewTaskModalOpen && <NewTaskModal />}
-        {boardsSlice.isNewBoardModalOpen && <NewBoardModal />}
-      </Modal> */}
     </StyledMain>
   );
 }
