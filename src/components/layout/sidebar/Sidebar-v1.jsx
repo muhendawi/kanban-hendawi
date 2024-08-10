@@ -63,7 +63,7 @@ function Sidebar() {
         </Wrapper>
       </StyledSidebar>
       <ExModal
-        onClick={() => dispatch(toggleNewBoardModal())}
+        onClose={() => dispatch(toggleNewBoardModal())}
         isModalOpen={boardsSlice.isNewBoardModalOpen}
       />
     </>

@@ -3,12 +3,12 @@ import StyledModal from "./Modal.styled";
 import ColumnAddRemove from "./textField/ColumnAddRemove";
 import { Button } from "../universal/Button.styled";
 
-function ExModal({ onClick, isModalOpen }) {
+function ExModal({ onClose, isModalOpen }) {
   const [boardName, setBoardName] = useState("");
   console.log(boardName);
   return (
     <StyledModal $isModalOpen={isModalOpen}>
-      <div onClick={onClick}></div>
+      <div onClick={onClose}></div>
       <div>
         <h3>Add new Board</h3>
         <label htmlFor="bName">Board Name</label>

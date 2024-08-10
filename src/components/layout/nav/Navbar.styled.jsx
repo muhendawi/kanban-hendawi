@@ -16,6 +16,9 @@ export const StyledNav = styled.nav`
       gap: 0.5rem;
     }
   }
+  > div:last-of-type {
+    gap: 0.6rem;
+  }
   /* Adjusting the nav padding for mobile */
   @media (max-width: 768px) {
     padding: 1rem 1rem 1rem 0.8rem;

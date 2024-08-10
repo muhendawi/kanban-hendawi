@@ -19,17 +19,15 @@ import plusSvgRepoComIcon from "../../assets/plus-svgrepo-com.svg";
 const StyledVerticalEllipsisIcon = styled.img`
   padding: 0.5rem;
   cursor: pointer;
-  &:hover {
-    transition: ease 0.4s;
-    transform: scale(0.9);
-  }
-  @media (max-width: 768px) {
+  transition: ease 0.4s;
+  &:active {
     transform: scale(0.8);
   }
 `;
-export function VerticalEllipsis() {
+export function VerticalEllipsis({ toggleDeleteBoardMenu }) {
   return (
     <StyledVerticalEllipsisIcon
+      onClick={toggleDeleteBoardMenu}
       src={verticalEllipsisIcon}
       alt="vertical ellipsis menu"
     />

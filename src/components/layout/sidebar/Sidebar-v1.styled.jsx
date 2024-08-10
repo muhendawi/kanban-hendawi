@@ -26,7 +26,10 @@ export const StyledSidebar = styled.aside`
     border-right: 2px solid var(--lightSilver);
     > div {
       width: 100%;
-      > div {
+    }
+    > div:first-of-type {
+      > div:first-of-type {
+        width: 100%;
         max-height: 60vh;
         overflow: auto;
       }

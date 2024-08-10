@@ -46,7 +46,7 @@ function AppBody() {
         )}
       </StyledAppBody>
       <ExModal
-        onClick={() => setNewColumnModal(!newColumnModalToggled)}
+        onClose={() => setNewColumnModal(!newColumnModalToggled)}
         isModalOpen={newColumnModalToggled}>
         New Column 💂
       </ExModal>
