@@ -4,11 +4,10 @@ const StyledDeleteBoardMenu = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   background-color: var(--white);
-  padding: 1rem;
-  width: 150px;
-  height: 100px;
+  width: 200px;
+  height: 110px;
   opacity: 0;
   transform: translateX(+100%);
   position: fixed;
@@ -18,26 +17,26 @@ const StyledDeleteBoardMenu = styled.div`
   z-index: -100;
   box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25);
   transition: ease-out 0.15s;
-  transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   > div:first-child {
     cursor: pointer;
     align-self: flex-start;
     margin-bottom: 0.3rem;
+    padding: 5px 90px 5px 20px;
     > span {
-      padding: 10px 40px 10px 10px;
       color: var(--veryLightGrey);
-      font-size: var(--fsS);
-      font-weight: 600;
+      font-size: var(--fsM);
+      font-weight: 500;
     }
   }
   > div:last-child {
     cursor: pointer;
     align-self: flex-start;
+    padding: 5px 70px 5px 20px;
     > span {
-      padding: 10px 25px 10px 10px;
       color: var(--darkRedOrange);
-      font-size: var(--fsS);
-      font-weight: 600;
+      font-size: var(--fsM);
+      font-weight: 500;
     }
   }
   ${({ $isMenuOpen }) =>
