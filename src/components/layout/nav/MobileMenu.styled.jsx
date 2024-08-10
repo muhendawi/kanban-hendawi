@@ -11,9 +11,7 @@ const StyledMobileMenu = styled.div`
   z-index: -101;
   transition: ease-out 0.15s;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
   /* transform: scale(0.5); */
-
   > div:first-child {
     position: fixed;
     top: 4rem;
@@ -30,18 +28,22 @@ const StyledMobileMenu = styled.div`
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    /* justify-content: center; */
+    max-height: 60%;
     padding: 1rem 1rem 1rem 0;
-    min-height: 10rem;
     border-radius: 0.5rem;
     background-color: var(--white);
     position: absolute;
     top: 3%;
     right: 5%;
     left: 5%;
-    > h3 {
+    /* > h3 {
       align-self: flex-start;
+    } */
+    > div:first-of-type {
+      /* max-height: 30%; */
+      overflow: auto;
     }
   }
   ${({ $isMobileMenuOpen }) =>

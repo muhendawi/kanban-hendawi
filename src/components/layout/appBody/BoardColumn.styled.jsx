@@ -18,17 +18,18 @@ export const StyledBoardColumn = styled.div`
     border-radius: 0.5rem;
     background-color: var(--verylightSliver);
     display: flex;
-    justify-content: center;
     align-items: center;
     cursor: pointer;
     border-bottom: 2px solid transparent;
     transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    /* box-shadow: 0 4px 5px -2px rgba(54, 78, 126, 0.102); */
     box-shadow: 0 4px 6px rgba(54, 78, 126, 0.102);
+    /* position: relative; */
     > h3 {
       display: none;
     }
     > p {
+      position: sticky;
+      top: 40vh;
       font-size: var(--fsXl);
       font-weight: 700;
       color: var(--veryLightGrey);

@@ -11,6 +11,7 @@ export const StyledTaskCard = styled.div`
   justify-content: center;
   gap: 0.4rem;
   padding: 1rem;
+  z-index: 1;
   cursor: pointer;
   overflow: auto;
   transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);

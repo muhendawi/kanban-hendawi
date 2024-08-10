@@ -34,18 +34,20 @@ function MobileMenu({ onClick, isMobileMenuOpen }) {
       <Wrapper onClick={onClick}></Wrapper>
       <Wrapper>
         <Header>All Boards ({boardsSlice.boards.length})</Header>
-        {boardsSlice.boards.map((board, index) => (
-          <BoardItem
-            key={index}
-            onClick={() => {
-              handleSelectBoardIndex(index);
-              onClick();
-            }}
-            active={index === boardsSlice.selectedBoardIndex}>
-            <BoardIcon />
-            <BoardName boardName={board.name} />
-          </BoardItem>
-        ))}
+        <Wrapper>
+          {boardsSlice.boards.map((board, index) => (
+            <BoardItem
+              key={index}
+              onClick={() => {
+                handleSelectBoardIndex(index);
+                onClick();
+              }}
+              active={index === boardsSlice.selectedBoardIndex}>
+              <BoardIcon />
+              <BoardName boardName={board.name} />
+            </BoardItem>
+          ))}
+        </Wrapper>
         <CreateNewBoard
           onClick={() => {
             onClick();
