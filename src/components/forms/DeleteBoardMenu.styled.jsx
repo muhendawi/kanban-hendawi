@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 const StyledDeleteBoardMenu = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  /* align-items: flex-start; */
   justify-content: center;
   background-color: var(--white);
   width: 200px;
@@ -21,22 +21,32 @@ const StyledDeleteBoardMenu = styled.div`
   > div:first-child {
     cursor: pointer;
     align-self: flex-start;
+    margin: 0 auto;
     margin-bottom: 0.3rem;
     padding: 5px 90px 5px 20px;
+    border-radius: 0.5rem;
     > span {
       color: var(--veryLightGrey);
       font-size: var(--fsM);
       font-weight: 500;
     }
+    &:active {
+      background-color: var(--lightSilver);
+    }
   }
   > div:last-child {
     cursor: pointer;
     align-self: flex-start;
+    margin: 0 auto;
     padding: 5px 70px 5px 20px;
+    border-radius: 0.5rem;
     > span {
       color: var(--darkRedOrange);
       font-size: var(--fsM);
       font-weight: 500;
+    }
+    &:active {
+      background-color: var(--lightSilver);
     }
   }
   ${({ $isMenuOpen }) =>

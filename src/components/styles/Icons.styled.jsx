@@ -17,11 +17,11 @@ import plusSvgRepoComIcon from "../../assets/plus-svgrepo-com.svg";
 //------------------------------------------------------------------------->
 // the three dots menu (vertical ellipsis)
 const StyledVerticalEllipsisIcon = styled.img`
-  padding: 0.5rem;
+  padding: 0.7rem 1rem;
   cursor: pointer;
   transition: ease 0.4s;
   &:active {
-    transform: scale(0.8);
+    transform: scale(0.95);
   }
 `;
 export function VerticalEllipsis({ toggleDeleteBoardMenu }) {
