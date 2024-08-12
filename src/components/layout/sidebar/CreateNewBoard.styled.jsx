@@ -5,15 +5,18 @@ export const StyledCreateNewBoard = styled.div`
   width: 100%;
   padding: 0.8rem 1.7rem;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.6rem;
   cursor: pointer;
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
-  & > p {
+  > svg {
+    fill: var(--darkIndigo);
+  }
+  > p {
     color: var(--darkIndigo);
   }
-  & > img {
+  > img {
   }
   &:hover {
     background-color: var(--hoverGrey);

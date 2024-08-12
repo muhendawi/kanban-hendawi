@@ -5,7 +5,8 @@ import LightDarkToggleItem from "./LightDarkToggleItem";
 import CreateNewBoard from "./CreateNewBoard";
 import Wrapper from "../../universal/Wrapper";
 import ToggleSidebarBtn from "./ToggleSidebarBtn";
-import { BoardIcon, HideSidebarIcon } from "../..";
+import IconBoard from "../../../assets/IconBoardSVG";
+import IconHideSidebar from "../../../assets/IconHideSidebarSVG";
 import { useSelector, useDispatch } from "react-redux";
 import BoardName from "./BoardName";
 import { toggleNewBoardModal } from "../../../store/board/board.slice";
@@ -46,7 +47,7 @@ function Sidebar() {
                   key={index}
                   onClick={() => handleSelectBoardIndex(index)}
                   active={index === boardsSlice.selectedBoardIndex}>
-                  <BoardIcon />
+                  <IconBoard />
                   <BoardName boardName={board.name} />
                 </BoardItem>
               ))}
@@ -56,7 +57,7 @@ function Sidebar() {
           <Wrapper>
             <LightDarkToggleItem />
             <BoardItem onClick={handleToggleSidebar}>
-              <HideSidebarIcon />
+              <IconHideSidebar />
               <BoardName boardName="Hide Sidebar" />
             </BoardItem>
           </Wrapper>

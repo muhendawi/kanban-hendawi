@@ -5,17 +5,23 @@ export const StyledBoardItem = styled.div`
   width: 100%;
   padding: 0.8rem 1.7rem;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.6rem;
   cursor: pointer;
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
+  > svg {
+    fill: var(--veryLightGrey);
+  }
   &:hover {
     background-color: var(--hoverGrey);
+    transition: ease-in 0.4s;
     > p {
       color: var(--darkIndigo);
     }
-    transition: ease-in 0.4s;
+    > svg {
+      fill: var(--darkIndigo);
+    }
   }
   /* Just to test the selected board */
   ${({ $active }) =>
@@ -23,8 +29,11 @@ export const StyledBoardItem = styled.div`
     css`
       background-color: var(--darkIndigo);
       transition: ease-in 0.3s;
-      & > p {
+      > p {
         color: var(--white);
+      }
+      > svg {
+        fill: var(--white);
       }
     `}
 `;

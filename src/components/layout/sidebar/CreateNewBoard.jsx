@@ -5,7 +5,7 @@ import IconBoard from "../../../assets/IconBoardSVG";
 function CreateNewBoard({ onClick }) {
   return (
     <StyledCreateNewBoard onClick={onClick}>
-      <IconBoard color="#635FC7" />
+      <IconBoard />
       <BoardName boardName="+ Create New Board " />
     </StyledCreateNewBoard>
   );

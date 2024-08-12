@@ -34,6 +34,16 @@ export const StyledSidebar = styled.aside`
         overflow: auto;
       }
     }
+    /* > div:last-of-type {
+      > div:last-of-type {
+        &:hover {
+          background-color: var(--darkIndigo);
+          > p {
+            color: var(--white);
+          }
+        }
+      }
+    } */
   }
   @media (max-width: 768px) {
     position: fixed;
