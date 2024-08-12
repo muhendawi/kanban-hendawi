@@ -29,7 +29,7 @@ const StyledModal = styled.div`
     border-radius: 0.6rem;
     background-color: var(--white);
     overflow-y: scroll;
-    box-shadow: 0 5px 15px rgb(99, 95, 199, 0.5);
+    box-shadow: 0 5px 15px rgb(99, 95, 199, 0.3);
     /* box-shadow: 0 4px 10px rgb(99, 95, 199, 0.5); */
     transform: scale(0.7);
     transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);

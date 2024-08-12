@@ -36,7 +36,7 @@ const StyledMobileMenu = styled.div`
     top: 3%;
     right: 5%;
     left: 5%;
-    box-shadow: 0 5px 15px rgb(99, 95, 199, 0.5);
+    box-shadow: 0 5px 15px rgb(99, 95, 199, 0.3);
     > div:first-of-type {
       overflow: auto;
     }

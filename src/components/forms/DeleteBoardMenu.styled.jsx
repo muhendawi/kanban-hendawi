@@ -15,7 +15,7 @@ const StyledDeleteBoardMenu = styled.div`
   top: 5rem;
   right: 1rem;
   z-index: -100;
-  box-shadow: 0 7px 15px rgb(99, 95, 199, 0.5);
+  box-shadow: 0 7px 15px rgb(99, 95, 199, 0.25);
   /* box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25); */
   transition: ease-out 0.15s;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
