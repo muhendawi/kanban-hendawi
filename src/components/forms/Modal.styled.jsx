@@ -14,11 +14,11 @@ const StyledModal = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  & div:first-child {
+  > div:first-child {
     position: fixed;
     inset: 0;
   }
-  & div:last-child {
+  > div:last-child {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -26,9 +26,11 @@ const StyledModal = styled.div`
     width: 480px;
     max-height: calc(90% - 10rem);
     padding: 2rem;
-    border-radius: 0.5rem;
+    border-radius: 0.6rem;
     background-color: var(--white);
     overflow-y: scroll;
+    box-shadow: 0 5px 15px rgb(99, 95, 199, 0.5);
+    /* box-shadow: 0 4px 10px rgb(99, 95, 199, 0.5); */
     transform: scale(0.7);
     transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     > * {

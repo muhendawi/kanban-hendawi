@@ -12,6 +12,7 @@ import {
   setSelectedBoardIndex,
   toggleNewBoardModal,
 } from "../../../store/board/board.slice";
+import IconBoard from "../../../assets/IconBoardSVG";
 
 function MobileMenu({ onClick, isMobileMenuOpen }) {
   const boardsSlice = useSelector((store) => store.boards);
@@ -43,7 +44,7 @@ function MobileMenu({ onClick, isMobileMenuOpen }) {
                 onClick();
               }}
               active={index === boardsSlice.selectedBoardIndex}>
-              <BoardIcon />
+              <IconBoard />
               <BoardName boardName={board.name} />
             </BoardItem>
           ))}

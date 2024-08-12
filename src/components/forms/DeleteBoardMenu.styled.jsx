@@ -11,42 +11,38 @@ const StyledDeleteBoardMenu = styled.div`
   opacity: 0;
   transform: translateX(+100%);
   position: fixed;
-  border-radius: 0.5rem;
+  border-radius: 0.6rem;
   top: 5rem;
   right: 1rem;
   z-index: -100;
-  box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25);
+  box-shadow: 0 7px 15px rgb(99, 95, 199, 0.5);
+  /* box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25); */
   transition: ease-out 0.15s;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  > div:first-child {
+  > div {
     cursor: pointer;
     align-self: flex-start;
     margin: 0 auto;
+    border-radius: 0.5rem;
+    &:active {
+      background-color: var(--lightSilver);
+    }
+  }
+  > div:first-child {
     margin-bottom: 0.3rem;
     padding: 5px 90px 5px 20px;
-    border-radius: 0.5rem;
     > span {
       color: var(--veryLightGrey);
       font-size: var(--fsM);
       font-weight: 500;
     }
-    &:active {
-      background-color: var(--lightSilver);
-    }
   }
   > div:last-child {
-    cursor: pointer;
-    align-self: flex-start;
-    margin: 0 auto;
     padding: 5px 70px 5px 20px;
-    border-radius: 0.5rem;
     > span {
       color: var(--darkRedOrange);
       font-size: var(--fsM);
       font-weight: 500;
-    }
-    &:active {
-      background-color: var(--lightSilver);
     }
   }
   ${({ $isMenuOpen }) =>

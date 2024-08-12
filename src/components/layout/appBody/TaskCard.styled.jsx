@@ -29,13 +29,13 @@ export const StyledTaskCard = styled.div`
     transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
   &:hover {
-    box-shadow: 0 4px 6px rgb(99, 95, 199, 0.5);
+    box-shadow: 0 4px 7px rgb(99, 95, 199, 0.5);
     > h4 {
       color: var(--darkIndigo);
     }
-    /* > p {
-      color: var(--hoverIndigo);
-    } */
+    > p {
+      color: rgb(99, 95, 199, 0.7);
+    }
   }
   &:active {
     transform: scale(0.96);
