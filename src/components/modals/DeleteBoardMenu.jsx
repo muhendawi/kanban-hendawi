@@ -1,4 +1,6 @@
 import styled, { css } from "styled-components";
+import { useState } from "react";
+//------------------------------------------------------------------->
 
 const StyledDeleteBoardMenu = styled.div`
   display: flex;
@@ -15,7 +17,7 @@ const StyledDeleteBoardMenu = styled.div`
   top: 5rem;
   right: 1rem;
   z-index: -100;
-  box-shadow: 0 7px 15px rgb(99, 95, 199, 0.25);
+  box-shadow: 0 10px 20px rgb(99, 95, 199, 0.25);
   /* box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25); */
   transition: ease-out 0.15s;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -56,5 +58,25 @@ const StyledDeleteBoardMenu = styled.div`
     top: 6rem;
   }
 `;
+//------------------------------------------------------------------->
 
-export default StyledDeleteBoardMenu;
+function DeleteBoardMenu({
+  deleteBoardOpened,
+  setDeleteBoard,
+  onEdit,
+  onDelete,
+  onClose,
+}) {
+  return (
+    <StyledDeleteBoardMenu $isMenuOpen={deleteBoardOpened}>
+      <div onClick={onEdit}>
+        <span>Edit Board</span>
+      </div>
+      <div onClick={onDelete}>
+        <span>Delete Board</span>
+      </div>
+    </StyledDeleteBoardMenu>
+  );
+}
+
+export default DeleteBoardMenu;

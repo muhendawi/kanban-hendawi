@@ -1,4 +1,5 @@
 import styled from "styled-components";
+//------------------------------------------------------------------->
 
 export const StyledTaskCard = styled.div`
   width: 17.5rem;
@@ -12,21 +13,24 @@ export const StyledTaskCard = styled.div`
   gap: 0.4rem;
   padding: 1rem;
   z-index: 1;
+
   cursor: pointer;
   overflow: auto;
   transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   > h4 {
     font-size: var(--fsM);
+    line-height: var(--lhM);
     margin: 0;
     padding: 0;
-    transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55); */
   }
   > p {
     margin: 0;
     font-size: var(--fsS);
+    /* line-height: var(--lhM); */
     font-weight: 700;
     color: var(--veryLightGrey);
-    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55); */
   }
   &:hover {
     box-shadow: 0 4px 7px rgb(99, 95, 199, 0.5);
@@ -41,3 +45,17 @@ export const StyledTaskCard = styled.div`
     transform: scale(0.96);
   }
 `;
+//------------------------------------------------------------------->
+
+function TaskCard({ title, completedSubTasks, totalSubTasks }) {
+  return (
+    <StyledTaskCard>
+      <h4>{title}</h4>
+      <p>
+        {completedSubTasks || 0} of {totalSubTasks || 0} subtasks
+      </p>
+    </StyledTaskCard>
+  );
+}
+
+export default TaskCard;

@@ -1,12 +1,38 @@
-import StyledAppBody from "./AppBody.styled";
+import styled, { css } from "styled-components";
 import NoData from "../../../pages/NoData";
 import { useSelector } from "react-redux";
 import TaskCard from "./TaskCard";
 import BoardColumn from "./BoardColumn";
-import ExModal from "../../forms/ExModal";
-import { useState } from "react";
+import NewBoardModal from "../../modals/NewBoardModal";
+import { memo, useState } from "react";
+import Header from "../sidebar/Header.styled";
+//------------------------------------------------------------------->
 
-function AppBody() {
+const StyledAppBody = styled.main`
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  display: grid;
+  grid-auto-columns: 18rem;
+  grid-auto-flow: column;
+  gap: 1rem;
+  overflow: auto;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 0.8rem;
+  }
+  ${({ $columnLength }) =>
+    $columnLength === 0 &&
+    css`
+      display: flex;
+
+      /* justify-content: center;
+      align-items: center; */
+    `}
+`;
+//------------------------------------------------------------------->
+
+const BoardsBody = memo(function BoardsBody() {
   const [newColumnModalToggled, setNewColumnModal] = useState(false);
   const boardsSlice = useSelector((store) => store.boards);
   const selectedColumn = boardsSlice.boards.at(
@@ -45,13 +71,12 @@ function AppBody() {
           />
         )}
       </StyledAppBody>
-      <ExModal
+      {/* <NewBoardModal
         onClose={() => setNewColumnModal(!newColumnModalToggled)}
-        isModalOpen={newColumnModalToggled}>
-        New Column 💂
-      </ExModal>
+        isModalOpen={newColumnModalToggled}
+      /> */}
     </>
   );
-}
+});
 
-export default AppBody;
+export default BoardsBody;

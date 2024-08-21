@@ -11,7 +11,7 @@ export {
   ShowSidebarIcon,
   HideSidebarIcon,
   MobileLogo,
-} from "./styles/Icons.styled";
+} from "./universal/Icons.styled";
 
 // ui folder exports --------------------------------------->
 export { Button } from "./universal/Button.styled";

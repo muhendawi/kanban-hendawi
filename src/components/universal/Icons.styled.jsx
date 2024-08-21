@@ -137,6 +137,8 @@ const StyledCrossIcon = styled.img`
     transform: scale(0.9);
   }
 `;
-export function CrossIcon() {
-  return <StyledCrossIcon src={crossIcon} alt="cross icon" />;
+export function CrossIcon({ onRemove }) {
+  return (
+    <StyledCrossIcon src={crossIcon} alt="cross icon" onClick={onRemove} />
+  );
 }

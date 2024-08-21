@@ -1,9 +1,7 @@
-import { StyledSidebar } from "./Sidebar-v1.styled";
 import BoardItem from "./BoardItem";
 import Header from "./Header.styled";
 import LightDarkToggleItem from "./LightDarkToggleItem";
 import CreateNewBoard from "./CreateNewBoard";
-import Wrapper from "../../universal/Wrapper";
 import ToggleSidebarBtn from "./ToggleSidebarBtn";
 import IconBoard from "../../../assets/IconBoardSVG";
 import IconHideSidebar from "../../../assets/IconHideSidebarSVG";
@@ -14,9 +12,53 @@ import {
   toggleSidebar,
   setSelectedBoardIndex,
 } from "../../../store/board/board.slice";
-import ExModal from "../../forms/ExModal";
+import NewBoardModal from "../../modals/NewBoardModal";
+import styled, { css } from "styled-components";
+import { memo } from "react";
+//------------------------------------------------------------------->
 
-function Sidebar() {
+const StyledSidebar = styled.aside`
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  background-color: var(--white);
+  z-index: 2;
+  ${({ $isSidebarHidden }) =>
+    $isSidebarHidden &&
+    css`
+      opacity: 0;
+      transform: translateX(-100%);
+      position: fixed;
+      top: 5rem;
+      bottom: 0;
+    `}
+  > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem 2rem 0;
+    border-right: 2px solid var(--lightSilver);
+    > div {
+      width: 100%;
+    }
+    > div:first-of-type {
+      > div:first-of-type {
+        width: 100%;
+        max-height: 60vh;
+        overflow: auto;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    position: fixed;
+    left: -1000px;
+  }
+`;
+//------------------------------------------------------------------->
+
+const Sidebar = memo(function Sidebar() {
   const isSidebarHidden = useSelector((store) => store.boards.isSidebarHidden);
   const boardsSlice = useSelector((store) => store.boards);
   const dispatch = useDispatch();
@@ -38,10 +80,10 @@ function Sidebar() {
         />
       )}
       <StyledSidebar $isSidebarHidden={isSidebarHidden}>
-        <Wrapper>
-          <Wrapper>
+        <div>
+          <div>
             <Header>All Boards ({boardsSlice.boards.length})</Header>
-            <Wrapper>
+            <div>
               {boardsSlice.boards.map((board, index) => (
                 <BoardItem
                   key={index}
@@ -51,24 +93,24 @@ function Sidebar() {
                   <BoardName boardName={board.name} />
                 </BoardItem>
               ))}
-            </Wrapper>
+            </div>
             <CreateNewBoard onClick={() => dispatch(toggleNewBoardModal())} />
-          </Wrapper>
-          <Wrapper>
+          </div>
+          <div>
             <LightDarkToggleItem />
             <BoardItem onClick={handleToggleSidebar}>
               <IconHideSidebar />
               <BoardName boardName="Hide Sidebar" />
             </BoardItem>
-          </Wrapper>
-        </Wrapper>
+          </div>
+        </div>
       </StyledSidebar>
-      <ExModal
+      <NewBoardModal
         onClose={() => dispatch(toggleNewBoardModal())}
         isModalOpen={boardsSlice.isNewBoardModalOpen}
       />
     </>
   );
-}
+});
 
 export default Sidebar;

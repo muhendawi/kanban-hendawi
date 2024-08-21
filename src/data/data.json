@@ -379,7 +379,7 @@
       "columns": []
     },
     {
-      "name": "Test Body Scrolling",
+      "name": "Body Scrolling Test",
       "columns": [
         {
           "name": "Todo",
@@ -447,7 +447,7 @@
           ]
         },
         {
-          "name": "Done",
+          "name": "let me discuss it with someone else to have another opinion",
           "tasks": [
             {
               "title": "Conduct 5 wireframe tests",

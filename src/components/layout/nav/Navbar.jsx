@@ -1,15 +1,53 @@
-import { StyledNav, DesktopNavBtn, MobileNavBtn } from "./Navbar.styled";
+import styled from "styled-components";
+import { Button } from "../..";
 import { VerticalEllipsis } from "../..";
 import { FaPlus } from "react-icons/fa6";
-import Wrapper from "../../universal/Wrapper";
 import NavBoardItem from "./NavBoardItem";
 import MobileMenu from "./MobileMenu";
-import ExModal from "../../forms/ExModal";
-import { useState } from "react";
-import DeleteBoardMenu from "../../forms/DeleteBoardMenu";
-//--------------------------------------------------------------->
+import NewBoardModal from "../../modals/NewBoardModal";
+import { memo, useState } from "react";
+import DeleteBoardMenu from "../../modals/DeleteBoardMenu";
+//------------------------------------------------------------------->
 
-function Navbar() {
+const StyledNav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0.4rem 1rem 1.5rem;
+  background-color: var(--white);
+  // laid out the NavBoardTitle and its adjacent div
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+  > div:last-of-type {
+    gap: 0.2rem;
+  }
+  /* Adjusting the nav padding for mobile */
+  @media (max-width: 768px) {
+    padding: 1rem 0.4rem 1rem 0.8rem;
+  }
+`;
+
+// nav button - tablet/mobile verison
+const MobileNavBtn = styled(Button)`
+  padding: 0.6rem 1rem;
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
+
+// nav button - desktop verison
+const DesktopNavBtn = styled(Button)`
+  @media (max-width: 768px) {
+    display: none;
+    transition: ease 0.3s;
+  }
+`;
+//------------------------------------------------------------------->
+
+const Navbar = memo(function Navbar() {
   const [newTaskModalToggled, setNewTaskModal] = useState(false);
   const [mobileMenuToggled, setMobileMenu] = useState(false);
   const [deleteBoardOpened, setDeleteBoard] = useState(false);
@@ -22,7 +60,7 @@ function Navbar() {
         }}
         isMobileMenuOpen={mobileMenuToggled}
       />
-      <Wrapper>
+      <div>
         <DesktopNavBtn
           $variation="primary"
           $size="medium"
@@ -45,7 +83,7 @@ function Navbar() {
         <VerticalEllipsis
           toggleDeleteBoardMenu={() => setDeleteBoard(!deleteBoardOpened)}
         />
-      </Wrapper>
+      </div>
       <MobileMenu
         onClick={() => {
           setMobileMenu(!mobileMenuToggled);
@@ -53,19 +91,19 @@ function Navbar() {
         isMobileMenuOpen={mobileMenuToggled}
       />
 
-      <ExModal
+      {/* <NewBoardModal
         onClose={() => {
           setNewTaskModal(!newTaskModalToggled);
         }}
         isModalOpen={newTaskModalToggled}>
         New Task 📝
-      </ExModal>
+      </NewBoardModal> */}
       <DeleteBoardMenu
         deleteBoardOpened={deleteBoardOpened}
         setDeleteBoard={setDeleteBoard}
       />
     </StyledNav>
   );
-}
+});
 
 export default Navbar;

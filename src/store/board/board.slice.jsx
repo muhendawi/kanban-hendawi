@@ -33,11 +33,25 @@ const boardsSlice = createSlice({
     // toggleNewTaskModal(state) {
     //   state.isNewTaskModalOpen = !state.isNewTaskModalOpen;
     // },
-    toggleMobileMenu(state) {
-      state.isMobileMenuOpen = !state.isMobileMenuOpen;
-    },
+    // toggleMobileMenu(state) {
+    //   state.isMobileMenuOpen = !state.isMobileMenuOpen;
+    // },
     toggleDarkTheme(state) {
       state.isDarkThemeOn = !state.isDarkThemeOn;
+    },
+    // addNewBoard(state, payload) {
+    //   state.boards.push(payload);
+    // },
+    addNewBoard: {
+      prepare(boardName, columns) {
+        return { payload: { boardName, columns } };
+      },
+      reducer(state, action) {
+        state.boards.push({
+          name: action.payload.boardName,
+          columns: action.payload.columns,
+        });
+      },
     },
   },
 });
@@ -49,4 +63,5 @@ export const {
   toggleNewBoardModal,
   toggleMobileMenu,
   toggleDarkTheme,
+  addNewBoard,
 } = boardsSlice.actions;
