@@ -6,6 +6,7 @@ import BoardColumn from "./BoardColumn";
 import NewBoardModal from "../../modals/NewBoardModal";
 import { memo, useState } from "react";
 import Header from "../sidebar/Header.styled";
+import { motion } from "framer-motion";
 //------------------------------------------------------------------->
 
 const StyledAppBody = styled.main`
@@ -31,7 +32,7 @@ const StyledAppBody = styled.main`
     `}
 `;
 //------------------------------------------------------------------->
-
+const MotionMain = motion.create(StyledAppBody);
 const BoardsBody = memo(function BoardsBody() {
   const [newColumnModalToggled, setNewColumnModal] = useState(false);
   const boardsSlice = useSelector((store) => store.boards);
@@ -41,7 +42,7 @@ const BoardsBody = memo(function BoardsBody() {
 
   return (
     <>
-      <StyledAppBody $columnLength={selectedColumn.length}>
+      <MotionMain layout $columnLength={selectedColumn.length}>
         {selectedColumn.length !== 0 ? (
           <>
             {selectedColumn.map((column, index) => (
@@ -70,7 +71,7 @@ const BoardsBody = memo(function BoardsBody() {
             btnText="+ Add New Column"
           />
         )}
-      </StyledAppBody>
+      </MotionMain>
       {/* <NewBoardModal
         onClose={() => setNewColumnModal(!newColumnModalToggled)}
         isModalOpen={newColumnModalToggled}

@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { useState } from "react";
+import { motion } from "framer-motion";
 //------------------------------------------------------------------->
 
 const StyledDeleteBoardMenu = styled.div`
@@ -10,17 +10,13 @@ const StyledDeleteBoardMenu = styled.div`
   background-color: var(--white);
   width: 200px;
   height: 110px;
-  opacity: 0;
-  transform: translateX(+100%);
   position: fixed;
   border-radius: 0.6rem;
   top: 5rem;
   right: 1rem;
-  z-index: -100;
+  z-index: 100;
   box-shadow: 0 10px 20px rgb(99, 95, 199, 0.25);
   /* box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25); */
-  transition: ease-out 0.15s;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   > div {
     cursor: pointer;
     align-self: flex-start;
@@ -47,19 +43,12 @@ const StyledDeleteBoardMenu = styled.div`
       font-weight: 500;
     }
   }
-  ${({ $isMenuOpen }) =>
-    $isMenuOpen &&
-    css`
-      opacity: 1;
-      transform: translateX(0);
-      z-index: 900;
-    `}
   @media (min-width: 769px) {
     top: 6rem;
   }
 `;
 //------------------------------------------------------------------->
-
+const MotionDeleteBoardMenu = motion.create(StyledDeleteBoardMenu);
 function DeleteBoardMenu({
   deleteBoardOpened,
   setDeleteBoard,
@@ -68,14 +57,19 @@ function DeleteBoardMenu({
   onClose,
 }) {
   return (
-    <StyledDeleteBoardMenu $isMenuOpen={deleteBoardOpened}>
+    <MotionDeleteBoardMenu
+      initial={{ opacity: 0, x: 150 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 150 }}
+      // transition={{ duration: 0.2 }}
+      $isMenuOpen={deleteBoardOpened}>
       <div onClick={onEdit}>
         <span>Edit Board</span>
       </div>
       <div onClick={onDelete}>
         <span>Delete Board</span>
       </div>
-    </StyledDeleteBoardMenu>
+    </MotionDeleteBoardMenu>
   );
 }
 

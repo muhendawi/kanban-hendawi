@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { ShowSidebarIcon } from "../../universal/Icons.styled";
 import styled from "styled-components";
 //------------------------------------------------------------------->
@@ -13,26 +14,25 @@ const StyledToggleSidebarBtn = styled.div`
   position: fixed;
   bottom: 2rem;
   left: -1.2rem;
-  transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   &:hover {
     background: var(--hoverIndigo);
-  }
-  &:active {
-    transform: translateX(-80%);
   }
   @media (max-width: 768px) {
     left: -20rem;
   }
 `;
 //------------------------------------------------------------------->
-
+const MotionToggleSidebarBtn = motion.create(StyledToggleSidebarBtn);
 function ToggleSidebarBtn({ onClick, isSidebarHidden }) {
   return (
-    <StyledToggleSidebarBtn
+    <MotionToggleSidebarBtn
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -50 }}
       $isSidebarHidden={isSidebarHidden}
       onClick={onClick}>
       <ShowSidebarIcon />
-    </StyledToggleSidebarBtn>
+    </MotionToggleSidebarBtn>
   );
 }
 

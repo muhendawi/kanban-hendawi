@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import Header from "../sidebar/Header.styled";
 import getRandomHexColor from "../../../utils/randomColorGenerator";
+import { motion } from "framer-motion";
 //------------------------------------------------------------------->
 
 export const StyledBoardColumn = styled.div`

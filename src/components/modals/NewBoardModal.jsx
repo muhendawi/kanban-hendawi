@@ -3,7 +3,14 @@ import styled, { css } from "styled-components";
 import ColumnAddRemove from "./ColumnAddRemove";
 import { Button } from "../universal/Button.styled";
 import { useDispatch } from "react-redux";
-import { addNewBoard } from "../../store/board/board.slice";
+import { useAnimate, stagger, motion } from "framer-motion";
+import {
+  addNewBoard,
+  setSelectedBoardIndex,
+} from "../../store/board/board.slice";
+import { useSelector } from "react-redux";
+import { flushSync } from "react-dom";
+import { spring } from "framer-motion";
 //------------------------------------------------------------------->
 
 const StyledNewBoardModal = styled.div`
@@ -11,12 +18,9 @@ const StyledNewBoardModal = styled.div`
   inset: 0;
   top: -5rem;
   bottom: -5rem;
-  opacity: 0;
   z-index: -100;
   background-color: rgb(0, 0, 0, 0.45);
   /* backdrop-filter: blur(0.5px); */
-  transition: ease-out 0.15s;
-  transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,8 +42,6 @@ const StyledNewBoardModal = styled.div`
     overflow-y: scroll;
     box-shadow: 0 5px 15px rgb(99, 95, 199, 0.3);
     /* box-shadow: 0 4px 10px rgb(99, 95, 199, 0.5); */
-    transform: scale(0.7);
-    transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     > * {
       width: 100%;
     }
@@ -88,80 +90,121 @@ const StyledNewBoardModal = styled.div`
     `}
 `;
 //------------------------------------------------------------------->
+const MotionModal = motion.create(StyledNewBoardModal);
 
 function NewBoardModal({ onClose, isModalOpen }) {
+  const boardsSlice = useSelector((store) => store.boards.boards);
+  const dispatch = useDispatch();
   const [boardName, setBoardName] = useState("");
   const [columns, setColumns] = useState([
     { name: "Todo", tasks: [] },
     { name: "Doing", tasks: [] },
   ]);
-  const dispatch = useDispatch();
+  const [elementsToStyle, setElementsToStyle] = useState([]);
+  const [isBoardNameEmpty, setIsBoardNameEmpty] = useState(false);
+  const [scope, animate] = useAnimate();
 
-  console.log(columns);
-  console.log(boardName);
-
+  function submit() {
+    // this check to validate the boardName input
+    if (boardName.trim() === "") setIsBoardNameEmpty(true);
+    // validating the empty columns inputs
+    columns.forEach((ele, index) => {
+      if (ele.name.trim() === "") {
+        // this check to prevent adding the same index again
+        if (elementsToStyle.includes(index)) return;
+        // adding the empty index to elementsToStyle array
+        flushSync(() => {
+          setElementsToStyle((currArray) => [...currArray, index]);
+        });
+      }
+    });
+    // this check prevent dispatching empty data/inputs
+    if (boardName.trim() !== "") {
+      dispatch(addNewBoard(boardName, columns));
+      dispatch(setSelectedBoardIndex(boardsSlice.length));
+      onClose();
+      setTimeout(() => {
+        setColumns([
+          { name: "Todo", tasks: [] },
+          { name: "Doing", tasks: [] },
+        ]);
+        setBoardName("");
+      }, 400);
+    }
+    animate(
+      ".shakeIt",
+      { x: [-12, 0, 12, 0] },
+      { type: "spring", duration: 0.3, stiffness: 5000, delay: stagger(0.05) }
+    );
+    return;
+  }
   return (
-    <StyledNewBoardModal $isModalOpen={isModalOpen}>
+    <MotionModal
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{
+        opacity: 0,
+        y: 40,
+        transition: { duration: 0.2, type: "spring", mass: 1 },
+      }}
+      $isModalOpen={isModalOpen}
+      $isBoardNameEmpty={isBoardNameEmpty}>
       <div
         onClick={() => {
           onClose();
+          // RESETTING state after 300ms
           setTimeout(() => {
             setColumns([
               { name: "Todo", tasks: [] },
               { name: "Doing", tasks: [] },
             ]);
             setBoardName("");
-          }, 400);
-        }}></div>
-      <div>
+            setIsBoardNameEmpty(false);
+            setElementsToStyle([]);
+          }, 300);
+        }}
+      />
+      <div ref={scope}>
         <h3>Add new Board</h3>
         <label htmlFor="bName">Board Name</label>
         <input
-          placeholder="e.g. Web Design"
+          className={!boardName.trim() ? "shakeIt" : null}
+          placeholder={isBoardNameEmpty ? "Can't be empty" : "e.g. Web Design"}
           type="text"
           id="bName"
           value={boardName}
+          onFocus={() => setIsBoardNameEmpty(false)}
+          onBlur={() => {
+            if (boardName.trim() === "") setIsBoardNameEmpty(true);
+          }}
           onChange={(e) => setBoardName(e.target.value)}
         />
         <label>Board Columns</label>
-        {/* {Array.from({ length: columnsNo }).map((index) => (
-          <ColumnAddRemove key={index} itemIndex={index} />
-        ))} */}
+
         {columns.map((column, index) => (
           <ColumnAddRemove
             key={index}
-            value={column.name}
+            defaultValue={column.name}
             currentIndex={index}
-            column={column}
+            columns={columns}
             onSetColumns={setColumns}
-            // onChange={handleInputChange}
-            // handleRemoveColumn={() => handleRemoveColumn(column.id)}
+            elementsToStyle={elementsToStyle}
+            onSetElementsToStyle={setElementsToStyle}
           />
         ))}
         <Button
           $variation="primary"
           $size="formSpecific"
-          onClick={() => setColumns([...columns, { name: "", tasks: [] }])}>
+          onClick={() => {
+            setColumns([...columns, { name: "", tasks: [] }]);
+          }}>
           + Add New Column
         </Button>
-        <Button
-          $variation="primary"
-          $size="formSpecific"
-          onClick={() => {
-            dispatch(addNewBoard(boardName, columns));
-            onClose();
-            setTimeout(() => {
-              setColumns([
-                { name: "Todo", tasks: [] },
-                { name: "Doing", tasks: [] },
-              ]);
-              setBoardName("");
-            }, 400);
-          }}>
+        <Button $variation="primary" $size="formSpecific" onClick={submit}>
           Create New Board
         </Button>
       </div>
-    </StyledNewBoardModal>
+    </MotionModal>
   );
 }
 

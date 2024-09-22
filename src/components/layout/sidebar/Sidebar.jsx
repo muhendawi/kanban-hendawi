@@ -15,15 +15,14 @@ import {
 import NewBoardModal from "../../modals/NewBoardModal";
 import styled, { css } from "styled-components";
 import { memo } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 //------------------------------------------------------------------->
 
 const StyledSidebar = styled.aside`
-  opacity: 1;
-  transform: translateX(0);
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   background-color: var(--white);
   z-index: 2;
-  ${({ $isSidebarHidden }) =>
+  /* ${({ $isSidebarHidden }) =>
     $isSidebarHidden &&
     css`
       opacity: 0;
@@ -31,7 +30,7 @@ const StyledSidebar = styled.aside`
       position: fixed;
       top: 5rem;
       bottom: 0;
-    `}
+    `} */
   > div {
     height: 100%;
     display: flex;
@@ -57,29 +56,20 @@ const StyledSidebar = styled.aside`
   }
 `;
 //------------------------------------------------------------------->
-
-const Sidebar = memo(function Sidebar() {
-  const isSidebarHidden = useSelector((store) => store.boards.isSidebarHidden);
+const MotionSidebar = motion.create(StyledSidebar);
+const Sidebar = memo(function Sidebar({ toggleSidebar, isSidebarOpened }) {
   const boardsSlice = useSelector((store) => store.boards);
   const dispatch = useDispatch();
-
-  function handleToggleSidebar() {
-    dispatch(toggleSidebar());
-  }
-
+  const [isNewBoardModalOpen, setIsNewBoardModalOpen] = useState(false);
   function handleSelectBoardIndex(id) {
     dispatch(setSelectedBoardIndex(id));
   }
-
   return (
     <>
-      {isSidebarHidden && (
-        <ToggleSidebarBtn
-          onClick={handleToggleSidebar}
-          isSidebarHidden={isSidebarHidden}
-        />
-      )}
-      <StyledSidebar $isSidebarHidden={isSidebarHidden}>
+      <MotionSidebar
+        initial={{ opacity: 0, x: -300 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -300, transition: { duration: 0.2 } }}>
         <div>
           <div>
             <Header>All Boards ({boardsSlice.boards.length})</Header>
@@ -94,21 +84,27 @@ const Sidebar = memo(function Sidebar() {
                 </BoardItem>
               ))}
             </div>
-            <CreateNewBoard onClick={() => dispatch(toggleNewBoardModal())} />
+            <CreateNewBoard
+              onClick={() => setIsNewBoardModalOpen(!isNewBoardModalOpen)}
+            />
           </div>
           <div>
             <LightDarkToggleItem />
-            <BoardItem onClick={handleToggleSidebar}>
+            <BoardItem onClick={toggleSidebar}>
               <IconHideSidebar />
               <BoardName boardName="Hide Sidebar" />
             </BoardItem>
           </div>
         </div>
-      </StyledSidebar>
-      <NewBoardModal
-        onClose={() => dispatch(toggleNewBoardModal())}
-        isModalOpen={boardsSlice.isNewBoardModalOpen}
-      />
+      </MotionSidebar>
+      <AnimatePresence>
+        {isNewBoardModalOpen && (
+          <NewBoardModal
+            onClose={() => setIsNewBoardModalOpen(!isNewBoardModalOpen)}
+            isModalOpen={isNewBoardModalOpen}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 });

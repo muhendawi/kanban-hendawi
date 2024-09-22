@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { CrossIcon } from "../universal/Icons.styled";
+import { useAnimate } from "framer-motion";
 //------------------------------------------------------------------->
 
 const StyledColumnAddRemove = styled.div`
@@ -10,14 +11,23 @@ const StyledColumnAddRemove = styled.div`
     width: 100%;
     height: 40px;
     padding: 1rem;
-    border: 1px solid var(--formPlaceholder);
     border-radius: 0.3rem;
     font-size: var(--fsS);
     font-weight: 500;
     outline: none;
+    border: 1px solid var(--formPlaceholder);
     &::placeholder {
       color: var(--formPlaceholder);
     }
+    ${({ $shouldStyle }) =>
+      $shouldStyle &&
+      css`
+        border: 1px solid var(--darkRedOrange);
+        text-align: end;
+        &::placeholder {
+          color: var(--darkRedOrange);
+        }
+      `}
     &:focus {
       border: 1px solid var(--darkIndigo);
     }
@@ -25,19 +35,27 @@ const StyledColumnAddRemove = styled.div`
 `;
 //------------------------------------------------------------------->
 
-function ColumnAddRemove({ value, currentIndex, column, onSetColumns }) {
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setFinalInput(enteredValue);
-  //   }, 500);
-  //   // onSetNewBoard((currBoard) => ({
-  //   //   ...currBoard,
-  //   //   columns: [...currBoard.columns],
-  //   // }));
-  // }, [enteredValue, finalInput, itemIndex, , setEnteredValue]);
+function ColumnAddRemove({
+  defaultValue,
+  currentIndex,
+  columns,
+  onSetColumns,
+  elementsToStyle,
+  onSetElementsToStyle,
+}) {
+  console.log(columns);
+  console.log(elementsToStyle);
+
+  function removeElementToStyleOnTyping() {
+    // REMOVE the elementToStyle when typing on it, when on focus
+    onSetElementsToStyle((currValue) =>
+      currValue.filter((ele) => ele !== currentIndex)
+    );
+  }
+
   function handleRemoveColumn(currIndex) {
     onSetColumns((prevValue) =>
-      prevValue.filter((col, index) => index !== currIndex)
+      prevValue.filter((_, index) => index !== currIndex)
     );
   }
   function handleInputChange(currIndex, newValue) {
@@ -47,14 +65,37 @@ function ColumnAddRemove({ value, currentIndex, column, onSetColumns }) {
       column.name = newValue;
       return newState;
     });
+    // REMOVE the elementToStyle when typing on it, when on focus
+    onSetElementsToStyle((currValue) =>
+      currValue.filter((ele) => ele !== currentIndex)
+    );
+    removeElementToStyleOnTyping();
   }
+
   return (
-    <StyledColumnAddRemove>
+    <StyledColumnAddRemove
+      $shouldStyle={elementsToStyle.includes(currentIndex)}>
       <input
+        className={elementsToStyle.includes(currentIndex) ? "shakeIt" : null}
         type="text"
-        placeholder="e.g. Todo"
-        value={value}
-        onChange={(e) => handleInputChange(currentIndex, e.target.value)}
+        placeholder={
+          elementsToStyle.includes(currentIndex)
+            ? "Can't be empty"
+            : "e.g. Todo"
+        }
+        value={defaultValue}
+        onBlur={() => {
+          columns.forEach((ele, index) => {
+            if (ele.name.trim() === "") {
+              if (elementsToStyle.includes(index)) return;
+              onSetElementsToStyle((currArray) => [...currArray, index]);
+            }
+          });
+        }}
+        onFocus={removeElementToStyleOnTyping}
+        onChange={(e) => {
+          handleInputChange(currentIndex, e.target.value);
+        }}
       />
       <CrossIcon onRemove={() => handleRemoveColumn(currentIndex)} />
     </StyledColumnAddRemove>

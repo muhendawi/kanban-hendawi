@@ -17,7 +17,7 @@ export const StyledBoardItem = styled.div`
   }
   &:hover {
     background-color: var(--hoverGrey);
-    transition: ease-in 0.4s;
+    transition: ease-in 0.1s;
     > p {
       color: var(--darkIndigo);
     }
@@ -30,7 +30,7 @@ export const StyledBoardItem = styled.div`
     $active &&
     css`
       background-color: var(--darkIndigo);
-      transition: ease-in 0.3s;
+      transition: ease-in 0.1s;
       > p {
         color: var(--white);
       }

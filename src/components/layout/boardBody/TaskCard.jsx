@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 //------------------------------------------------------------------->
 
@@ -13,10 +14,10 @@ export const StyledTaskCard = styled.div`
   gap: 0.4rem;
   padding: 1rem;
   z-index: 1;
-
   cursor: pointer;
   overflow: auto;
-  transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  transition: font-color, color 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   > h4 {
     font-size: var(--fsM);
     line-height: var(--lhM);
@@ -46,15 +47,15 @@ export const StyledTaskCard = styled.div`
   }
 `;
 //------------------------------------------------------------------->
-
+const MotionTaskcard = motion.create(StyledTaskCard);
 function TaskCard({ title, completedSubTasks, totalSubTasks }) {
   return (
-    <StyledTaskCard>
+    <MotionTaskcard initial={{ y: -50 }} animate={{ y: 0 }}>
       <h4>{title}</h4>
       <p>
         {completedSubTasks || 0} of {totalSubTasks || 0} subtasks
       </p>
-    </StyledTaskCard>
+    </MotionTaskcard>
   );
 }
 

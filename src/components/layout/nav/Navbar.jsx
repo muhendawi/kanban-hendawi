@@ -4,7 +4,7 @@ import { VerticalEllipsis } from "../..";
 import { FaPlus } from "react-icons/fa6";
 import NavBoardItem from "./NavBoardItem";
 import MobileMenu from "./MobileMenu";
-import NewBoardModal from "../../modals/NewBoardModal";
+import { AnimatePresence } from "framer-motion";
 import { memo, useState } from "react";
 import DeleteBoardMenu from "../../modals/DeleteBoardMenu";
 //------------------------------------------------------------------->
@@ -84,12 +84,16 @@ const Navbar = memo(function Navbar() {
           toggleDeleteBoardMenu={() => setDeleteBoard(!deleteBoardOpened)}
         />
       </div>
-      <MobileMenu
-        onClick={() => {
-          setMobileMenu(!mobileMenuToggled);
-        }}
-        isMobileMenuOpen={mobileMenuToggled}
-      />
+      <AnimatePresence>
+        {mobileMenuToggled && (
+          <MobileMenu
+            onCloseMobileMenu={() => {
+              setMobileMenu(!mobileMenuToggled);
+            }}
+            isMobileMenuOpen={mobileMenuToggled}
+          />
+        )}
+      </AnimatePresence>
 
       {/* <NewBoardModal
         onClose={() => {
@@ -98,10 +102,14 @@ const Navbar = memo(function Navbar() {
         isModalOpen={newTaskModalToggled}>
         New Task 📝
       </NewBoardModal> */}
-      <DeleteBoardMenu
-        deleteBoardOpened={deleteBoardOpened}
-        setDeleteBoard={setDeleteBoard}
-      />
+      <AnimatePresence>
+        {deleteBoardOpened && (
+          <DeleteBoardMenu
+            deleteBoardOpened={deleteBoardOpened}
+            setDeleteBoard={setDeleteBoard}
+          />
+        )}
+      </AnimatePresence>
     </StyledNav>
   );
 });

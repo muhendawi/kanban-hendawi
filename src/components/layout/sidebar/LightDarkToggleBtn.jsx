@@ -59,8 +59,12 @@ function LightDarkToggleBtn({ handleToggling }) {
   );
   return (
     <StyledLightDarkToggleBtn $isLightDarkBtnToggled={isLightDarkBtnToggled}>
-      <input type="checkbox" id="toggle-btn" onChange={handleToggling} />
-      <label htmlFor="toggle-btn"></label>
+      <input
+        type="checkbox"
+        id="toggle-btn-sidebar"
+        onChange={handleToggling}
+      />
+      <label htmlFor="toggle-btn-sidebar"></label>
     </StyledLightDarkToggleBtn>
   );
 }
