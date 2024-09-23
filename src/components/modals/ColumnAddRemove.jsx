@@ -23,10 +23,6 @@ const StyledColumnAddRemove = styled.div`
       $shouldStyle &&
       css`
         border: 1px solid var(--darkRedOrange);
-        text-align: end;
-        &::placeholder {
-          color: var(--darkRedOrange);
-        }
       `}
     &:focus {
       border: 1px solid var(--darkIndigo);
@@ -78,11 +74,7 @@ function ColumnAddRemove({
       <input
         className={elementsToStyle.includes(currentIndex) ? "shakeIt" : null}
         type="text"
-        placeholder={
-          elementsToStyle.includes(currentIndex)
-            ? "Can't be empty"
-            : "e.g. Todo"
-        }
+        placeholder="e.g. Todo"
         value={defaultValue}
         onBlur={() => {
           columns.forEach((ele, index) => {

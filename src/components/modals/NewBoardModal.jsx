@@ -67,6 +67,11 @@ const StyledNewBoardModal = styled.div`
       &::placeholder {
         color: var(--formPlaceholder);
       }
+      ${({ $shouldStyle }) =>
+        $shouldStyle &&
+        css`
+          border: 1px solid var(--darkRedOrange);
+        `}
       &:focus {
         border: 1px solid var(--darkIndigo);
       }
@@ -147,6 +152,7 @@ function NewBoardModal({ onClose, isModalOpen }) {
         y: 40,
         transition: { duration: 0.2, type: "spring", mass: 0.5 },
       }}
+      $shouldStyle={isBoardNameEmpty}
       $isModalOpen={isModalOpen}
       $isBoardNameEmpty={isBoardNameEmpty}>
       <div
@@ -169,7 +175,7 @@ function NewBoardModal({ onClose, isModalOpen }) {
         <label htmlFor="bName">Board Name</label>
         <input
           className={!boardName.trim() ? "shakeIt" : null}
-          placeholder={isBoardNameEmpty ? "Can't be empty" : "e.g. Web Design"}
+          placeholder="e.g. Web Design"
           type="text"
           id="bName"
           value={boardName}
