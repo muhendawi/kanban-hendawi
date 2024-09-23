@@ -53,6 +53,7 @@ function ColumnAddRemove({
     onSetColumns((prevValue) =>
       prevValue.filter((_, index) => index !== currIndex)
     );
+    removeElementToStyleOnTyping();
   }
   function handleInputChange(currIndex, newValue) {
     onSetColumns((prevState) => {
