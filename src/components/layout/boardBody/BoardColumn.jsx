@@ -65,7 +65,7 @@ const MotionBoardColumn = motion.create(StyledBoardColumn);
 function BoardColumn({ onClick, columnName, tasksNo, children }) {
   // const color = getRandomHexColor();
   return (
-    <MotionBoardColumn layout onClick={onClick}>
+    <MotionBoardColumn onClick={onClick}>
       <Header>
         <span></span>
         {columnName} ({tasksNo})

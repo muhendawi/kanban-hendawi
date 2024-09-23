@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 
 //------------------------------------------------------------------->
@@ -11,12 +11,11 @@ const StyledSubMenu = styled.div`
   background-color: var(--white);
   width: 200px;
   height: 110px;
-  position: absolute;
   border-radius: 0.6rem;
-  top: 5rem;
-  right: 1rem;
   z-index: 100;
   box-shadow: 0 10px 20px rgb(99, 95, 199, 0.25);
+  position: absolute;
+  right: 1rem;
   /* box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25); */
   > div {
     cursor: pointer;
@@ -35,6 +34,9 @@ const StyledSubMenu = styled.div`
       font-size: var(--fsM);
       font-weight: 500;
     }
+    &:hover {
+      background-color: var(--verylightSliver);
+    }
   }
   > div:last-child {
     padding: 5px 70px 5px 20px;
@@ -43,6 +45,9 @@ const StyledSubMenu = styled.div`
       font-size: var(--fsM);
       font-weight: 500;
     }
+    &:hover {
+      background-color: var(--verylightSliver);
+    }
   }
   @media (min-width: 769px) {
     top: 6rem;
@@ -50,12 +55,16 @@ const StyledSubMenu = styled.div`
 `;
 //------------------------------------------------------------------->
 const MotionSubMenu = motion.create(StyledSubMenu);
-function SubMenu({ firstOption, secondOption, onDelete, onEdit }) {
+function SubMenu({ firstOption, secondOption, onDelete, onEdit, type }) {
   return (
     <MotionSubMenu
-      initial={{ opacity: 0, x: 150 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 150 }}
+      initial={{ opacity: 0, x: 150, y: type === "task" ? -20 : 0 }}
+      animate={{
+        opacity: 1,
+        x: type === "task" ? 50 : 0,
+        y: type === "task" ? -20 : 0,
+      }}
+      exit={{ opacity: 0, x: 150, transition: { duration: 0.2 } }}
       // transition={{ duration: 0.2 }}
     >
       <div onClick={onEdit}>
