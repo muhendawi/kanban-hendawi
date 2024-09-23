@@ -63,7 +63,6 @@ function Main() {
     <StyledMain $isSidebarExit={isSidebarExitComplete}>
       <MainLogo />
       <Navbar />
-
       <AnimatePresence
         onExitComplete={() => setIsSidebarExitComplete(!isSideBarOpened)}>
         {isSideBarOpened ? (
@@ -83,23 +82,7 @@ function Main() {
           />
         )}
       </AnimatePresence>
-      {/* <AnimatePresence>
-        {isSideBarOpened && (
-          <ToggleSidebarBtn
-            onClick={() => setIsSidebarOpened(!isSideBarOpened)}
-            isSidebarHidden={isSideBarOpened}
-          />
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {!isSideBarOpened && (
-          <Sidebar
-            toggleSidebar={() => setIsSidebarOpened(!isSideBarOpened)}
-            isSidebarOpened={isSideBarOpened}
-          />
-        )}
-      </AnimatePresence> */}
-      <BoardsBody />
+      <BoardsBody isSidebarOpen={isSideBarOpened} />
     </StyledMain>
   );
 }

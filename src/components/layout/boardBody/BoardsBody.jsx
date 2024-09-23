@@ -33,7 +33,7 @@ const StyledAppBody = styled.main`
 `;
 //------------------------------------------------------------------->
 const MotionMain = motion.create(StyledAppBody);
-const BoardsBody = memo(function BoardsBody() {
+const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
   const [newColumnModalToggled, setNewColumnModal] = useState(false);
   const boardsSlice = useSelector((store) => store.boards);
   const selectedColumn = boardsSlice.boards.at(
@@ -42,7 +42,7 @@ const BoardsBody = memo(function BoardsBody() {
 
   return (
     <>
-      <MotionMain layout $columnLength={selectedColumn.length}>
+      <MotionMain $columnLength={selectedColumn.length}>
         {selectedColumn.length !== 0 ? (
           <>
             {selectedColumn.map((column, index) => (
@@ -53,6 +53,7 @@ const BoardsBody = memo(function BoardsBody() {
                 {column.tasks.map((task, index) => (
                   <TaskCard
                     key={index}
+                    index={index}
                     title={task.title}
                     completedSubTasks={0}
                     totalSubTasks={task.subtasks.length}

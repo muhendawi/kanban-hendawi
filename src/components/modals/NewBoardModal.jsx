@@ -145,7 +145,7 @@ function NewBoardModal({ onClose, isModalOpen }) {
       exit={{
         opacity: 0,
         y: 40,
-        transition: { duration: 0.2, type: "spring", mass: 1 },
+        transition: { duration: 0.2, type: "spring", mass: 0.5 },
       }}
       $isModalOpen={isModalOpen}
       $isBoardNameEmpty={isBoardNameEmpty}>

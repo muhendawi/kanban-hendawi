@@ -48,9 +48,12 @@ export const StyledTaskCard = styled.div`
 `;
 //------------------------------------------------------------------->
 const MotionTaskcard = motion.create(StyledTaskCard);
-function TaskCard({ title, completedSubTasks, totalSubTasks }) {
+function TaskCard({ title, completedSubTasks, totalSubTasks, index }) {
   return (
-    <MotionTaskcard initial={{ y: -50 }} animate={{ y: 0 }}>
+    <MotionTaskcard
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "spring", duration: 0.5, delay: 0.05 * index }}>
       <h4>{title}</h4>
       <p>
         {completedSubTasks || 0} of {totalSubTasks || 0} subtasks

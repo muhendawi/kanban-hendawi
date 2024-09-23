@@ -70,7 +70,11 @@ const StyledMobileMenu = styled.div`
 `;
 //------------------------------------------------------------------->
 
-function MobileMenu({ onCloseMobileMenu, isMobileMenuOpen }) {
+function MobileMenu({
+  onCloseMobileMenu,
+  isMobileMenuOpen,
+  onSetNewBoardModal,
+}) {
   const boardsSlice = useSelector((store) => store.boards);
   const dispatch = useDispatch();
 
@@ -83,41 +87,47 @@ function MobileMenu({ onCloseMobileMenu, isMobileMenuOpen }) {
   // }
 
   return (
-    <StyledMobileMenu $isMobileMenuOpen={isMobileMenuOpen}>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={onCloseMobileMenu}
-      />
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}>
-        <Header>All Boards ({boardsSlice.boards.length})</Header>
-        <div>
-          {boardsSlice.boards.map((board, index) => (
-            <BoardItem
-              key={index}
-              onClick={() => {
-                handleSelectBoardIndex(index);
-                onCloseMobileMenu();
-              }}
-              active={index === boardsSlice.selectedBoardIndex}>
-              <IconBoard />
-              <BoardName boardName={board.name} />
-            </BoardItem>
-          ))}
-        </div>
-        <CreateNewBoard
-          onClick={() => {
-            onCloseMobileMenu();
-            // handleToggleNewBoardModal();
-          }}
+    <>
+      <StyledMobileMenu $isMobileMenuOpen={isMobileMenuOpen}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onCloseMobileMenu}
         />
-        <LightDarkToggleItem />
-      </motion.div>
-    </StyledMobileMenu>
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{
+            opacity: 0,
+            y: -50,
+            transition: { duration: 0.2, type: "spring", mass: 0.5 },
+          }}>
+          <Header>All Boards ({boardsSlice.boards.length})</Header>
+          <div>
+            {boardsSlice.boards.map((board, index) => (
+              <BoardItem
+                key={index}
+                onClick={() => {
+                  handleSelectBoardIndex(index);
+                  onCloseMobileMenu();
+                }}
+                active={index === boardsSlice.selectedBoardIndex}>
+                <IconBoard />
+                <BoardName boardName={board.name} />
+              </BoardItem>
+            ))}
+          </div>
+          <CreateNewBoard
+            onClick={() => {
+              onCloseMobileMenu();
+              onSetNewBoardModal();
+            }}
+          />
+          <LightDarkToggleItem />
+        </motion.div>
+      </StyledMobileMenu>
+    </>
   );
 }
 

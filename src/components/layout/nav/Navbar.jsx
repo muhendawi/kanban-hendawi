@@ -7,6 +7,7 @@ import MobileMenu from "./MobileMenu";
 import { AnimatePresence } from "framer-motion";
 import { memo, useState } from "react";
 import DeleteBoardMenu from "../../modals/DeleteBoardMenu";
+import NewBoardModal from "../../modals/NewBoardModal";
 //------------------------------------------------------------------->
 
 const StyledNav = styled.nav`
@@ -47,70 +48,84 @@ const DesktopNavBtn = styled(Button)`
 `;
 //------------------------------------------------------------------->
 
-const Navbar = memo(function Navbar() {
+const Navbar = memo(function Navbar({ isNewBoardModal }) {
   const [newTaskModalToggled, setNewTaskModal] = useState(false);
   const [mobileMenuToggled, setMobileMenu] = useState(false);
   const [deleteBoardOpened, setDeleteBoard] = useState(false);
+  const [isNewBoardModalOpen, setIsNewBoardModalOpen] = useState(false);
   return (
-    <StyledNav>
-      <NavBoardItem
-        onClick={() => {
-          setDeleteBoard(false);
-          setMobileMenu(!mobileMenuToggled);
-        }}
-        isMobileMenuOpen={mobileMenuToggled}
-      />
-      <div>
-        <DesktopNavBtn
-          $variation="primary"
-          $size="medium"
+    <>
+      <StyledNav>
+        <NavBoardItem
           onClick={() => {
             setDeleteBoard(false);
-            setNewTaskModal(!newTaskModalToggled);
-          }}>
-          + Add New Task
-        </DesktopNavBtn>
-        <MobileNavBtn
-          $variation="primary"
-          $size="small"
-          onClick={() => {
-            setMobileMenu(false);
-            setDeleteBoard(false);
-            setNewTaskModal(!newTaskModalToggled);
-          }}>
-          <FaPlus size={15} />
-        </MobileNavBtn>
-        <VerticalEllipsis
-          toggleDeleteBoardMenu={() => setDeleteBoard(!deleteBoardOpened)}
+            setMobileMenu(!mobileMenuToggled);
+          }}
+          isMobileMenuOpen={mobileMenuToggled}
         />
-      </div>
-      <AnimatePresence>
-        {mobileMenuToggled && (
-          <MobileMenu
-            onCloseMobileMenu={() => {
-              setMobileMenu(!mobileMenuToggled);
-            }}
-            isMobileMenuOpen={mobileMenuToggled}
+        <div>
+          <DesktopNavBtn
+            $variation="primary"
+            $size="medium"
+            onClick={() => {
+              setDeleteBoard(false);
+              setNewTaskModal(!newTaskModalToggled);
+            }}>
+            + Add New Task
+          </DesktopNavBtn>
+          <MobileNavBtn
+            $variation="primary"
+            $size="small"
+            onClick={() => {
+              setMobileMenu(false);
+              setDeleteBoard(false);
+              setNewTaskModal(!newTaskModalToggled);
+            }}>
+            <FaPlus size={15} />
+          </MobileNavBtn>
+          <VerticalEllipsis
+            toggleDeleteBoardMenu={() => setDeleteBoard(!deleteBoardOpened)}
           />
-        )}
-      </AnimatePresence>
+        </div>
+        <AnimatePresence>
+          {mobileMenuToggled && (
+            <MobileMenu
+              onCloseMobileMenu={() => {
+                setMobileMenu(!mobileMenuToggled);
+              }}
+              isMobileMenuOpen={mobileMenuToggled}
+              onSetNewBoardModal={() =>
+                setIsNewBoardModalOpen(!isNewBoardModal)
+              }
+            />
+          )}
+        </AnimatePresence>
 
-      {/* <NewBoardModal
+        {/* <NewBoardModal
         onClose={() => {
           setNewTaskModal(!newTaskModalToggled);
         }}
         isModalOpen={newTaskModalToggled}>
         New Task 📝
       </NewBoardModal> */}
+        <AnimatePresence>
+          {deleteBoardOpened && (
+            <DeleteBoardMenu
+              deleteBoardOpened={deleteBoardOpened}
+              setDeleteBoard={setDeleteBoard}
+            />
+          )}
+        </AnimatePresence>
+      </StyledNav>
       <AnimatePresence>
-        {deleteBoardOpened && (
-          <DeleteBoardMenu
-            deleteBoardOpened={deleteBoardOpened}
-            setDeleteBoard={setDeleteBoard}
+        {isNewBoardModalOpen && (
+          <NewBoardModal
+            onClose={() => setIsNewBoardModalOpen(!isNewBoardModalOpen)}
+            isModalOpen={isNewBoardModalOpen}
           />
         )}
       </AnimatePresence>
-    </StyledNav>
+    </>
   );
 });
 
