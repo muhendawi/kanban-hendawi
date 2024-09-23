@@ -61,17 +61,17 @@ export const StyledBoardColumn = styled.div`
   }
 `;
 //------------------------------------------------------------------->
-
+const MotionBoardColumn = motion.create(StyledBoardColumn);
 function BoardColumn({ onClick, columnName, tasksNo, children }) {
   // const color = getRandomHexColor();
   return (
-    <StyledBoardColumn onClick={onClick}>
+    <MotionBoardColumn layout onClick={onClick}>
       <Header>
         <span></span>
         {columnName} ({tasksNo})
       </Header>
       {children}
-    </StyledBoardColumn>
+    </MotionBoardColumn>
   );
 }
 

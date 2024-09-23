@@ -14,20 +14,21 @@ import darkLogo from "../../assets/logo-dark.svg";
 import lightLogo from "../../assets/logo-light.svg";
 import mobileLogo from "../../assets/logo-mobile.svg";
 import plusSvgRepoComIcon from "../../assets/plus-svgrepo-com.svg";
+import { motion } from "framer-motion";
 //------------------------------------------------------------------------->
 // the three dots menu (vertical ellipsis)
 const StyledVerticalEllipsisIcon = styled.img`
   padding: 0.7rem 1rem;
   cursor: pointer;
-  transition: ease 0.4s;
-  &:active {
-    transform: scale(0.95);
-  }
 `;
-export function VerticalEllipsis({ toggleDeleteBoardMenu }) {
+
+const MotionEEllipsisIcon = motion.create(StyledVerticalEllipsisIcon);
+export function VerticalEllipsis({ toggleMenu }) {
   return (
-    <StyledVerticalEllipsisIcon
-      onClick={toggleDeleteBoardMenu}
+    <MotionEEllipsisIcon
+      whileHover={{ scale: 1.1 }}
+      transition={{ type: "spring", stiffness: 500 }}
+      onClick={toggleMenu}
       src={verticalEllipsisIcon}
       alt="vertical ellipsis menu"
     />

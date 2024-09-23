@@ -12,7 +12,7 @@ const initialState = {
   // isTaskModalOpen: false,
   // isMobileMenuOpen: false,
 };
-
+console.log(initialState.selectedBoardIndex);
 const boardsSlice = createSlice({
   name: "boards",
   initialState,
@@ -29,6 +29,31 @@ const boardsSlice = createSlice({
     toggleNewBoardModal(state) {
       // to close the mobile menu when newboard modal is opened
       state.isNewBoardModalOpen = !state.isNewBoardModalOpen;
+    },
+    deleteBoard(state) {
+      state.boards = state.boards.filter(
+        (_, index) => index !== state.selectedBoardIndex
+      );
+      state.selectedBoardIndex = 0;
+    },
+    deleteTask(state, action) {
+      const { columnIndex, taskIndex } = action.payload;
+
+      const board = state.boards.find(
+        (_, index) => index === state.selectedBoardIndex
+      );
+      if (!board) return;
+
+      const column = board.columns.find((_, index) => index === columnIndex);
+      if (!column) return;
+
+      column.tasks = column.tasks.filter((_, index) => index !== taskIndex);
+      // state.boards[state.selectedBoardIndex].columns = [
+      //   ...state.boards[state.selectedBoardIndex].columns,
+      //   state.boards[state.selectedBoardIndex].columns
+      //     .filter((col, index) => index === 0)
+      //     .filter(() => {}),
+      // ];
     },
     // toggleNewTaskModal(state) {
     //   state.isNewTaskModalOpen = !state.isNewTaskModalOpen;
@@ -64,4 +89,6 @@ export const {
   toggleMobileMenu,
   toggleDarkTheme,
   addNewBoard,
+  deleteBoard,
+  deleteTask,
 } = boardsSlice.actions;

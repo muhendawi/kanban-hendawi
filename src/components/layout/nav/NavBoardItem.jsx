@@ -29,7 +29,7 @@ function NavBoardItem({ onClick, isMobileMenuOpen }) {
     <StyledNavBoardItem>
       <MobileLogo isMobileMenutoggled={isMobileMenuOpen} onClick={onClick} />
       <NavBoardTitle>
-        {boardsSlice.boards.at(boardsSlice.selectedBoardIndex).name}
+        {boardsSlice.boards.at(boardsSlice.selectedBoardIndex)?.name}
       </NavBoardTitle>
       <ChevronDownIcon
         isMobileMenutoggled={isMobileMenuOpen}

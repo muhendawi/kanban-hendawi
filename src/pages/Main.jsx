@@ -11,6 +11,8 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { flushSync } from "react-dom";
 import { motion } from "framer-motion";
+import NoData from "./NoData";
+import NewBoardModal from "../components/modals/NewBoardModal";
 //------------------------------------------------------------------->
 
 // StyledMain should only laid out its children not style them
@@ -56,34 +58,55 @@ const StyledMain = styled.div`
 `;
 //------------------------------------------------------------------->
 function Main() {
+  const boards = useSelector((store) => store.boards.boards);
   const [isSideBarOpened, setIsSidebarOpened] = useState(true);
   const [isSidebarExitComplete, setIsSidebarExitComplete] = useState(false);
+  const [isNewBoardModalOpen, setIsNewBoardModalOpen] = useState(false);
+
   console.log(isSideBarOpened, isSidebarExitComplete);
   return (
-    <StyledMain $isSidebarExit={isSidebarExitComplete}>
-      <MainLogo />
-      <Navbar />
-      <AnimatePresence
-        onExitComplete={() => setIsSidebarExitComplete(!isSideBarOpened)}>
-        {isSideBarOpened ? (
-          <Sidebar
-            key="sidebar"
-            toggleSidebar={() => setIsSidebarOpened(!isSideBarOpened)}
-            isSidebarOpened={isSideBarOpened}
-          />
-        ) : (
-          <ToggleSidebarBtn
-            key="toggleBtn"
-            onClick={() => {
-              setIsSidebarOpened(!isSideBarOpened);
-              setIsSidebarExitComplete(false);
-            }}
-            isSidebarHidden={isSideBarOpened}
+    <>
+      {boards.length == 0 ? (
+        <NoData
+          text="There are no boards available. Create a new board to get started"
+          btnText="Add New Board"
+          onClick={() => setIsNewBoardModalOpen(!isNewBoardModalOpen)}
+        />
+      ) : (
+        <StyledMain $isSidebarExit={isSidebarExitComplete}>
+          <MainLogo />
+          <Navbar />
+          <AnimatePresence
+            onExitComplete={() => setIsSidebarExitComplete(!isSideBarOpened)}>
+            {isSideBarOpened ? (
+              <Sidebar
+                key="sidebar"
+                toggleSidebar={() => setIsSidebarOpened(!isSideBarOpened)}
+                isSidebarOpened={isSideBarOpened}
+              />
+            ) : (
+              <ToggleSidebarBtn
+                key="toggleBtn"
+                onClick={() => {
+                  setIsSidebarOpened(!isSideBarOpened);
+                  setIsSidebarExitComplete(false);
+                }}
+                isSidebarHidden={isSideBarOpened}
+              />
+            )}
+          </AnimatePresence>
+          <BoardsBody isSidebarOpen={isSideBarOpened} />
+        </StyledMain>
+      )}
+      <AnimatePresence>
+        {isNewBoardModalOpen && (
+          <NewBoardModal
+            onClose={() => setIsNewBoardModalOpen(!isNewBoardModalOpen)}
+            isModalOpen={isNewBoardModalOpen}
           />
         )}
       </AnimatePresence>
-      <BoardsBody isSidebarOpen={isSideBarOpened} />
-    </StyledMain>
+    </>
   );
 }
 

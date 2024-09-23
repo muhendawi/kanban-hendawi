@@ -7,6 +7,8 @@ import NewBoardModal from "../../modals/NewBoardModal";
 import { memo, useState } from "react";
 import Header from "../sidebar/Header.styled";
 import { motion } from "framer-motion";
+import TaskCardModal from "../../modals/TaskCardModal";
+import { AnimatePresence } from "framer-motion";
 //------------------------------------------------------------------->
 
 const StyledAppBody = styled.main`
@@ -36,31 +38,38 @@ const MotionMain = motion.create(StyledAppBody);
 const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
   const [newColumnModalToggled, setNewColumnModal] = useState(false);
   const boardsSlice = useSelector((store) => store.boards);
-  const selectedColumn = boardsSlice.boards.at(
+  const selectedColumns = boardsSlice.boards.at(
     boardsSlice.selectedBoardIndex
-  ).columns;
+  )?.columns;
 
   return (
     <>
-      <MotionMain $columnLength={selectedColumn.length}>
-        {selectedColumn.length !== 0 ? (
+      <MotionMain $columnLength={selectedColumns?.length}>
+        {boardsSlice.boards.length !== 0 ? (
           <>
-            {selectedColumn.map((column, index) => (
-              <BoardColumn
-                key={index}
-                columnName={column.name}
-                tasksNo={column.tasks.length}>
-                {column.tasks.map((task, index) => (
-                  <TaskCard
-                    key={index}
-                    index={index}
-                    title={task.title}
-                    completedSubTasks={0}
-                    totalSubTasks={task.subtasks.length}
-                  />
-                ))}
-              </BoardColumn>
-            ))}
+            <AnimatePresence>
+              {selectedColumns?.map((column, colIndex) => (
+                <BoardColumn
+                  key={colIndex}
+                  columnName={column.name}
+                  tasksNo={column.tasks?.length}>
+                  {column.tasks?.map((task, taskIndex) => (
+                    <TaskCard
+                      task={task}
+                      key={taskIndex}
+                      columnIndex={colIndex}
+                      taskIndex={taskIndex}
+                      title={task.title}
+                      completedSubTasks={
+                        task.subtasks.filter((sub) => sub.isCompleted === true)
+                          .length
+                      }
+                      totalSubTasks={task.subtasks?.length}
+                    />
+                  ))}
+                </BoardColumn>
+              ))}
+            </AnimatePresence>
             <BoardColumn
               onClick={() => setNewColumnModal(!newColumnModalToggled)}>
               <p>+ New Column</p>
@@ -73,10 +82,6 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
           />
         )}
       </MotionMain>
-      {/* <NewBoardModal
-        onClose={() => setNewColumnModal(!newColumnModalToggled)}
-        isModalOpen={newColumnModalToggled}
-      /> */}
     </>
   );
 });

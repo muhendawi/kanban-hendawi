@@ -18,7 +18,7 @@ const StyledNewBoardModal = styled.div`
   inset: 0;
   top: -5rem;
   bottom: -5rem;
-  z-index: -100;
+  z-index: 801;
   background-color: rgb(0, 0, 0, 0.45);
   /* backdrop-filter: blur(0.5px); */
   display: flex;
@@ -125,7 +125,10 @@ function NewBoardModal({ onClose, isModalOpen }) {
       }
     });
     // this check prevent dispatching empty data/inputs
-    if (boardName.trim() !== "" && elementsToStyle.length === 0) {
+    if (
+      boardName.trim() !== "" &&
+      columns.every((col) => col.name.trim() !== "")
+    ) {
       dispatch(addNewBoard(boardName, columns));
       dispatch(setSelectedBoardIndex(boardsSlice.length));
       onClose();
@@ -138,7 +141,7 @@ function NewBoardModal({ onClose, isModalOpen }) {
       }, 400);
     }
     animate(
-      ".shakeIt",
+      ".shakeIt, .animateIt",
       { x: [-12, 0, 12, 0] },
       { type: "spring", duration: 0.3, stiffness: 5000, delay: stagger(0.05) }
     );

@@ -1,8 +1,9 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { motion } from "framer-motion";
+
 //------------------------------------------------------------------->
 
-const StyledDeleteBoardMenu = styled.div`
+const StyledSubMenu = styled.div`
   display: flex;
   flex-direction: column;
   /* align-items: flex-start; */
@@ -10,7 +11,7 @@ const StyledDeleteBoardMenu = styled.div`
   background-color: var(--white);
   width: 200px;
   height: 110px;
-  position: fixed;
+  position: absolute;
   border-radius: 0.6rem;
   top: 5rem;
   right: 1rem;
@@ -48,29 +49,23 @@ const StyledDeleteBoardMenu = styled.div`
   }
 `;
 //------------------------------------------------------------------->
-const MotionDeleteBoardMenu = motion.create(StyledDeleteBoardMenu);
-function DeleteBoardMenu({
-  deleteBoardOpened,
-  setDeleteBoard,
-  onEdit,
-  onDelete,
-  onClose,
-}) {
+const MotionSubMenu = motion.create(StyledSubMenu);
+function SubMenu({ firstOption, secondOption, onDelete, onEdit }) {
   return (
-    <MotionDeleteBoardMenu
+    <MotionSubMenu
       initial={{ opacity: 0, x: 150 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 150 }}
       // transition={{ duration: 0.2 }}
-      $isMenuOpen={deleteBoardOpened}>
+    >
       <div onClick={onEdit}>
-        <span>Edit Board</span>
+        <span>{firstOption}</span>
       </div>
       <div onClick={onDelete}>
-        <span>Delete Board</span>
+        <span>{secondOption}</span>
       </div>
-    </MotionDeleteBoardMenu>
+    </MotionSubMenu>
   );
 }
 
-export default DeleteBoardMenu;
+export default SubMenu;

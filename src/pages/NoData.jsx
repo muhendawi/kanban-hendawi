@@ -3,7 +3,7 @@ import styled from "styled-components";
 //------------------------------------------------------------------->
 
 const StyledNoData = styled.div`
-  height: 100%;
+  height: 100vh;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -23,11 +23,11 @@ const StyledNoData = styled.div`
 `;
 //------------------------------------------------------------------->
 
-function NoData({ text, btnText }) {
+function NoData({ text, btnText, onClick }) {
   return (
     <StyledNoData>
       <p>{text}</p>
-      <Button $variation="primary" $size="medium">
+      <Button onClick={onClick} $variation="primary" $size="medium">
         {btnText}
       </Button>
     </StyledNoData>

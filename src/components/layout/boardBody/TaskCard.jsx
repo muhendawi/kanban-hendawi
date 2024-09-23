@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import TaskCardModal from "../../modals/TaskCardModal";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 //------------------------------------------------------------------->
 
 export const StyledTaskCard = styled.div`
@@ -48,17 +51,40 @@ export const StyledTaskCard = styled.div`
 `;
 //------------------------------------------------------------------->
 const MotionTaskcard = motion.create(StyledTaskCard);
-function TaskCard({ title, completedSubTasks, totalSubTasks, index }) {
+function TaskCard({
+  title,
+  completedSubTasks,
+  totalSubTasks,
+  taskIndex,
+  task,
+  columnIndex,
+}) {
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   return (
-    <MotionTaskcard
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ type: "spring", duration: 0.5, delay: 0.05 * index }}>
-      <h4>{title}</h4>
-      <p>
-        {completedSubTasks || 0} of {totalSubTasks || 0} subtasks
-      </p>
-    </MotionTaskcard>
+    <>
+      <MotionTaskcard
+        layout
+        onClick={() => setIsTaskModalOpen(!isTaskModalOpen)}
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 1, y: -50 }}
+        transition={{ type: "spring", duration: 0.5, delay: 0.05 * taskIndex }}>
+        <h4>{title}</h4>
+        <p>
+          {completedSubTasks || 0} of {totalSubTasks || 0} subtasks
+        </p>
+      </MotionTaskcard>
+      <AnimatePresence>
+        {isTaskModalOpen && (
+          <TaskCardModal
+            taskIndex={taskIndex}
+            columnIndex={columnIndex}
+            task={task}
+            onCloseModal={() => setIsTaskModalOpen(!isTaskModalOpen)}
+          />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 

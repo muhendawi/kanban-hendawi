@@ -73,7 +73,7 @@ function ColumnAddRemove({
     <StyledColumnAddRemove
       $shouldStyle={elementsToStyle.includes(currentIndex)}>
       <input
-        className={elementsToStyle.includes(currentIndex) ? "shakeIt" : null}
+        className={elementsToStyle.includes(currentIndex) ? "animateIt" : null}
         type="text"
         placeholder="e.g. Todo"
         value={defaultValue}

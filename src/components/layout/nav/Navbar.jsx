@@ -6,8 +6,10 @@ import NavBoardItem from "./NavBoardItem";
 import MobileMenu from "./MobileMenu";
 import { AnimatePresence } from "framer-motion";
 import { memo, useState } from "react";
-import DeleteBoardMenu from "../../modals/DeleteBoardMenu";
+import SubMenu from "../../modals/SubMenu";
 import NewBoardModal from "../../modals/NewBoardModal";
+import { useDispatch } from "react-redux";
+import { deleteBoard } from "../../../store/board/board.slice";
 //------------------------------------------------------------------->
 
 const StyledNav = styled.nav`
@@ -51,14 +53,21 @@ const DesktopNavBtn = styled(Button)`
 const Navbar = memo(function Navbar({ isNewBoardModal }) {
   const [newTaskModalToggled, setNewTaskModal] = useState(false);
   const [mobileMenuToggled, setMobileMenu] = useState(false);
-  const [deleteBoardOpened, setDeleteBoard] = useState(false);
+  const [toggleSubMenu, setToggleSumMenu] = useState(false);
   const [isNewBoardModalOpen, setIsNewBoardModalOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  // delete board handler function
+  function handleDeleteBoard() {
+    dispatch(deleteBoard());
+    setToggleSumMenu(!toggleSubMenu);
+  }
   return (
     <>
       <StyledNav>
         <NavBoardItem
           onClick={() => {
-            setDeleteBoard(false);
+            setToggleSumMenu(false);
             setMobileMenu(!mobileMenuToggled);
           }}
           isMobileMenuOpen={mobileMenuToggled}
@@ -68,7 +77,7 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
             $variation="primary"
             $size="medium"
             onClick={() => {
-              setDeleteBoard(false);
+              setToggleSumMenu(false);
               setNewTaskModal(!newTaskModalToggled);
             }}>
             + Add New Task
@@ -78,15 +87,16 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
             $size="small"
             onClick={() => {
               setMobileMenu(false);
-              setDeleteBoard(false);
+              setToggleSumMenu(false);
               setNewTaskModal(!newTaskModalToggled);
             }}>
             <FaPlus size={15} />
           </MobileNavBtn>
           <VerticalEllipsis
-            toggleDeleteBoardMenu={() => setDeleteBoard(!deleteBoardOpened)}
+            toggleMenu={() => setToggleSumMenu(!toggleSubMenu)}
           />
         </div>
+        {/* the Mobile menu conditional rendering */}
         <AnimatePresence>
           {mobileMenuToggled && (
             <MobileMenu
@@ -100,23 +110,20 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
             />
           )}
         </AnimatePresence>
-
-        {/* <NewBoardModal
-        onClose={() => {
-          setNewTaskModal(!newTaskModalToggled);
-        }}
-        isModalOpen={newTaskModalToggled}>
-        New Task 📝
-      </NewBoardModal> */}
+        {/* The SubMenu conditional rendering */}
         <AnimatePresence>
-          {deleteBoardOpened && (
-            <DeleteBoardMenu
-              deleteBoardOpened={deleteBoardOpened}
-              setDeleteBoard={setDeleteBoard}
+          {toggleSubMenu && (
+            <SubMenu
+              onToggleSubmenu={() => setToggleSumMenu(!toggleSubMenu)}
+              firstOption="Edit Board"
+              secondOption="Delete Board"
+              onEdit={null}
+              onDelete={handleDeleteBoard}
             />
           )}
         </AnimatePresence>
       </StyledNav>
+      {/* The NewBoardModal conditional rendering */}
       <AnimatePresence>
         {isNewBoardModalOpen && (
           <NewBoardModal
