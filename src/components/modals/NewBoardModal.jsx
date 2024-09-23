@@ -10,7 +10,7 @@ import {
 } from "../../store/board/board.slice";
 import { useSelector } from "react-redux";
 import { flushSync } from "react-dom";
-import { spring } from "framer-motion";
+
 //------------------------------------------------------------------->
 
 const StyledNewBoardModal = styled.div`
@@ -101,12 +101,13 @@ function NewBoardModal({ onClose, isModalOpen }) {
   const boardsSlice = useSelector((store) => store.boards.boards);
   const dispatch = useDispatch();
   const [boardName, setBoardName] = useState("");
+  const [isBoardNameEmpty, setIsBoardNameEmpty] = useState(false);
+
   const [columns, setColumns] = useState([
     { name: "Todo", tasks: [] },
     { name: "Doing", tasks: [] },
   ]);
   const [elementsToStyle, setElementsToStyle] = useState([]);
-  const [isBoardNameEmpty, setIsBoardNameEmpty] = useState(false);
   const [scope, animate] = useAnimate();
 
   function submit() {
@@ -124,7 +125,7 @@ function NewBoardModal({ onClose, isModalOpen }) {
       }
     });
     // this check prevent dispatching empty data/inputs
-    if (boardName.trim() !== "") {
+    if (boardName.trim() !== "" && elementsToStyle.length === 0) {
       dispatch(addNewBoard(boardName, columns));
       dispatch(setSelectedBoardIndex(boardsSlice.length));
       onClose();
