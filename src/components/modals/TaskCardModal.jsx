@@ -54,13 +54,14 @@ const ModalTitleContainer = styled.div`
   width: 100%;
 `;
 const ModalTitle = styled.h3`
-  font-size: var(--fsL);
+  font-size: calc(var(--fsL) - 2px);
   margin: 0;
 `;
 const ModalDescription = styled.p`
   color: var(--veryLightGrey);
-  font-size: var(--fsM);
-  line-height: 1.2;
+  font-size: calc(var(--fsM) - 2px);
+  line-height: 1.5;
+  font-weight: 500;
 `;
 const SubtasksHeader = styled.h3`
   text-transform: none;

@@ -15,6 +15,7 @@ const StyledSubMenu = styled.div`
   z-index: 100;
   box-shadow: 0 10px 20px rgb(99, 95, 199, 0.25);
   position: absolute;
+  top: 5.5rem;
   right: 1rem;
   /* box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25); */
   > div {
@@ -37,6 +38,9 @@ const StyledSubMenu = styled.div`
     &:hover {
       background-color: var(--verylightSliver);
     }
+    @media (max-width: 768px) {
+      padding-right: 50px;
+    }
   }
   > div:last-child {
     padding: 5px 70px 5px 20px;
@@ -48,9 +52,12 @@ const StyledSubMenu = styled.div`
     &:hover {
       background-color: var(--verylightSliver);
     }
+    @media (max-width: 768px) {
+      padding-right: 30px;
+    }
   }
-  @media (min-width: 769px) {
-    top: 6rem;
+  @media (max-width: 768px) {
+    width: 150px;
   }
 `;
 //------------------------------------------------------------------->
@@ -65,8 +72,7 @@ function SubMenu({ firstOption, secondOption, onDelete, onEdit, type }) {
         y: type === "task" ? -20 : 0,
       }}
       exit={{ opacity: 0, x: 150, transition: { duration: 0.2 } }}
-      // transition={{ duration: 0.2 }}
-    >
+      transition={{ duration: 0.2 }}>
       <div onClick={onEdit}>
         <span>{firstOption}</span>
       </div>
