@@ -65,14 +65,14 @@ const MotionSubMenu = motion.create(StyledSubMenu);
 function SubMenu({ firstOption, secondOption, onDelete, onEdit, type }) {
   return (
     <MotionSubMenu
-      initial={{ opacity: 0, x: 150, y: type === "task" ? -20 : 0 }}
+      initial={{ opacity: 0, x: 150, y: type === "task" ? -15 : 0 }}
       animate={{
         opacity: 1,
-        x: type === "task" ? 50 : 0,
-        y: type === "task" ? -20 : 0,
+        x: type === "task" ? 40 : 0,
+        y: type === "task" ? -15 : 0,
       }}
-      exit={{ opacity: 0, x: 150, transition: { duration: 0.2 } }}
-      transition={{ duration: 0.2 }}>
+      exit={{ opacity: 0, x: 150, transition: { type: "tween" } }}
+      transition={{ duration: 0.1, type: "spring", stiffness: 200 }}>
       <div onClick={onEdit}>
         <span>{firstOption}</span>
       </div>

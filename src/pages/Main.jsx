@@ -63,7 +63,6 @@ function Main() {
   const [isSidebarExitComplete, setIsSidebarExitComplete] = useState(false);
   const [isNewBoardModalOpen, setIsNewBoardModalOpen] = useState(false);
 
-  console.log(isSideBarOpened, isSidebarExitComplete);
   return (
     <>
       {boards.length == 0 ? (

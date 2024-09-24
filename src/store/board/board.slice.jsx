@@ -12,7 +12,7 @@ const initialState = {
   // isTaskModalOpen: false,
   // isMobileMenuOpen: false,
 };
-console.log(initialState.selectedBoardIndex);
+
 const boardsSlice = createSlice({
   name: "boards",
   initialState,
@@ -38,22 +38,27 @@ const boardsSlice = createSlice({
     },
     deleteTask(state, action) {
       const { columnIndex, taskIndex } = action.payload;
-
       const board = state.boards.find(
         (_, index) => index === state.selectedBoardIndex
       );
       if (!board) return;
-
       const column = board.columns.find((_, index) => index === columnIndex);
       if (!column) return;
-
       column.tasks = column.tasks.filter((_, index) => index !== taskIndex);
-      // state.boards[state.selectedBoardIndex].columns = [
-      //   ...state.boards[state.selectedBoardIndex].columns,
-      //   state.boards[state.selectedBoardIndex].columns
-      //     .filter((col, index) => index === 0)
-      //     .filter(() => {}),
-      // ];
+    },
+
+    checkSubtask(state, action) {
+      const { columnIndex, taskIndex, subtaskIndex } = action.payload;
+      const board = state.boards.find(
+        (_, index) => index === state.selectedBoardIndex
+      );
+      if (!board) return;
+      const column = board.columns.find((_, index) => index === columnIndex);
+      if (!column) return;
+      const task = column.tasks.find((_, index) => index === taskIndex);
+      if (!task) return;
+      task.subtasks[subtaskIndex].isCompleted =
+        !task.subtasks[subtaskIndex].isCompleted;
     },
     // toggleNewTaskModal(state) {
     //   state.isNewTaskModalOpen = !state.isNewTaskModalOpen;
@@ -91,4 +96,5 @@ export const {
   addNewBoard,
   deleteBoard,
   deleteTask,
+  checkSubtask,
 } = boardsSlice.actions;

@@ -6,6 +6,8 @@ import SubMenu from "../modals/SubMenu";
 import { deleteTask } from "../../store/board/board.slice";
 import { useDispatch } from "react-redux";
 import { AnimatePresence } from "framer-motion";
+import Subtask from "./Subtask";
+import { useSelector } from "react-redux";
 //------------------------------------------------------------------->
 
 const StyledTaskCardModal = styled.div`
@@ -33,7 +35,7 @@ const ModalContentContainer = styled.div`
   gap: 0.5rem;
   width: 480px;
   max-height: calc(90% - 10rem);
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 0.6rem;
   background-color: var(--white);
   overflow-y: auto;
@@ -52,15 +54,22 @@ const ModalTitleContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  > img {
+    padding-right: 2px;
+    padding-left: 9.5px;
+  }
 `;
 const ModalTitle = styled.h3`
-  font-size: calc(var(--fsL) - 2px);
+  font-size: calc(var(--fsL) - 0.5px);
   margin: 0;
+  line-height: 1.5;
+  letter-spacing: 0.1px;
 `;
 const ModalDescription = styled.p`
   color: var(--veryLightGrey);
-  font-size: calc(var(--fsM) - 2px);
-  line-height: 1.5;
+  font-size: calc(var(--fsM) - 1.5px);
+  line-height: 1.7;
+  letter-spacing: 0.1px;
   font-weight: 500;
 `;
 const SubtasksHeader = styled.h3`
@@ -78,15 +87,21 @@ const MotionTaskcardModal = motion.create(StyledTaskCardModal);
 function TaskCardModal({ task, onCloseModal, taskIndex, columnIndex }) {
   const [toggleSubmenu, setToggleSubmenu] = useState(false);
   const dispatch = useDispatch();
+  const subtasks = useSelector(
+    (store) =>
+      store.boards.boards[store.boards.selectedBoardIndex].columns[columnIndex]
+        .tasks[taskIndex].subtasks
+  );
 
   function handleDeleteTask() {
     dispatch(deleteTask({ columnIndex, taskIndex }));
     onCloseModal();
   }
-  console.log(columnIndex, taskIndex);
+
   return (
     <>
       <MotionTaskcardModal
+        onClick={() => setToggleSubmenu(false)}
         $isTaskcardModalOpen={toggleSubmenu}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -100,7 +115,10 @@ function TaskCardModal({ task, onCloseModal, taskIndex, columnIndex }) {
           <ModalTitleContainer>
             <ModalTitle>{task.title}</ModalTitle>
             <VerticalEllipsis
-              toggleMenu={() => setToggleSubmenu(!toggleSubmenu)}
+              toggleMenu={(e) => {
+                e.stopPropagation();
+                setToggleSubmenu(!toggleSubmenu);
+              }}
             />
           </ModalTitleContainer>
           {task.description.trim() && (
@@ -111,6 +129,16 @@ function TaskCardModal({ task, onCloseModal, taskIndex, columnIndex }) {
             {task.subtasks.filter((sub) => sub.isCompleted === true).length} of{" "}
             {task.subtasks.length} )
           </SubtasksHeader>
+          {/* looping to view subtasks */}
+          {subtasks.map((sub, index) => (
+            <Subtask
+              key={index}
+              subtaskLabel={sub?.title}
+              columnIndex={columnIndex}
+              taskIndex={taskIndex}
+              subtaskIndex={index}
+            />
+          ))}
           <AnimatePresence>
             {toggleSubmenu && (
               <SubMenu

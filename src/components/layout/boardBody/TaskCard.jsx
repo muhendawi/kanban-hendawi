@@ -60,6 +60,7 @@ function TaskCard({
   columnIndex,
 }) {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+
   return (
     <>
       <MotionTaskcard

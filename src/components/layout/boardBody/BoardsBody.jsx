@@ -40,25 +40,25 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
   const boardsSlice = useSelector((store) => store.boards);
   const selectedColumns = boardsSlice.boards.at(
     boardsSlice.selectedBoardIndex
-  )?.columns;
+  ).columns;
 
   return (
     <>
       <MotionMain $columnLength={selectedColumns?.length}>
         {boardsSlice.boards.length !== 0 ? (
           <>
-            {selectedColumns?.map((column, colIndex) => (
+            {selectedColumns.map((column, colIndex) => (
               <BoardColumn
                 key={colIndex}
                 columnName={column.name}
-                tasksNo={column.tasks?.length}>
-                {column.tasks?.map((task, taskIndex) => (
+                tasksNo={column.tasks.length}>
+                {column.tasks.map((task, taskIndex) => (
                   <TaskCard
                     task={task}
                     key={taskIndex}
                     columnIndex={colIndex}
                     taskIndex={taskIndex}
-                    title={task.title}
+                    title={task?.title}
                     completedSubTasks={
                       task.subtasks.filter((sub) => sub.isCompleted === true)
                         .length
