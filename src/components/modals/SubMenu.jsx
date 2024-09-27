@@ -32,8 +32,8 @@ const StyledSubMenu = styled.div`
     padding: 5px 90px 5px 20px;
     > span {
       color: var(--veryLightGrey);
-      font-size: var(--fsM);
-      font-weight: 500;
+      font-size: calc(var(--fsM) - 1px);
+      font-weight: 600;
     }
     &:hover {
       background-color: var(--verylightSliver);
@@ -46,8 +46,8 @@ const StyledSubMenu = styled.div`
     padding: 5px 70px 5px 20px;
     > span {
       color: var(--darkRedOrange);
-      font-size: var(--fsM);
-      font-weight: 500;
+      font-size: calc(var(--fsM) - 1px);
+      font-weight: 600;
     }
     &:hover {
       background-color: var(--verylightSliver);
