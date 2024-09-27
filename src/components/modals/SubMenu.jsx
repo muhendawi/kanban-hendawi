@@ -15,7 +15,7 @@ const StyledSubMenu = styled.div`
   z-index: 100;
   box-shadow: 0 10px 20px rgb(99, 95, 199, 0.25);
   position: absolute;
-  top: 5.5rem;
+  top: 6rem;
   right: 1rem;
   /* box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25); */
   > div {
@@ -57,6 +57,7 @@ const StyledSubMenu = styled.div`
     }
   }
   @media (max-width: 768px) {
+    top: 5rem;
     width: 150px;
   }
 `;
