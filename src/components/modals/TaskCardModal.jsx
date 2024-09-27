@@ -110,7 +110,7 @@ function TaskCardModal({
         exit={{
           opacity: 0,
           y: 50,
-          transition: { duration: 0.2, type: "spring", mass: 0.5 },
+          transition: { duration: 0.2, type: "tween" },
         }}>
         <ModalBackdrop onClick={toggleTaskModal} />
         <ModalContentContainer>
