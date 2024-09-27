@@ -51,6 +51,7 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
   cursor: pointer;
   border: none;
   border-radius: 2em;

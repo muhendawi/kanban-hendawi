@@ -10,6 +10,7 @@ import SubMenu from "../../modals/SubMenu";
 import NewBoardModal from "../../modals/NewBoardModal";
 import { useDispatch } from "react-redux";
 import { deleteBoard } from "../../../store/board/board.slice";
+import ConfirmDelete from "../../modals/ConfirmDelete";
 //------------------------------------------------------------------->
 
 const StyledNav = styled.nav`
@@ -55,12 +56,13 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
   const [mobileMenuToggled, setMobileMenu] = useState(false);
   const [toggleSubMenu, setToggleSumMenu] = useState(false);
   const [isNewBoardModalOpen, setIsNewBoardModalOpen] = useState(false);
+  const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
   const dispatch = useDispatch();
 
   // delete board handler function
   function handleDeleteBoard() {
     dispatch(deleteBoard());
-    setToggleSumMenu(!toggleSubMenu);
+    setToggleDeleteModal(!toggleDeleteModal);
   }
   return (
     <>
@@ -118,11 +120,25 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
               firstOption="Edit Board"
               secondOption="Delete Board"
               onEdit={null}
-              onDelete={handleDeleteBoard}
+              onDelete={() => {
+                setToggleDeleteModal(!toggleDeleteModal);
+                setToggleSumMenu(!toggleSubMenu);
+              }}
             />
           )}
         </AnimatePresence>
       </StyledNav>
+      <AnimatePresence>
+        {toggleDeleteModal && (
+          <ConfirmDelete
+            modalTitle="board"
+            onDelete={handleDeleteBoard}
+            onCancel={() => setToggleDeleteModal(!toggleDeleteModal)}>
+            Are you sure you want to delete this board? This action will remove
+            all columns and tasks and cannot be reversed.
+          </ConfirmDelete>
+        )}
+      </AnimatePresence>
       {/* The NewBoardModal conditional rendering */}
       <AnimatePresence>
         {isNewBoardModalOpen && (

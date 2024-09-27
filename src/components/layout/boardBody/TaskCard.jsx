@@ -3,6 +3,9 @@ import styled from "styled-components";
 import TaskCardModal from "../../modals/TaskCardModal";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { deleteTask } from "../../../store/board/board.slice";
+import ConfirmDelete from "../../modals/ConfirmDelete";
 //------------------------------------------------------------------->
 
 export const StyledTaskCard = styled.div`
@@ -60,7 +63,13 @@ function TaskCard({
   columnIndex,
 }) {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
+  const dispatch = useDispatch();
 
+  function handleDeleteTask() {
+    dispatch(deleteTask({ columnIndex, taskIndex }));
+    setToggleDeleteModal(!toggleDeleteModal);
+  }
   return (
     <>
       <MotionTaskcard
@@ -80,8 +89,25 @@ function TaskCard({
             taskIndex={taskIndex}
             columnIndex={columnIndex}
             task={task}
-            onCloseModal={() => setIsTaskModalOpen(!isTaskModalOpen)}
+            toggleTaskModal={() => setIsTaskModalOpen(!isTaskModalOpen)}
+            toggleDeleteModal={() => setToggleDeleteModal(!toggleDeleteModal)}
           />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {toggleDeleteModal && (
+          <ConfirmDelete
+            modalTitle="task"
+            onDelete={() => {
+              handleDeleteTask();
+            }}
+            onCancel={() => {
+              setToggleDeleteModal(!toggleDeleteModal);
+              setIsTaskModalOpen(!isTaskModalOpen);
+            }}>
+            Are you sure you want to delete the "{task.title}" task and its
+            subtasks? This action cannot be reversed.
+          </ConfirmDelete>
         )}
       </AnimatePresence>
     </>

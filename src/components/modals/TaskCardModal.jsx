@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { AnimatePresence } from "framer-motion";
 import Subtask from "./Subtask";
 import { useSelector } from "react-redux";
+import ConfirmDelete from "../modals/ConfirmDelete";
 //------------------------------------------------------------------->
 
 const StyledTaskCardModal = styled.div`
@@ -84,19 +85,20 @@ const SubtasksHeader = styled.h3`
 //------------------------------------------------------------------->
 
 const MotionTaskcardModal = motion.create(StyledTaskCardModal);
-function TaskCardModal({ task, onCloseModal, taskIndex, columnIndex }) {
+function TaskCardModal({
+  task,
+  toggleTaskModal,
+  toggleDeleteModal,
+  taskIndex,
+  columnIndex,
+}) {
   const [toggleSubmenu, setToggleSubmenu] = useState(false);
-  const dispatch = useDispatch();
+
   const subtasks = useSelector(
     (store) =>
       store.boards.boards[store.boards.selectedBoardIndex].columns[columnIndex]
         .tasks[taskIndex].subtasks
   );
-
-  function handleDeleteTask() {
-    dispatch(deleteTask({ columnIndex, taskIndex }));
-    onCloseModal();
-  }
 
   return (
     <>
@@ -110,7 +112,7 @@ function TaskCardModal({ task, onCloseModal, taskIndex, columnIndex }) {
           y: 50,
           transition: { duration: 0.2, type: "spring", mass: 0.5 },
         }}>
-        <ModalBackdrop onClick={onCloseModal} />
+        <ModalBackdrop onClick={toggleTaskModal} />
         <ModalContentContainer>
           <ModalTitleContainer>
             <ModalTitle>{task.title}</ModalTitle>
@@ -146,8 +148,8 @@ function TaskCardModal({ task, onCloseModal, taskIndex, columnIndex }) {
                 firstOption="Edit Task"
                 secondOption="Delete Task"
                 onDelete={() => {
-                  handleDeleteTask();
-                  setToggleSubmenu(!toggleSubmenu);
+                  toggleTaskModal();
+                  toggleDeleteModal();
                 }}
               />
             )}
