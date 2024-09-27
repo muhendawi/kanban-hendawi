@@ -52,20 +52,22 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
                 key={colIndex}
                 columnName={column.name}
                 tasksNo={column.tasks.length}>
-                {column.tasks.map((task, taskIndex) => (
-                  <TaskCard
-                    task={task}
-                    key={taskIndex}
-                    columnIndex={colIndex}
-                    taskIndex={taskIndex}
-                    title={task?.title}
-                    completedSubTasks={
-                      task.subtasks.filter((sub) => sub.isCompleted === true)
-                        .length
-                    }
-                    totalSubTasks={task.subtasks?.length}
-                  />
-                ))}
+                <AnimatePresence>
+                  {column.tasks.map((task, taskIndex) => (
+                    <TaskCard
+                      task={task}
+                      key={taskIndex}
+                      columnIndex={colIndex}
+                      taskIndex={taskIndex}
+                      title={task?.title}
+                      completedSubTasks={
+                        task.subtasks.filter((sub) => sub.isCompleted === true)
+                          .length
+                      }
+                      totalSubTasks={task.subtasks?.length}
+                    />
+                  ))}
+                </AnimatePresence>
               </BoardColumn>
             ))}
 

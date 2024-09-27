@@ -77,6 +77,7 @@ function TaskCard({
         onClick={() => setIsTaskModalOpen(!isTaskModalOpen)}
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -50 }}
         transition={{ type: "spring", duration: 0.5, delay: 0.05 * taskIndex }}>
         <h4>{title}</h4>
         <p>

@@ -18,48 +18,52 @@ const StyledSubMenu = styled.div`
   top: 6rem;
   right: 1rem;
   /* box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25); */
-  > div {
-    cursor: pointer;
-    align-self: flex-start;
-    margin: 0 auto;
-    border-radius: 0.5rem;
-    &:active {
-      background-color: var(--lightSilver);
-    }
-  }
-  > div:first-child {
-    margin-bottom: 0.3rem;
-    padding: 5px 90px 5px 20px;
-    > span {
-      color: var(--veryLightGrey);
-      font-size: calc(var(--fsM) - 1px);
-      font-weight: 600;
-    }
-    &:hover {
-      background-color: var(--verylightSliver);
-    }
-    @media (max-width: 768px) {
-      padding-right: 50px;
-    }
-  }
-  > div:last-child {
-    padding: 5px 70px 5px 20px;
-    > span {
-      color: var(--darkRedOrange);
-      font-size: calc(var(--fsM) - 1px);
-      font-weight: 600;
-    }
-    &:hover {
-      background-color: var(--verylightSliver);
-    }
-    @media (max-width: 768px) {
-      padding-right: 30px;
-    }
-  }
   @media (max-width: 768px) {
     top: 5rem;
-    width: 150px;
+    width: 160px;
   }
+`;
+const EditDelete = styled.div`
+  cursor: pointer;
+  align-self: flex-start;
+  border-radius: 0.5rem;
+  margin: 0 auto;
+  width: 90%;
+  padding: 5px 20px;
+
+  &:active {
+    background-color: var(--lightSilver);
+  }
+`;
+const Edit = styled(EditDelete)`
+  &:hover {
+    background-color: var(--verylightSliver);
+  }
+  @media (max-width: 768px) {
+    padding-right: 50px;
+  }
+`;
+const Delete = styled(EditDelete)`
+  &:hover {
+    background-color: var(--verylightSliver);
+  }
+  @media (max-width: 768px) {
+    padding-right: 30px;
+  }
+`;
+const TextSpan = styled.span`
+  color: var(
+    ${({ $textColor }) =>
+      $textColor === "edit" ? "--veryLightGrey" : "--darkRedOrange"}
+  );
+  font-size: calc(var(--fsM) - 1px);
+  font-weight: 600;
+`;
+const Hr = styled.hr`
+  width: 70%;
+  margin: 0.2rem auto;
+  border: none;
+  border-top: 1px solid var(--verylightSliver);
 `;
 //------------------------------------------------------------------->
 const MotionSubMenu = motion.create(StyledSubMenu);
@@ -80,12 +84,13 @@ function SubMenu({ firstOption, secondOption, onDelete, onEdit, type }) {
         y: type === "task" ? -35 : -20,
         transition: { type: "tween" },
       }}>
-      <div onClick={onEdit}>
-        <span>{firstOption}</span>
-      </div>
-      <div onClick={onDelete}>
-        <span>{secondOption}</span>
-      </div>
+      <Edit onClick={onEdit}>
+        <TextSpan $textColor="edit">{firstOption}</TextSpan>
+      </Edit>
+      <Hr />
+      <Delete onClick={onDelete}>
+        <TextSpan>{secondOption}</TextSpan>
+      </Delete>
     </MotionSubMenu>
   );
 }

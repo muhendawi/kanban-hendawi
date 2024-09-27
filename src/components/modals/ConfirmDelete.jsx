@@ -25,7 +25,7 @@ const DeleteContentContainer = styled.div`
   gap: 0.5rem;
   width: 480px;
   max-height: calc(90% - 10rem);
-  padding: 2.5rem;
+  padding: 2rem;
   border-radius: 0.6rem;
   background-color: var(--white);
   box-shadow: 0 5px 15px rgb(99, 95, 199, 0.3);
@@ -34,7 +34,6 @@ const DeleteContentContainer = styled.div`
   @media (max-width: 768px) {
     max-width: 343px;
     min-height: 200px;
-    padding: 2rem 1.5rem;
   }
 `;
 const DeleteTitle = styled.h3`
@@ -55,7 +54,7 @@ const DeleteMessage = styled.p`
 const ButtonsContainer = styled.div`
   width: 100%;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.8rem;
   align-items: center;
   > button {
     width: 50%;

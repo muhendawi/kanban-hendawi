@@ -3,12 +3,11 @@ import { motion } from "framer-motion";
 import { VerticalEllipsis } from "../universal/Icons.styled";
 import { useState } from "react";
 import SubMenu from "../modals/SubMenu";
-import { deleteTask } from "../../store/board/board.slice";
 import { useDispatch } from "react-redux";
 import { AnimatePresence } from "framer-motion";
 import Subtask from "./Subtask";
 import { useSelector } from "react-redux";
-import ConfirmDelete from "../modals/ConfirmDelete";
+import { moveTask } from "../../store/board/board.slice";
 //------------------------------------------------------------------->
 
 const StyledTaskCardModal = styled.div`
@@ -77,10 +76,29 @@ const SubtasksHeader = styled.h3`
   text-transform: none;
   letter-spacing: normal;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   padding-left: 0;
   font-size: calc(var(--fsS) + 1px);
   color: var(--veryLightGrey);
+`;
+const Select = styled.select`
+  cursor: pointer;
+  background-color: var(--lightSilver);
+  border: 1px solid var(--formPlaceholder);
+  outline-color: var(--darkIndigo);
+  width: 100%;
+  /* display: flex; */
+  /* align-items: center; */
+  /* gap: 0.5rem; */
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  /* &:hover {
+    background-color: var(--hoverIndigoGreyLight);
+  } */
+`;
+const Option = styled.option`
+  /* width: 100%; */
+  font-size: 10px;
 `;
 //------------------------------------------------------------------->
 
@@ -97,9 +115,20 @@ function TaskCardModal({
   const subtasks = useSelector(
     (store) =>
       store.boards.boards[store.boards.selectedBoardIndex].columns[columnIndex]
-        .tasks[taskIndex].subtasks
+        .tasks[taskIndex]?.subtasks
   );
+  const mainStore = useSelector((store) => store.boards);
+  const activeBoardColumns =
+    mainStore.boards[mainStore.selectedBoardIndex].columns;
 
+  const [selectedOption, setSelectedOption] = useState(
+    activeBoardColumns[columnIndex].name
+  );
+  const dispatch = useDispatch();
+
+  console.log(activeBoardColumns);
+
+  console.log(selectedOption);
   return (
     <>
       <MotionTaskcardModal
@@ -112,7 +141,15 @@ function TaskCardModal({
           y: 50,
           transition: { duration: 0.2, type: "tween" },
         }}>
-        <ModalBackdrop onClick={toggleTaskModal} />
+        <ModalBackdrop
+          onClick={() => {
+            toggleTaskModal();
+            if (selectedOption === activeBoardColumns[columnIndex].name) return;
+            dispatch(
+              moveTask({ columnIndex, task, taskIndex, selectedOption })
+            );
+          }}
+        />
         <ModalContentContainer>
           <ModalTitleContainer>
             <ModalTitle>{task.title}</ModalTitle>
@@ -132,7 +169,7 @@ function TaskCardModal({
             {task.subtasks.length} )
           </SubtasksHeader>
           {/* looping to view subtasks */}
-          {subtasks.map((sub, index) => (
+          {subtasks?.map((sub, index) => (
             <Subtask
               key={index}
               subtaskLabel={sub?.title}
@@ -141,6 +178,18 @@ function TaskCardModal({
               subtaskIndex={index}
             />
           ))}
+          <SubtasksHeader>Current Status</SubtasksHeader>
+          <Select
+            value={selectedOption}
+            onChange={(e) => {
+              setSelectedOption(e.target.value);
+            }}>
+            {activeBoardColumns.map((col, index) => (
+              <Option key={index} value={col.name}>
+                {col.name}
+              </Option>
+            ))}
+          </Select>
           <AnimatePresence>
             {toggleSubmenu && (
               <SubMenu

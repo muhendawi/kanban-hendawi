@@ -60,6 +60,37 @@ const boardsSlice = createSlice({
       task.subtasks[subtaskIndex].isCompleted =
         !task.subtasks[subtaskIndex].isCompleted;
     },
+    moveTask(state, action) {
+      const { columnIndex, task, taskIndex, selectedOption } = action.payload;
+      // removing the task from the current column
+      const board = state.boards.find(
+        (_, index) => index === state.selectedBoardIndex
+      );
+      if (!board) return;
+      const column = board.columns.find((_, index) => index === columnIndex);
+      if (!column) return;
+      column.tasks = column.tasks.filter((_, index) => index !== taskIndex);
+      // adding the task to the new column
+      const newColumn = board.columns.find(
+        (col) => col.name === selectedOption
+      );
+      if (!newColumn) return;
+      // const task = column.tasks.find((_, index) => index === taskIndex);
+      // if (!task) return;
+      newColumn.tasks.push(task);
+      //============================================================>
+      // const activeBoard = state.boards[state.selectedBoardIndex];
+      // if (!activeBoard) return;
+      // // const activeColumn = activeBoard[columnIndex];
+      // // if (!activeColumn) return;
+      // const theMovingTask = activeBoard[columnIndex][taskIndex];
+      // state.boards[state.selectedBoardIndex].columns[columnIndex] = activeBoard[
+      //   columnIndex
+      // ].filter((_, index) => index !== taskIndex);
+      // activeBoard.map(
+      //   (col, index) => col.name === selectedOption && col.push(theMovingTask)
+      // );
+    },
     // toggleNewTaskModal(state) {
     //   state.isNewTaskModalOpen = !state.isNewTaskModalOpen;
     // },
@@ -97,4 +128,5 @@ export const {
   deleteBoard,
   deleteTask,
   checkSubtask,
+  moveTask,
 } = boardsSlice.actions;
