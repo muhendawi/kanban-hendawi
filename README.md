@@ -18,7 +18,7 @@ Welcome to the **Kanban Web Application** repository! This project is a web-base
 
 ## Technologies Used
 
-- **Frontend**: React.js, Redux Toolkit, Styled Components, HTML, CSS
+- **Frontend**: React.js, Redux Toolkit, Framer-motion, Styled Components, HTML, CSS
 - **Deployment**: Vercel
 
 ## Getting Started
