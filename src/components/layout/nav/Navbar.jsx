@@ -95,7 +95,10 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
             <FaPlus size={15} />
           </MobileNavBtn>
           <VerticalEllipsis
-            toggleMenu={() => setToggleSumMenu(!toggleSubMenu)}
+            toggleMenu={() => {
+              if (mobileMenuToggled) return;
+              setToggleSumMenu(!toggleSubMenu);
+            }}
           />
         </div>
         {/* the Mobile menu conditional rendering */}

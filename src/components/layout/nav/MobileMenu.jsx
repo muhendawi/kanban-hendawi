@@ -24,7 +24,7 @@ const StyledMobileMenu = styled.div`
   /* transform: scale(0.5); */
   > div:first-child {
     position: absolute;
-    background-color: rgb(0, 0, 0, 0.45);
+    background-color: rgb(255, 255, 255, 0.85);
     top: 0;
     left: 0;
     right: 0;
@@ -44,7 +44,7 @@ const StyledMobileMenu = styled.div`
     top: 3%;
     right: 5%;
     left: 5%;
-    box-shadow: 0 5px 15px rgb(99, 95, 199, 0.3);
+    box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45);
     > div:first-of-type {
       overflow: auto;
     }
