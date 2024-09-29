@@ -13,21 +13,18 @@ import verticalEllipsisIcon from "../../assets/icon-vertical-ellipsis.svg";
 import darkLogo from "../../assets/logo-dark.svg";
 import lightLogo from "../../assets/logo-light.svg";
 import mobileLogo from "../../assets/logo-mobile.svg";
-import plusSvgRepoComIcon from "../../assets/plus-svgrepo-com.svg";
-import { motion } from "framer-motion";
+
 //------------------------------------------------------------------------->
 // the three dots menu (vertical ellipsis)
 const StyledVerticalEllipsisIcon = styled.img`
   padding: 0.7rem 1rem;
   cursor: pointer;
+  scale: 1.2;
 `;
 
-const MotionEEllipsisIcon = motion.create(StyledVerticalEllipsisIcon);
 export function VerticalEllipsis({ toggleMenu }) {
   return (
-    <MotionEEllipsisIcon
-      whileHover={{ scale: 1.1 }}
-      transition={{ type: "spring", stiffness: 500 }}
+    <StyledVerticalEllipsisIcon
       onClick={toggleMenu}
       src={verticalEllipsisIcon}
       alt="vertical ellipsis menu"
@@ -35,7 +32,11 @@ export function VerticalEllipsis({ toggleMenu }) {
   );
 }
 // the main logo - dark one
-const StyledDarkLogo = styled.img``;
+const StyledDarkLogo = styled.img`
+  /* @media (max-width: 768px) {
+    display: none;
+  } */
+`;
 export function DarkLogo() {
   return <StyledDarkLogo src={darkLogo} alt="the main logo dark" />;
 }

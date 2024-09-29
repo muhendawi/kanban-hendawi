@@ -27,6 +27,7 @@ const SubaskInput = styled.input`
 const SubtaskLabel = styled.span`
   display: inline-block;
   font-size: var(--fsS);
+  color: var(--darkBlack);
   font-weight: 700;
   ${({ $isChecked }) =>
     $isChecked &&

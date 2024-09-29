@@ -3,15 +3,13 @@ import NoData from "../../../pages/NoData";
 import { useSelector } from "react-redux";
 import TaskCard from "./TaskCard";
 import BoardColumn from "./BoardColumn";
-import NewBoardModal from "../../modals/NewBoardModal";
 import { memo, useState } from "react";
-import Header from "../sidebar/Header.styled";
 import { motion } from "framer-motion";
-import TaskCardModal from "../../modals/TaskCardModal";
 import { AnimatePresence } from "framer-motion";
 //------------------------------------------------------------------->
 
 const StyledAppBody = styled.main`
+  /* border: 2px solid red; */
   width: 100%;
   height: 100%;
   padding: 1.5rem;
@@ -20,6 +18,9 @@ const StyledAppBody = styled.main`
   grid-auto-flow: column;
   gap: 1rem;
   overflow: auto;
+  /* box-shadow: inset 0 -5px 10px rgb(0, 0, 0, 0.45), inset; */
+  /* box-shadow: inset 0 -1px 10px rgb(0, 0, 0, 0.45),
+    inset -1px 0 10px rgb(0, 0, 0, 0.45); */
 
   @media (max-width: 768px) {
     padding: 1.5rem 0.8rem;
@@ -56,7 +57,7 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
                   {column.tasks.map((task, taskIndex) => (
                     <TaskCard
                       task={task}
-                      key={taskIndex}
+                      key={task.taskId}
                       columnIndex={colIndex}
                       taskIndex={taskIndex}
                       title={task?.title}
@@ -70,6 +71,7 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
                 </AnimatePresence>
               </BoardColumn>
             ))}
+
             <BoardColumn
               onClick={() => setNewColumnModal(!newColumnModalToggled)}>
               <p>+ New Column</p>

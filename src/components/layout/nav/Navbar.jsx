@@ -11,6 +11,7 @@ import NewBoardModal from "../../modals/NewBoardModal";
 import { useDispatch } from "react-redux";
 import { deleteBoard } from "../../../store/board/board.slice";
 import DeleteModal from "../../modals/DeleteModal";
+import MainLogo from "../../universal/MainLogo";
 //------------------------------------------------------------------->
 
 const StyledNav = styled.nav`
@@ -19,6 +20,11 @@ const StyledNav = styled.nav`
   align-items: center;
   padding: 1rem 0.4rem 1rem 1.5rem;
   background-color: var(--white);
+  /* box-shadow: 0 2px 10px rgb(0, 0, 0, 0.45), inset 0 -1px 3px rgb(0, 0, 0, 0.45); */
+  /* box-shadow: 0 3px 7px rgb(0, 0, 0, 0.45), inset 0 1px 3px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 3px rgb(0, 0, 0, 0.25); */
+  box-shadow: 0 1px 10px rgb(0, 0, 0, 0.45),
+    inset 0 -1px 10px rgb(0, 0, 0, 0.45);
   // laid out the NavBoardTitle and its adjacent div
   > div {
     display: flex;
@@ -66,6 +72,7 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
   }
   return (
     <>
+      <MainLogo />
       <StyledNav>
         <NavBoardItem
           onClick={() => {

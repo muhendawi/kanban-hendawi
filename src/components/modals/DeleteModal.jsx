@@ -24,11 +24,13 @@ const DeleteContentContainer = styled.div`
   align-items: flex-start;
   gap: 0.5rem;
   width: 480px;
-  max-height: calc(90% - 10rem);
-  padding: 2rem;
+  /* max-height: calc(90% - 10rem); */
+  padding: 2.5rem 2rem;
   border-radius: 0.6rem;
   background-color: var(--white);
-  box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45);
+  /* box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45); */
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 10px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 10px rgb(0, 0, 0, 0.25);
   z-index: 801;
   position: relative;
   @media (max-width: 768px) {

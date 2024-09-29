@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import Header from "../sidebar/Header.styled";
-import getRandomHexColor from "../../../utils/randomColorGenerator";
 import { motion } from "framer-motion";
+
 //------------------------------------------------------------------->
 
 export const StyledBoardColumn = styled.div`
@@ -14,7 +14,7 @@ export const StyledBoardColumn = styled.div`
     text-transform: uppercase;
     margin: 0;
     margin-bottom: 0.5rem;
-    padding-left: 0;
+    padding-left: 1rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -28,6 +28,7 @@ export const StyledBoardColumn = styled.div`
     }
   }
   &:last-child {
+    /* border: 2px solid red; */
     height: calc(100% - 2.5rem);
     margin-top: 2.3rem;
     border-radius: 0.5rem;
@@ -35,9 +36,11 @@ export const StyledBoardColumn = styled.div`
     display: flex;
     align-items: center;
     cursor: pointer;
-    border-bottom: 2px solid transparent;
+
     transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    box-shadow: 0 4px 6px rgba(54, 78, 126, 0.102);
+    /* box-shadow: 0 4px 6px rgba(54, 78, 126, 0.102); */
+    box-shadow: 0 3px 7px rgb(0, 0, 0, 0.45), inset 0 1px 3px rgb(0, 0, 0, 0.25),
+      inset -0 -1px 3px rgb(0, 0, 0, 0.25);
     /* position: relative; */
     > h3 {
       display: none;

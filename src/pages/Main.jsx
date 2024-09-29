@@ -2,15 +2,13 @@ import Sidebar from "../components/layout/sidebar/Sidebar";
 import Navbar from "../components/layout/nav/Navbar";
 import BoardsBody from "../components/layout/boardBody/BoardsBody";
 import { useSelector } from "react-redux";
-import MainLogo from "../components/universal/MainLogo";
+
 import styled, { css } from "styled-components";
 import ToggleSidebarBtn from "../components/layout/sidebar/ToggleSidebarBtn";
-import { toggleSidebar } from "../store/board/board.slice";
-import { useDispatch } from "react-redux";
+
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { flushSync } from "react-dom";
-import { motion } from "framer-motion";
+
 import NoData from "./NoData";
 import NewBoardModal from "../components/modals/NewBoardModal";
 //------------------------------------------------------------------->
@@ -20,7 +18,7 @@ const StyledMain = styled.div`
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 300px 1fr;
   grid-template-rows: 5rem 1fr;
 
   > nav {
@@ -73,7 +71,7 @@ function Main() {
         />
       ) : (
         <StyledMain $isSidebarExit={isSidebarExitComplete}>
-          <MainLogo />
+          {/* <MainLogo /> */}
           <Navbar />
           <AnimatePresence
             onExitComplete={() => setIsSidebarExitComplete(!isSideBarOpened)}>
@@ -93,8 +91,8 @@ function Main() {
                 isSidebarHidden={isSideBarOpened}
               />
             )}
+            <BoardsBody isSidebarOpen={isSideBarOpened} />
           </AnimatePresence>
-          <BoardsBody isSidebarOpen={isSideBarOpened} />
         </StyledMain>
       )}
       <AnimatePresence>

@@ -22,38 +22,49 @@ import { useState } from "react";
 const StyledSidebar = styled.aside`
   background-color: var(--white);
   z-index: 2;
-  /* ${({ $isSidebarHidden }) =>
-    $isSidebarHidden &&
-    css`
-      opacity: 0;
-      transform: translateX(-100%);
-      position: fixed;
-      top: 5rem;
-      bottom: 0;
-    `} */
-  > div {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem 2rem 0;
-    border-right: 2px solid var(--lightSilver);
-    > div {
-      width: 100%;
-    }
-    > div:first-of-type {
-      > div:first-of-type {
-        width: 100%;
-        max-height: 60vh;
-        overflow: auto;
-      }
-    }
-  }
+  /* border-right: 1.5px solid var(--lightSilver); */
+  /* box-shadow: 0 2px 10px rgb(0, 0, 0, 0.45),
+    inset 0 -2px 10px rgb(0, 0, 0, 0.45), inset 0 2px 10px rgb(0, 0, 0, 0.45); */
+  /* box-shadow: 1px 0 10px rgb(0, 0, 0, 0.45), inset 1px 0 10px rgb(0, 0, 0, 0.45); */
+  box-shadow: 1px 0 10px rgb(0, 0, 0, 0.45),
+    inset 0 -1px 10px rgb(0, 0, 0, 0.45), inset 0 0.5px 3px rgb(0, 0, 0, 0.45);
   @media (max-width: 768px) {
     position: fixed;
     left: -1000px;
   }
+`;
+const SidebarContentContainer = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0 2rem 0;
+  > div {
+    width: 100%;
+  }
+`;
+const TitleBoardsandCreateContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const BoardsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-height: 60vh;
+  padding: 0.5rem 0;
+  overflow: auto;
+`;
+const HideDarkContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
 `;
 //------------------------------------------------------------------->
 const MotionSidebar = motion.create(StyledSidebar);
@@ -70,10 +81,10 @@ const Sidebar = memo(function Sidebar({ toggleSidebar, isSidebarOpened }) {
         initial={{ opacity: 0, x: -300 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -300, transition: { duration: 0.2 } }}>
-        <div>
-          <div>
+        <SidebarContentContainer>
+          <TitleBoardsandCreateContainer>
             <Header>All Boards ({boardsSlice.boards.length})</Header>
-            <div>
+            <BoardsContainer>
               {boardsSlice.boards.map((board, index) => (
                 <BoardItem
                   key={index}
@@ -83,19 +94,19 @@ const Sidebar = memo(function Sidebar({ toggleSidebar, isSidebarOpened }) {
                   <BoardName boardName={board.name} />
                 </BoardItem>
               ))}
-            </div>
+            </BoardsContainer>
             <CreateNewBoard
               onClick={() => setIsNewBoardModalOpen(!isNewBoardModalOpen)}
             />
-          </div>
-          <div>
+          </TitleBoardsandCreateContainer>
+          <HideDarkContainer>
             <LightDarkToggleItem />
             <BoardItem onClick={toggleSidebar}>
               <IconHideSidebar />
               <BoardName boardName="Hide Sidebar" />
             </BoardItem>
-          </div>
-        </div>
+          </HideDarkContainer>
+        </SidebarContentContainer>
       </MotionSidebar>
       <AnimatePresence>
         {isNewBoardModalOpen && (

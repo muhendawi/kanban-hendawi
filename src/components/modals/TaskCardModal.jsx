@@ -38,18 +38,22 @@ const ModalContentContainer = styled.div`
   gap: 0.5rem;
   width: 480px;
   max-height: calc(90% - 10rem);
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   border-radius: 0.6rem;
   background-color: var(--white);
   overflow-y: auto;
   overflow: visible;
-  box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45);
+  /* box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45); */
+  /* box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45), inset 0 5px 15px rgb(0, 0, 0, 0.25),
+    inset -0 -5px 15px rgb(0, 0, 0, 0.25); */
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 10px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 10px rgb(0, 0, 0, 0.25);
   /* z-index: 801; */
   position: relative;
   @media (max-width: 768px) {
     max-width: 343px;
     min-height: 200px;
-    padding: 1.5rem;
+    padding: 2rem 1.7rem;
   }
 `;
 const ModalTitleContainer = styled.div`
@@ -93,7 +97,7 @@ const Select = styled.select`
   border-radius: 0.3rem;
   font-size: calc(var(--fsM) - 2px);
   font-weight: 500;
-  appearance: none;
+  /* appearance: none; */
   background-image: url("../../assets/icon-chevron-down.svg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -118,7 +122,6 @@ function TaskCardModal({
   columnIndex,
 }) {
   const [toggleSubmenu, setToggleSubmenu] = useState(false);
-
   const subtasks = useSelector(
     (store) =>
       store.boards.boards[store.boards.selectedBoardIndex].columns[columnIndex]

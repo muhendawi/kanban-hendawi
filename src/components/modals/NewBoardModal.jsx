@@ -49,23 +49,25 @@ const ModalContentContainer = styled.div`
   gap: 1rem;
   width: 480px;
   max-height: calc(90% - 10rem);
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   border-radius: 0.6rem;
   background-color: var(--white);
   overflow-y: scroll;
-  box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45);
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 10px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 10px rgb(0, 0, 0, 0.25);
   > * {
     width: 100%;
   }
   @media (max-width: 768px) {
     max-width: 343px;
     min-height: 200px;
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
   }
 `;
 const Title = styled.h3`
   margin: 0;
   margin-bottom: 0.8rem;
+  color: var(--darkBlack);
 `;
 const InputLabel = styled.label`
   color: var(--veryLightGrey);
@@ -89,6 +91,9 @@ const BoardNameInput = styled.input`
     $shouldStyle &&
     css`
       border: 1px solid var(--darkRedOrange);
+      &::placeholder {
+        color: var(--darkRedOrange);
+      }
     `}
   &:focus {
     border: 1px solid var(--darkIndigo);

@@ -10,9 +10,9 @@ const StyledLightDarkToggleItem = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  background-color: var(--lightSilver);
-  width: 95%;
-  margin-left: 1rem;
+  width: 82%;
+  box-shadow: 0 3px 7px rgb(0, 0, 0, 0.45), inset 0 1px 3px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 3px rgb(0, 0, 0, 0.25);
   margin-bottom: 0.5rem;
   border-radius: 0.4rem;
   & > div {

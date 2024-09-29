@@ -10,6 +10,9 @@ const StyledToggleSidebarBtn = styled.div`
   background-color: var(--darkIndigo);
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
+  /* box-shadow: 0 2px 7px rgb(0, 0, 0, 0.45), inset -5px 0 5px rgb(0, 0, 0, 0.45); */
+  box-shadow: 0 3px 7px rgb(0, 0, 0, 0.45), inset 0 1px 3px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 3px rgb(0, 0, 0, 0.25);
   z-index: 3;
   position: fixed;
   bottom: 2rem;

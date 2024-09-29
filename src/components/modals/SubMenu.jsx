@@ -13,14 +13,20 @@ const StyledSubMenu = styled.div`
   height: 110px;
   border-radius: 0.6rem;
   z-index: 100;
-  box-shadow: 0 10px 20px rgb(0, 0, 0, 0.45);
+  /* box-shadow: 0 10px 20px rgb(0, 0, 0, 0.45); */
+  /* box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45), inset 0 5px 15px rgb(0, 0, 0, 0.25),
+    inset -0 -5px 15px rgb(0, 0, 0, 0.25); */
+  /* box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 3px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 3px rgb(0, 0, 0, 0.25); */
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 10px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 10px rgb(0, 0, 0, 0.25);
   position: absolute;
   top: 6rem;
   right: 1rem;
   /* box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25); */
   @media (max-width: 768px) {
     top: 5rem;
-    width: 160px;
+    width: 165px;
   }
 `;
 const EditDelete = styled.div`
@@ -28,24 +34,24 @@ const EditDelete = styled.div`
   align-self: flex-start;
   border-radius: 0.5rem;
   margin: 0 auto;
-  width: 90%;
+  width: 85%;
   padding: 5px 20px;
 
-  &:active {
+  /* &:active {
     background-color: var(--lightSilver);
-  }
+  } */
 `;
 const Edit = styled(EditDelete)`
   &:hover {
-    background-color: var(--verylightSliver);
+    background-color: var(--hoverGrey);
   }
   @media (max-width: 768px) {
-    padding-right: 50px;
+    padding-right: 40px;
   }
 `;
 const Delete = styled(EditDelete)`
   &:hover {
-    background-color: var(--verylightSliver);
+    background-color: var(--hoverGrey);
   }
   @media (max-width: 768px) {
     padding-right: 30px;
@@ -77,7 +83,7 @@ function SubMenu({ firstOption, secondOption, onDelete, onEdit, type }) {
       }}
       animate={{
         opacity: 1,
-        y: type === "task" ? -15 : 0,
+        y: type === "task" ? -10 : 0,
         // transition: { duration: 0.2 },
       }}
       exit={{

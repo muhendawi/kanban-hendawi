@@ -5,9 +5,10 @@ const Header = styled.h3`
   letter-spacing: var(--lsS);
   font-weight: 700;
   margin-bottom: 1.5rem;
-  padding-left: 1.7rem;
+  padding-left: calc(8.5% + 1.7rem);
   font-size: var(--fsS);
   color: var(--veryLightGrey);
+  align-self: flex-start;
 `;
 
 export default Header;

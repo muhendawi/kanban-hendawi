@@ -25,6 +25,9 @@ const Input = styled.input`
     $shouldStyle &&
     css`
       border: 1px solid var(--darkRedOrange);
+      &::placeholder {
+        color: var(--darkRedOrange);
+      }
     `}
   &:focus {
     border: 1px solid var(--darkIndigo);

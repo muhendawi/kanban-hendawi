@@ -21,41 +21,7 @@ const StyledMobileMenu = styled.div`
   right: 0;
   bottom: -5rem;
   z-index: -101;
-  /* transform: scale(0.5); */
-  > div:first-child {
-    position: absolute;
-    background-color: rgb(255, 255, 255, 0.85);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: -5rem;
-    @media (min-width: 768px) {
-      display: none;
-    }
-  }
-  > div:last-child {
-    display: flex;
-    flex-direction: column;
-    max-height: 60%;
-    padding: 1rem 1rem 1rem 0;
-    border-radius: 0.6rem;
-    background-color: var(--white);
-    position: absolute;
-    top: 3%;
-    right: 5%;
-    left: 5%;
-    box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45);
-    > div:first-of-type {
-      overflow: auto;
-    }
-  }
-  /* ${({ $isMobileMenuOpen }) =>
-    $isMobileMenuOpen &&
-    css`
-      > div:last-child {
-        transform: translateX(0);
-      }
-    `} */
+
   @media (min-width: 768px) {
     opacity: 0;
     top: -1000px;
@@ -68,8 +34,51 @@ const StyledMobileMenu = styled.div`
       z-index: 700;
     `}
 `;
+const ModalBackdrop = styled.div`
+  position: absolute;
+  background-color: rgb(255, 255, 255, 0.85);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -5rem;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+const ModalContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  max-height: 60%;
+  padding: 1rem 1rem 1rem 0;
+  border-radius: 0.6rem;
+  background-color: var(--white);
+  position: absolute;
+  top: 3%;
+  right: 5%;
+  left: 5%;
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 10px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 10px rgb(0, 0, 0, 0.25);
+`;
+const BoardsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+`;
+const HideDarkContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+`;
 //------------------------------------------------------------------->
-
+const MotionModalBackdrop = motion.create(ModalBackdrop);
+const MotionModalContentContainer = motion.create(ModalContentContainer);
 function MobileMenu({
   onCloseMobileMenu,
   isMobileMenuOpen,
@@ -89,13 +98,13 @@ function MobileMenu({
   return (
     <>
       <StyledMobileMenu $isMobileMenuOpen={isMobileMenuOpen}>
-        <motion.div
+        <MotionModalBackdrop
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onCloseMobileMenu}
         />
-        <motion.div
+        <MotionModalContentContainer
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{
@@ -104,7 +113,7 @@ function MobileMenu({
             transition: { duration: 0.2, type: "spring", mass: 0.5 },
           }}>
           <Header>All Boards ({boardsSlice.boards.length})</Header>
-          <div>
+          <BoardsContainer>
             {boardsSlice.boards.map((board, index) => (
               <BoardItem
                 key={index}
@@ -117,15 +126,17 @@ function MobileMenu({
                 <BoardName boardName={board.name} />
               </BoardItem>
             ))}
-          </div>
-          <CreateNewBoard
-            onClick={() => {
-              onCloseMobileMenu();
-              onSetNewBoardModal();
-            }}
-          />
-          <LightDarkToggleItem />
-        </motion.div>
+          </BoardsContainer>
+          <HideDarkContainer>
+            <CreateNewBoard
+              onClick={() => {
+                onCloseMobileMenu();
+                onSetNewBoardModal();
+              }}
+            />
+            <LightDarkToggleItem />
+          </HideDarkContainer>
+        </MotionModalContentContainer>
       </StyledMobileMenu>
     </>
   );

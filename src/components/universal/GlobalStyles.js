@@ -16,21 +16,32 @@ html {
   width: 100%;
   scroll-behavior: smooth;
 
-  --darkIndigo: #635FC7;
-  --hoverIndigo: #A8A4FF;
-  --darkBlack: #000112;
+  /* --darkIndigo: #635FC7; */
+  --darkIndigo:#638889;
+  /* --hoverIndigo: #A8A4FF; */
+  --hoverIndigo: #c4d2d2;
+  /* --darkBlack: #000112; */
+  --darkBlack: #383B3B;
   --darkGrey: #20212C;
   --grey: #2B2C37;
   --lightGrey: #3E3F4E;
-  --veryLightGrey: #828FA3;
-  --hoverGrey: #E4EBFA;
-  --hoverIndigoGrey: #c9c9f3;
-  --hoverIndigoGreyLight: #d8d7f1;
-  --lightSilver: #F4F7FD;
-  --verylightSliver: #ecf2fc;
+  /* --veryLightGrey: #828FA3; */
+  --veryLightGrey:#8A9292 ;
+  /* --hoverGrey: #E4EBFA; */
+  --hoverGrey:#e5ebeb;
+  /* --hoverIndigoGrey: #c9c9f3; */
+  --hoverIndigoGrey: #c4d2d2;
+  /* --hoverIndigoGreyLight: #d8d7f1; */
+  --hoverIndigoGreyLight: #c4d2d2;
+  /* --lightSilver: #F4F7FD; */
+  --lightSilver: #eff1f1;
+  /* --verylightSliver: #ecf2fc; */
+  --verylightSliver:#e5ebeb ;
   --white: #FFFFFF;
-  --darkRedOrange: #EA5555;
-  --hoverRedOrange: #FF9898;
+  /* --darkRedOrange: #EA5555; */
+  --darkRedOrange: #C96868;
+  /* --hoverRedOrange: #FF9898; */
+  --hoverRedOrange: #F1BBBB;
   --formPlaceholder: #e0e3e8;
   
   --fsXl: 24px;
@@ -45,7 +56,7 @@ html {
 
   --lsS: 2.4px;
 
-  background-color: #F4F7FD;
+  background-color: #f4f7f7;
 }
 
 /* Remove default margin in favour of better control in authored CSS */
@@ -78,6 +89,9 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0; 
+  box-shadow: inset 0 -1px 7px rgb(0, 0, 0, 0.45),
+    inset 0 1px 7px rgb(0, 0, 0, 0.45);
+ 
 }
 
 /* Set shorter line heights on headings and interactive elements */
@@ -89,6 +103,7 @@ button,
 input,
 label {
   line-height: 1.1;
+  color: var(--darkBlack);
 }
 
 /* Balance text wrapping on headings */

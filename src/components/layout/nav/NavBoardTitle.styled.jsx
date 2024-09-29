@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const StyledNavBoardTitle = styled.h2`
+  color: var(--darkBlack);
   font-size: calc(var(--fsXl) - 2px);
   margin: 0;
   @media (max-width: 320px) {
