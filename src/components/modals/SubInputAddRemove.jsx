@@ -1,37 +1,38 @@
 import styled, { css } from "styled-components";
 import { CrossIcon } from "../universal/Icons.styled";
 import { useAnimate } from "framer-motion";
+import { motion } from "framer-motion";
 //------------------------------------------------------------------->
 
-const StyledColumnAddRemove = styled.div`
+const StyledSubInputAddRemove = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
-  > input {
-    width: 100%;
-    height: 40px;
-    padding: 1rem;
-    border-radius: 0.3rem;
-    font-size: var(--fsS);
-    font-weight: 500;
-    outline: none;
-    border: 1px solid var(--formPlaceholder);
-    &::placeholder {
-      color: var(--formPlaceholder);
-    }
-    ${({ $shouldStyle }) =>
-      $shouldStyle &&
-      css`
-        border: 1px solid var(--darkRedOrange);
-      `}
-    &:focus {
-      border: 1px solid var(--darkIndigo);
-    }
+`;
+const Input = styled.input`
+  width: 100%;
+  height: 40px;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  font-size: var(--fsS);
+  font-weight: 500;
+  outline: none;
+  border: 1px solid var(--formPlaceholder);
+  &::placeholder {
+    color: var(--formPlaceholder);
+  }
+  ${({ $shouldStyle }) =>
+    $shouldStyle &&
+    css`
+      border: 1px solid var(--darkRedOrange);
+    `}
+  &:focus {
+    border: 1px solid var(--darkIndigo);
   }
 `;
 //------------------------------------------------------------------->
-
-function ColumnAddRemove({
+const MotionSubInputAddRemove = motion.create(StyledSubInputAddRemove);
+function SubInputAddRemove({
   defaultValue,
   currentIndex,
   columns,
@@ -39,9 +40,6 @@ function ColumnAddRemove({
   elementsToStyle,
   onSetElementsToStyle,
 }) {
-  console.log(columns);
-  console.log(elementsToStyle);
-
   function removeElementToStyleOnTyping() {
     // REMOVE the elementToStyle when typing on it, when on focus
     onSetElementsToStyle((currValue) =>
@@ -70,9 +68,12 @@ function ColumnAddRemove({
   }
 
   return (
-    <StyledColumnAddRemove
-      $shouldStyle={elementsToStyle.includes(currentIndex)}>
-      <input
+    <MotionSubInputAddRemove
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}>
+      <Input
+        $shouldStyle={elementsToStyle.includes(currentIndex)}
         className={elementsToStyle.includes(currentIndex) ? "animateIt" : null}
         type="text"
         placeholder="e.g. Todo"
@@ -91,8 +92,8 @@ function ColumnAddRemove({
         }}
       />
       <CrossIcon onRemove={() => handleRemoveColumn(currentIndex)} />
-    </StyledColumnAddRemove>
+    </MotionSubInputAddRemove>
   );
 }
 
-export default ColumnAddRemove;
+export default SubInputAddRemove;

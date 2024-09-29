@@ -5,7 +5,7 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../../../store/board/board.slice";
-import ConfirmDelete from "../../modals/ConfirmDelete";
+import DeleteModal from "../../modals/DeleteModal";
 //------------------------------------------------------------------->
 
 export const StyledTaskCard = styled.div`
@@ -97,7 +97,7 @@ function TaskCard({
       </AnimatePresence>
       <AnimatePresence>
         {toggleDeleteModal && (
-          <ConfirmDelete
+          <DeleteModal
             modalTitle="task"
             onDelete={() => {
               handleDeleteTask();
@@ -108,7 +108,7 @@ function TaskCard({
             }}>
             Are you sure you want to delete the "{task.title}" task and its
             subtasks? This action cannot be reversed.
-          </ConfirmDelete>
+          </DeleteModal>
         )}
       </AnimatePresence>
     </>

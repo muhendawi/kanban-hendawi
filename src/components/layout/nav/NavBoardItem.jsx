@@ -2,8 +2,6 @@ import styled from "styled-components";
 import NavBoardTitle from "./NavBoardTitle.styled/";
 import { ChevronDownIcon, MobileLogo } from "../..";
 import { useSelector } from "react-redux";
-import { toggleMobileMenu } from "../../../store/board/board.slice";
-import { useDispatch } from "react-redux";
 //------------------------------------------------------------------->
 
 export const StyledNavBoardItem = styled.div`

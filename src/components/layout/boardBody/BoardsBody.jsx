@@ -38,16 +38,16 @@ const MotionMain = motion.create(StyledAppBody);
 const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
   const [newColumnModalToggled, setNewColumnModal] = useState(false);
   const boardsSlice = useSelector((store) => store.boards);
-  const selectedColumns = boardsSlice.boards.at(
+  const activeBoardColumns = boardsSlice.boards.at(
     boardsSlice.selectedBoardIndex
   ).columns;
 
   return (
     <>
-      <MotionMain $columnLength={selectedColumns?.length}>
-        {boardsSlice.boards.length !== 0 ? (
+      <MotionMain $columnLength={activeBoardColumns?.length}>
+        {activeBoardColumns.length !== 0 ? (
           <>
-            {selectedColumns.map((column, colIndex) => (
+            {activeBoardColumns.map((column, colIndex) => (
               <BoardColumn
                 key={colIndex}
                 columnName={column.name}
@@ -70,7 +70,6 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
                 </AnimatePresence>
               </BoardColumn>
             ))}
-
             <BoardColumn
               onClick={() => setNewColumnModal(!newColumnModalToggled)}>
               <p>+ New Column</p>

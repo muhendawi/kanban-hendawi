@@ -78,6 +78,7 @@ function SubMenu({ firstOption, secondOption, onDelete, onEdit, type }) {
       animate={{
         opacity: 1,
         y: type === "task" ? -15 : 0,
+        // transition: { duration: 0.2 },
       }}
       exit={{
         opacity: 0,

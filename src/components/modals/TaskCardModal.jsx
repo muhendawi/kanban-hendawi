@@ -8,6 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import Subtask from "./Subtask";
 import { useSelector } from "react-redux";
 import { moveTask } from "../../store/board/board.slice";
+
 //------------------------------------------------------------------->
 
 const StyledTaskCardModal = styled.div`
@@ -76,7 +77,7 @@ const SubtasksHeader = styled.h3`
   text-transform: none;
   letter-spacing: normal;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
   padding-left: 0;
   font-size: calc(var(--fsS) + 1px);
   color: var(--veryLightGrey);
@@ -86,20 +87,21 @@ const Select = styled.select`
   background-color: var(--lightSilver);
   border: 1px solid var(--formPlaceholder);
   outline-color: var(--darkIndigo);
+  /* appearance: none; */
   width: 100%;
   /* display: flex; */
   /* align-items: center; */
   /* gap: 0.5rem; */
+  /* appearance: none; */
   padding: 0.5rem;
   border-radius: 0.3rem;
+  font-size: calc(var(--fsM) - 2px);
+  font-weight: 500;
   /* &:hover {
     background-color: var(--hoverIndigoGreyLight);
   } */
 `;
-const Option = styled.option`
-  /* width: 100%; */
-  font-size: 10px;
-`;
+const Option = styled.option``;
 //------------------------------------------------------------------->
 
 const MotionTaskcardModal = motion.create(StyledTaskCardModal);
@@ -126,9 +128,6 @@ function TaskCardModal({
   );
   const dispatch = useDispatch();
 
-  console.log(activeBoardColumns);
-
-  console.log(selectedOption);
   return (
     <>
       <MotionTaskcardModal

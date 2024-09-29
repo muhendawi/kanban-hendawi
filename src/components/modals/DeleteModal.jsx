@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button } from "../universal/Button.styled";
 import { motion } from "framer-motion";
 
-const StyledConfirmDelete = styled.div`
+const StyledDeleteModal = styled.div`
   position: fixed;
   inset: 0;
   top: -5rem;
@@ -68,10 +68,10 @@ const ButtonsContainer = styled.div`
   }
 `;
 
-const MotionConfirmDelete = motion.create(StyledConfirmDelete);
-function ConfirmDelete({ children, onDelete, onCancel, modalTitle }) {
+const MotionDeleteModal = motion.create(StyledDeleteModal);
+function DeleteModal({ children, onDelete, onCancel, modalTitle }) {
   return (
-    <MotionConfirmDelete
+    <MotionDeleteModal
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{
@@ -92,8 +92,8 @@ function ConfirmDelete({ children, onDelete, onCancel, modalTitle }) {
           </Button>
         </ButtonsContainer>
       </DeleteContentContainer>
-    </MotionConfirmDelete>
+    </MotionDeleteModal>
   );
 }
 
-export default ConfirmDelete;
+export default DeleteModal;
