@@ -71,7 +71,7 @@ function SubInputAddRemove({
     <MotionSubInputAddRemove
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}>
+      exit={{ opacity: 0, y: 10, transition: { duration: 0.15 } }}>
       <Input
         $shouldStyle={elementsToStyle.includes(currentIndex)}
         className={elementsToStyle.includes(currentIndex) ? "animateIt" : null}

@@ -17,14 +17,16 @@ const StyledTaskCardModal = styled.div`
   top: -5rem;
   bottom: -5rem;
   z-index: 100;
-  /* backdrop-filter: blur(0.5px); */
+  /* backdrop-filter: blur(1px); */
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
 `;
 const ModalBackdrop = styled.div`
-  background-color: rgb(0, 0, 0, 0.45);
+  background-color: rgb(255, 255, 255, 0.85);
+  /* rgb(99, 95, 199, 0.3) */
+
   position: fixed;
   inset: 0;
 `;
@@ -41,8 +43,8 @@ const ModalContentContainer = styled.div`
   background-color: var(--white);
   overflow-y: auto;
   overflow: visible;
-  box-shadow: 0 5px 15px rgb(99, 95, 199, 0.3);
-  z-index: 801;
+  box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45);
+  /* z-index: 801; */
   position: relative;
   @media (max-width: 768px) {
     max-width: 343px;
@@ -77,29 +79,32 @@ const SubtasksHeader = styled.h3`
   text-transform: none;
   letter-spacing: normal;
   font-weight: 700;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
   padding-left: 0;
   font-size: calc(var(--fsS) + 1px);
   color: var(--veryLightGrey);
 `;
 const Select = styled.select`
   cursor: pointer;
-  background-color: var(--lightSilver);
   border: 1px solid var(--formPlaceholder);
   outline-color: var(--darkIndigo);
-  /* appearance: none; */
   width: 100%;
-  /* display: flex; */
-  /* align-items: center; */
-  /* gap: 0.5rem; */
-  /* appearance: none; */
   padding: 0.5rem;
   border-radius: 0.3rem;
   font-size: calc(var(--fsM) - 2px);
   font-weight: 500;
-  /* &:hover {
-    background-color: var(--hoverIndigoGreyLight);
-  } */
+  appearance: none;
+  background-image: url("../../assets/icon-chevron-down.svg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  /* width: 100%;
+  padding: 8px 16px;
+  border: 1px solid #828fa340;
+  border-radius: 10px;
+  appearance: none;
+  background-image: url("../../assets/icon-chevron-down.svg");
+  background-repeat: no-repeat;
+  background-position: right 16px; */
 `;
 const Option = styled.option``;
 //------------------------------------------------------------------->

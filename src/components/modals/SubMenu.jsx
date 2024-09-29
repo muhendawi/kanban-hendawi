@@ -13,7 +13,7 @@ const StyledSubMenu = styled.div`
   height: 110px;
   border-radius: 0.6rem;
   z-index: 100;
-  box-shadow: 0 10px 20px rgb(99, 95, 199, 0.25);
+  box-shadow: 0 10px 20px rgb(0, 0, 0, 0.45);
   position: absolute;
   top: 6rem;
   right: 1rem;
@@ -82,7 +82,7 @@ function SubMenu({ firstOption, secondOption, onDelete, onEdit, type }) {
       }}
       exit={{
         opacity: 0,
-        y: type === "task" ? -35 : -20,
+        y: type === "task" ? -45 : -30,
         transition: { type: "tween" },
       }}>
       <Edit onClick={onEdit}>

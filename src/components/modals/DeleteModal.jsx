@@ -14,7 +14,7 @@ const StyledDeleteModal = styled.div`
   width: 100vw;
 `;
 const DeleteBackdrop = styled.div`
-  background-color: rgb(0, 0, 0, 0.45);
+  background-color: rgb(255, 255, 255, 0.85);
   position: fixed;
   inset: 0;
 `;
@@ -28,7 +28,7 @@ const DeleteContentContainer = styled.div`
   padding: 2rem;
   border-radius: 0.6rem;
   background-color: var(--white);
-  box-shadow: 0 5px 15px rgb(99, 95, 199, 0.3);
+  box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45);
   z-index: 801;
   position: relative;
   @media (max-width: 768px) {

@@ -19,7 +19,7 @@ const StyledNewBoardModal = styled.div`
   top: -5rem;
   bottom: -5rem;
   z-index: 801;
-  background-color: rgb(0, 0, 0, 0.45);
+  /* background-color: rgb(255, 255, 255, 0.85); */
   /* backdrop-filter: blur(0.5px); */
   display: flex;
   justify-content: center;
@@ -38,6 +38,7 @@ const StyledNewBoardModal = styled.div`
 `;
 
 const ModalBackdrop = styled.div`
+  background-color: rgb(255, 255, 255, 0.85);
   position: fixed;
   inset: 0;
 `;
@@ -52,7 +53,7 @@ const ModalContentContainer = styled.div`
   border-radius: 0.6rem;
   background-color: var(--white);
   overflow-y: scroll;
-  box-shadow: 0 5px 15px rgb(99, 95, 199, 0.3);
+  box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45);
   > * {
     width: 100%;
   }
