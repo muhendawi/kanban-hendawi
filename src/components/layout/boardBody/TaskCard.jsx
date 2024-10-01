@@ -6,6 +6,7 @@ import { AnimatePresence } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../../../store/board/board.slice";
 import DeleteModal from "../../modals/DeleteModal";
+import NewTaskModal from "../../modals/NewTaskModal";
 //------------------------------------------------------------------->
 
 export const StyledTaskCard = styled.div`
@@ -13,8 +14,8 @@ export const StyledTaskCard = styled.div`
   min-height: 5.5rem;
   border-radius: 0.5rem;
   /* box-shadow: 0 4px 6px rgba(54, 78, 126, 0.102); */
-  box-shadow: 0 3px 7px rgb(0, 0, 0, 0.45), inset 0 1px 3px rgb(0, 0, 0, 0.25),
-    inset -0 -1px 3px rgb(0, 0, 0, 0.25);
+  box-shadow: 0 1px 3px rgb(0, 0, 0, 0.25), inset 0 0.1px 2px rgb(0, 0, 0, 0.25),
+    inset -0 -0.1px 2px rgb(0, 0, 0, 0.25);
   background-color: var(--white);
   display: flex;
   flex-direction: column;
@@ -44,9 +45,9 @@ export const StyledTaskCard = styled.div`
   }
   &:hover {
     /* box-shadow: 0 4px 7px rgb(99, 136, 137, 0.7); */
-    box-shadow: 0 3px 7px rgb(99, 136, 137, 0.7),
-      inset 0 2px 7px rgb(99, 136, 137, 0.7),
-      inset -0 -2px 7px rgb(99, 136, 137, 0.7);
+    box-shadow: 0 3px 5px rgb(99, 136, 137, 0.7),
+      inset 0 2px 5px rgb(99, 136, 137, 0.7),
+      inset -0 -2px 5px rgb(99, 136, 137, 0.7);
     > h4 {
       color: var(--darkIndigo);
     }
@@ -71,6 +72,7 @@ function TaskCard({
 }) {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
+  const [toggleEditTaskModal, setToggleEditTaskModal] = useState(false);
   const dispatch = useDispatch();
 
   function handleDeleteTask() {
@@ -81,9 +83,13 @@ function TaskCard({
     <>
       <MotionTaskcard
         layout
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -50, transition: { duration: 0.35 } }}
+        exit={{
+          opacity: 0,
+          y: -50,
+          transition: { duration: 0.3 },
+        }}
         transition={{ type: "spring", duration: 0.5, delay: 0.05 * taskIndex }}
         onClick={() => setIsTaskModalOpen(!isTaskModalOpen)}>
         <h4>{title}</h4>
@@ -99,6 +105,7 @@ function TaskCard({
             task={task}
             toggleTaskModal={() => setIsTaskModalOpen(!isTaskModalOpen)}
             toggleDeleteModal={() => setToggleDeleteModal(!toggleDeleteModal)}
+            toggleEditModal={() => setToggleEditTaskModal(!toggleEditTaskModal)}
           />
         )}
       </AnimatePresence>
@@ -116,6 +123,17 @@ function TaskCard({
             Are you sure you want to delete the "{task.title}" task and its
             subtasks? This action cannot be reversed.
           </DeleteModal>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {toggleEditTaskModal && (
+          <NewTaskModal
+            onClose={() => setToggleEditTaskModal(!toggleEditTaskModal)}
+            isModalOpen={toggleEditTaskModal}
+            type="edit"
+            task={task}
+            columnIndex={columnIndex}
+          />
         )}
       </AnimatePresence>
     </>

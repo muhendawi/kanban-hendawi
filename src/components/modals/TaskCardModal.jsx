@@ -43,11 +43,8 @@ const ModalContentContainer = styled.div`
   background-color: var(--white);
   overflow-y: auto;
   overflow: visible;
-  /* box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45); */
-  /* box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45), inset 0 5px 15px rgb(0, 0, 0, 0.25),
-    inset -0 -5px 15px rgb(0, 0, 0, 0.25); */
-  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 10px rgb(0, 0, 0, 0.25),
-    inset -0 -1px 10px rgb(0, 0, 0, 0.25);
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 5px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 5px rgb(0, 0, 0, 0.25);
   /* z-index: 801; */
   position: relative;
   @media (max-width: 768px) {
@@ -118,6 +115,7 @@ function TaskCardModal({
   task,
   toggleTaskModal,
   toggleDeleteModal,
+  toggleEditModal,
   taskIndex,
   columnIndex,
 }) {
@@ -206,6 +204,10 @@ function TaskCardModal({
                 onDelete={() => {
                   toggleTaskModal();
                   toggleDeleteModal();
+                }}
+                onEdit={() => {
+                  toggleTaskModal();
+                  toggleEditModal();
                 }}
               />
             )}

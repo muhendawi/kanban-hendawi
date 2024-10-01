@@ -51,28 +51,29 @@ const ModalContentContainer = styled.div`
   /* justify-content: center; */
   /* align-items: center; */
   max-height: 60%;
-  padding: 1rem 1rem 1rem 0;
+  /* padding: 1rem 1rem 1rem 0; */
+  padding: 1rem 0;
   border-radius: 0.6rem;
   background-color: var(--white);
   position: absolute;
   top: 3%;
   right: 5%;
   left: 5%;
-  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 10px rgb(0, 0, 0, 0.25),
-    inset -0 -1px 10px rgb(0, 0, 0, 0.25);
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 5px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 5px rgb(0, 0, 0, 0.25);
 `;
 const BoardsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   overflow: auto;
 `;
 const HideDarkContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   gap: 1rem;
   margin-top: 1rem;
 `;

@@ -14,7 +14,7 @@ const Input = styled.input`
   height: 40px;
   padding: 1rem;
   border-radius: 0.3rem;
-  font-size: var(--fsS);
+  font-size: calc(var(--fsS) + 1px);
   font-weight: 500;
   outline: none;
   border: 1px solid var(--formPlaceholder);
@@ -38,35 +38,37 @@ const MotionSubInputAddRemove = motion.create(StyledSubInputAddRemove);
 function SubInputAddRemove({
   defaultValue,
   currentIndex,
-  columns,
-  onSetColumns,
+  elements,
+  onSetElements,
   elementsToStyle,
   onSetElementsToStyle,
+  subInputType,
 }) {
+  console.log(elements);
   function removeElementToStyleOnTyping() {
     // REMOVE the elementToStyle when typing on it, when on focus
-    onSetElementsToStyle((currValue) =>
-      currValue.filter((ele) => ele !== currentIndex)
+    onSetElementsToStyle((currentElements) =>
+      currentElements.filter((eleAsIndex) => eleAsIndex !== currentIndex)
     );
   }
-
-  function handleRemoveColumn(currIndex) {
-    onSetColumns((prevValue) =>
+  function handleRemoveElement(currIndex) {
+    onSetElements((prevValue) =>
       prevValue.filter((_, index) => index !== currIndex)
     );
     removeElementToStyleOnTyping();
   }
   function handleInputChange(currIndex, newValue) {
-    onSetColumns((prevState) => {
+    onSetElements((prevState) => {
       const newState = [...prevState];
-      const column = newState.find((_, index) => index === currIndex);
-      column.name = newValue;
+      const element = newState.find((_, index) => index === currIndex);
+      if (subInputType === "task") {
+        element.title = newValue;
+      } else {
+        element.name = newValue;
+      }
       return newState;
     });
     // REMOVE the elementToStyle when typing on it, when on focus
-    onSetElementsToStyle((currValue) =>
-      currValue.filter((ele) => ele !== currentIndex)
-    );
     removeElementToStyleOnTyping();
   }
 
@@ -79,22 +81,31 @@ function SubInputAddRemove({
         $shouldStyle={elementsToStyle.includes(currentIndex)}
         className={elementsToStyle.includes(currentIndex) ? "animateIt" : null}
         type="text"
-        placeholder="e.g. Todo"
+        placeholder={subInputType === "task" ? "e.g Make coffee" : "e.g. Todo"}
         value={defaultValue}
         onBlur={() => {
-          columns.forEach((ele, index) => {
-            if (ele.name.trim() === "") {
-              if (elementsToStyle.includes(index)) return;
-              onSetElementsToStyle((currArray) => [...currArray, index]);
-            }
-          });
+          if (subInputType === "task") {
+            elements.forEach((ele, index) => {
+              if (ele.title.trim() === "") {
+                if (elementsToStyle.includes(index)) return;
+                onSetElementsToStyle((currArray) => [...currArray, index]);
+              }
+            });
+          } else {
+            elements.forEach((ele, index) => {
+              if (ele.name.trim() === "") {
+                if (elementsToStyle.includes(index)) return;
+                onSetElementsToStyle((currArray) => [...currArray, index]);
+              }
+            });
+          }
         }}
         onFocus={removeElementToStyleOnTyping}
         onChange={(e) => {
           handleInputChange(currentIndex, e.target.value);
         }}
       />
-      <CrossIcon onRemove={() => handleRemoveColumn(currentIndex)} />
+      <CrossIcon onRemove={() => handleRemoveElement(currentIndex)} />
     </MotionSubInputAddRemove>
   );
 }

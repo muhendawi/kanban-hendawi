@@ -26,8 +26,8 @@ const StyledSidebar = styled.aside`
   /* box-shadow: 0 2px 10px rgb(0, 0, 0, 0.45),
     inset 0 -2px 10px rgb(0, 0, 0, 0.45), inset 0 2px 10px rgb(0, 0, 0, 0.45); */
   /* box-shadow: 1px 0 10px rgb(0, 0, 0, 0.45), inset 1px 0 10px rgb(0, 0, 0, 0.45); */
-  box-shadow: 1px 0 10px rgb(0, 0, 0, 0.45),
-    inset 0 -1px 10px rgb(0, 0, 0, 0.45), inset 0 0.5px 3px rgb(0, 0, 0, 0.45);
+  box-shadow: 0.1px 0 2px rgb(0, 0, 0, 0.25),
+    inset 0.1px 0 2px rgb(0, 0, 0, 0.25), inset 0 -0.1px 2px rgb(0, 0, 0, 0.25);
   @media (max-width: 768px) {
     position: fixed;
     left: -1000px;
@@ -47,13 +47,13 @@ const SidebarContentContainer = styled.div`
 const TitleBoardsandCreateContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 `;
 const BoardsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   max-height: 60vh;
   padding: 0.5rem 0;
@@ -63,7 +63,7 @@ const HideDarkContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.3rem;
 `;
 //------------------------------------------------------------------->

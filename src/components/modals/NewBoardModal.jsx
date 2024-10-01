@@ -53,8 +53,8 @@ const ModalContentContainer = styled.div`
   border-radius: 0.6rem;
   background-color: var(--white);
   overflow-y: scroll;
-  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 10px rgb(0, 0, 0, 0.25),
-    inset -0 -1px 10px rgb(0, 0, 0, 0.25);
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 5px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 5px rgb(0, 0, 0, 0.25);
   > * {
     width: 100%;
   }
@@ -80,7 +80,7 @@ const BoardNameInput = styled.input`
   border: 1px solid var(--formPlaceholder);
   border-radius: 0.3rem;
   padding: 1rem;
-  font-size: var(--fsS);
+  font-size: calc(var(--fsS) + 1px);
   font-weight: 500;
   margin-bottom: 1rem;
   outline: none;
@@ -101,7 +101,6 @@ const BoardNameInput = styled.input`
 `;
 //------------------------------------------------------------------->
 const MotionModal = motion.create(StyledNewBoardModal);
-const MotionBoardNameInput = motion.create(BoardNameInput);
 function NewBoardModal({ onClose, isModalOpen }) {
   const boardsSlice = useSelector((store) => store.boards.boards);
   const dispatch = useDispatch();
@@ -114,7 +113,6 @@ function NewBoardModal({ onClose, isModalOpen }) {
   const [elementsToStyle, setElementsToStyle] = useState([]);
 
   const [scope, animate] = useAnimate();
-  console.log(scope);
 
   function submit() {
     // this check to validate the boardName input
@@ -202,8 +200,8 @@ function NewBoardModal({ onClose, isModalOpen }) {
               key={index}
               defaultValue={column.name}
               currentIndex={index}
-              columns={columns}
-              onSetColumns={setColumns}
+              elements={columns}
+              onSetElements={setColumns}
               elementsToStyle={elementsToStyle}
               onSetElementsToStyle={setElementsToStyle}
             />
@@ -211,7 +209,7 @@ function NewBoardModal({ onClose, isModalOpen }) {
         </AnimatePresence>
 
         <Button
-          $variation="primary"
+          $variation="secondary"
           $size="formSpecific"
           onClick={() => {
             setColumns([...columns, { name: "", tasks: [] }]);

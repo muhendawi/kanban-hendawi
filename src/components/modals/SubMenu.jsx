@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { motion } from "framer-motion";
 
 //------------------------------------------------------------------->
@@ -13,17 +13,12 @@ const StyledSubMenu = styled.div`
   height: 110px;
   border-radius: 0.6rem;
   z-index: 100;
-  /* box-shadow: 0 10px 20px rgb(0, 0, 0, 0.45); */
-  /* box-shadow: 0 5px 15px rgb(0, 0, 0, 0.45), inset 0 5px 15px rgb(0, 0, 0, 0.25),
-    inset -0 -5px 15px rgb(0, 0, 0, 0.25); */
-  /* box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 3px rgb(0, 0, 0, 0.25),
-    inset -0 -1px 3px rgb(0, 0, 0, 0.25); */
-  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 10px rgb(0, 0, 0, 0.25),
-    inset -0 -1px 10px rgb(0, 0, 0, 0.25);
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 4px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 4px rgb(0, 0, 0, 0.25);
   position: absolute;
   top: 6rem;
   right: 1rem;
-  /* box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25); */
+
   @media (max-width: 768px) {
     top: 5rem;
     width: 165px;
@@ -69,7 +64,7 @@ const Hr = styled.hr`
   width: 70%;
   margin: 0.2rem auto;
   border: none;
-  border-top: 1px solid var(--verylightSliver);
+  border-top: 1px solid var(--verylightSilver);
 `;
 //------------------------------------------------------------------->
 const MotionSubMenu = motion.create(StyledSubMenu);

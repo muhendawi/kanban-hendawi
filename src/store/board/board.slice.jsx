@@ -63,14 +63,13 @@ const boardsSlice = createSlice({
     moveTask(state, action) {
       const { columnIndex, task, taskIndex, selectedOption } = action.payload;
       // removing the task from the current column
-      const board = state.boards.find(
-        (_, index) => index === state.selectedBoardIndex
-      );
+      const board = state.boards[state.selectedBoardIndex];
       if (!board) return;
-      const column = board.columns.find((_, index) => index === columnIndex);
+      const column = board.columns[columnIndex];
       if (!column) return;
+      // removing the task from its original position first.
       column.tasks = column.tasks.filter((_, index) => index !== taskIndex);
-      // adding the task to the new column
+      // adding the task to the new column.
       const newColumn = board.columns.find(
         (col) => col.name === selectedOption
       );
@@ -78,18 +77,52 @@ const boardsSlice = createSlice({
       // const task = column.tasks.find((_, index) => index === taskIndex);
       // if (!task) return;
       newColumn.tasks.push(task);
-      //============================================================>
-      // const activeBoard = state.boards[state.selectedBoardIndex];
-      // if (!activeBoard) return;
-      // // const activeColumn = activeBoard[columnIndex];
-      // // if (!activeColumn) return;
-      // const theMovingTask = activeBoard[columnIndex][taskIndex];
-      // state.boards[state.selectedBoardIndex].columns[columnIndex] = activeBoard[
-      //   columnIndex
-      // ].filter((_, index) => index !== taskIndex);
-      // activeBoard.map(
-      //   (col, index) => col.name === selectedOption && col.push(theMovingTask)
-      // );
+    },
+    addNewTask: {
+      prepare(taskId, taskName, description, status, subtasks) {
+        return { payload: { taskId, taskName, description, status, subtasks } };
+      },
+      reducer(state, action) {
+        const currentColumn = state.boards[
+          state.selectedBoardIndex
+        ].columns.find((col) => col.name === action.payload.status);
+        currentColumn?.tasks.push({
+          taskId: action.payload.taskId,
+          title: action.payload.taskName,
+          description: action.payload.description,
+          status: action.payload.status,
+          subtasks: action.payload.subtasks,
+        });
+      },
+    },
+    editTask(state, action) {
+      const {
+        task,
+        columnIndex,
+        taskName,
+        description,
+        selectedOption,
+        subtasks,
+      } = action.payload;
+      const column =
+        state.boards[state.selectedBoardIndex].columns[columnIndex];
+      if (!column) return;
+      const currentTask = column.tasks.find((t) => t.taskId === task.taskId);
+      if (!currentTask) return;
+      currentTask.title = taskName;
+      currentTask.description = description;
+      currentTask.status = selectedOption;
+      currentTask.subtasks = subtasks;
+
+      column.tasks = column.tasks.filter((t) => t.taskId !== task.taskId);
+
+      const newColumn = state.boards[state.selectedBoardIndex].columns.find(
+        (col) => col.name === selectedOption
+      );
+      if (!newColumn) return;
+      // const task = column.tasks.find((_, index) => index === taskIndex);
+      // if (!task) return;
+      newColumn.tasks.push(currentTask);
     },
     // toggleNewTaskModal(state) {
     //   state.isNewTaskModalOpen = !state.isNewTaskModalOpen;
@@ -129,4 +162,6 @@ export const {
   deleteTask,
   checkSubtask,
   moveTask,
+  addNewTask,
+  editTask,
 } = boardsSlice.actions;

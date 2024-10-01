@@ -36,13 +36,14 @@ html {
   /* --lightSilver: #F4F7FD; */
   --lightSilver: #eff1f1;
   /* --verylightSliver: #ecf2fc; */
-  --verylightSliver:#e5ebeb ;
+  --verylightSilver:#e5ebeb ;
   --white: #FFFFFF;
   /* --darkRedOrange: #EA5555; */
   --darkRedOrange: #C96868;
   /* --hoverRedOrange: #FF9898; */
   --hoverRedOrange: #F1BBBB;
-  --formPlaceholder: #e0e3e8;
+  /* --formPlaceholder: #e0e3e8; */
+  --formPlaceholder: #DEE0E0;
   
   --fsXl: 24px;
   --fsL: 18px;
@@ -89,8 +90,8 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0; 
-  box-shadow: inset 0 -1px 7px rgb(0, 0, 0, 0.45),
-    inset 0 1px 7px rgb(0, 0, 0, 0.45);
+  /* box-shadow: inset 0 -1px 7px rgb(0, 0, 0, 0.45),
+    inset 0 1px 7px rgb(0, 0, 0, 0.45); */
  
 }
 

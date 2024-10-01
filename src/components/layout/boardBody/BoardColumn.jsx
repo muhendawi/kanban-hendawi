@@ -32,15 +32,16 @@ export const StyledBoardColumn = styled.div`
     height: calc(100% - 2.5rem);
     margin-top: 2.3rem;
     border-radius: 0.5rem;
-    background-color: var(--verylightSliver);
+    background-color: var(--verylightSilver);
     display: flex;
     align-items: center;
     cursor: pointer;
 
     transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     /* box-shadow: 0 4px 6px rgba(54, 78, 126, 0.102); */
-    box-shadow: 0 3px 7px rgb(0, 0, 0, 0.45), inset 0 1px 3px rgb(0, 0, 0, 0.25),
-      inset -0 -1px 3px rgb(0, 0, 0, 0.25);
+    box-shadow: 0 1px 3px rgb(0, 0, 0, 0.25),
+      inset 0 0.1px 2px rgb(0, 0, 0, 0.25),
+      inset -0 -0.1px 2px rgb(0, 0, 0, 0.25);
     /* position: relative; */
     > h3 {
       display: none;

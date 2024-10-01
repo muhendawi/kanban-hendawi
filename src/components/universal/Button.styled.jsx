@@ -51,8 +51,8 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 3px 7px rgb(0, 0, 0, 0.45), inset 0 1px 3px rgb(0, 0, 0, 0.25),
-    inset -0 -1px 3px rgb(0, 0, 0, 0.25);
+  box-shadow: 0 2px 5px rgb(0, 0, 0, 0.45), inset 0 0.1px 2px rgb(0, 0, 0, 0.25),
+    inset -0 -0.1px 2px rgb(0, 0, 0, 0.25);
   cursor: pointer;
   border: none;
   border-radius: 2em;
