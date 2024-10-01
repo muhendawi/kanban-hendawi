@@ -120,7 +120,7 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
               }}
               isMobileMenuOpen={mobileMenuToggled}
               onSetNewBoardModal={() =>
-                setIsNewBoardModalOpen(!isNewBoardModal)
+                setIsNewBoardModalOpen(!isNewBoardModalOpen)
               }
             />
           )}
@@ -158,6 +158,14 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
           <NewTaskModal
             onClose={() => setToggleNewTaskModal(!toggleNewTaskModal)}
             isModalOpen={toggleNewTaskModal}
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isNewBoardModalOpen && (
+          <NewBoardModal
+            onClose={() => setIsNewBoardModalOpen(!isNewBoardModalOpen)}
+            isModalOpen={isNewBoardModalOpen}
           />
         )}
       </AnimatePresence>

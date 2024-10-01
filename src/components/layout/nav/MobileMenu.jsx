@@ -59,8 +59,8 @@ const ModalContentContainer = styled.div`
   top: 3%;
   right: 5%;
   left: 5%;
-  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.45), inset 0 1px 5px rgb(0, 0, 0, 0.25),
-    inset -0 -1px 5px rgb(0, 0, 0, 0.25);
+  box-shadow: 0 5px 8px rgb(0, 0, 0, 0.45), inset 0 1px 3px rgb(0, 0, 0, 0.25),
+    inset -0 -1px 3px rgb(0, 0, 0, 0.25);
 `;
 const BoardsContainer = styled.div`
   display: flex;
@@ -87,7 +87,6 @@ function MobileMenu({
 }) {
   const boardsSlice = useSelector((store) => store.boards);
   const dispatch = useDispatch();
-
   function handleSelectBoardIndex(id) {
     dispatch(setSelectedBoardIndex(id));
   }
