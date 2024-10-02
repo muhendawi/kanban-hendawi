@@ -6,7 +6,7 @@ import { AnimatePresence } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../../../store/board/board.slice";
 import DeleteModal from "../../modals/DeleteModal";
-import NewTaskModal from "../../modals/NewTaskModal";
+import TaskModal from "../../modals/TaskModal";
 //------------------------------------------------------------------->
 
 export const StyledTaskCard = styled.div`
@@ -22,7 +22,7 @@ export const StyledTaskCard = styled.div`
   justify-content: center;
   gap: 0.4rem;
   padding: 1rem;
-  z-index: 1;
+  /* z-index: 1; */
   cursor: pointer;
   overflow: auto;
 
@@ -82,6 +82,8 @@ function TaskCard({
   return (
     <>
       <MotionTaskcard
+        onDrag={() => setIsTaskModalOpen(false)}
+        drag
         layout
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -127,12 +129,13 @@ function TaskCard({
       </AnimatePresence>
       <AnimatePresence>
         {toggleEditTaskModal && (
-          <NewTaskModal
+          <TaskModal
             onClose={() => setToggleEditTaskModal(!toggleEditTaskModal)}
             isModalOpen={toggleEditTaskModal}
             type="edit"
             task={task}
             columnIndex={columnIndex}
+            toggleTaskModal={() => setIsTaskModalOpen(!isTaskModalOpen)}
           />
         )}
       </AnimatePresence>

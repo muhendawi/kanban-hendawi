@@ -11,9 +11,9 @@ import { useDispatch } from "react-redux";
 import { stagger } from "framer-motion";
 import { addNewTask, editTask } from "../../store/board/board.slice";
 import uuid from "react-uuid";
-import { useEffect } from "react";
+
 //------------------------------------------------------------------->
-const StyledNewTaskModal = styled.div`
+const StyledTaskModal = styled.div`
   position: fixed;
   inset: 0;
   top: -5rem;
@@ -127,8 +127,15 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 //------------------------------------------------------------------->
-const MotionModal = motion.create(StyledNewTaskModal);
-function NewTaskModal({ onClose, isModalOpen, type, task, columnIndex }) {
+const MotionModal = motion.create(StyledTaskModal);
+function TaskModal({
+  onClose,
+  toggleTaskModal,
+  isModalOpen,
+  type,
+  task,
+  columnIndex,
+}) {
   const mainStore = useSelector((store) => store.boards);
   const activeBoardColumns =
     mainStore.boards[mainStore.selectedBoardIndex].columns;
@@ -146,8 +153,8 @@ function NewTaskModal({ onClose, isModalOpen, type, task, columnIndex }) {
       return task.subtasks.map((subtask) => ({ ...subtask }));
     } else {
       return [
-        { title: "", isCompleted: false },
-        { title: "", isCompleted: false },
+        { title: "", isCompleted: false, subtaskId: uuid() },
+        { title: "", isCompleted: false, subtaskId: uuid() },
       ];
     }
   });
@@ -155,7 +162,6 @@ function NewTaskModal({ onClose, isModalOpen, type, task, columnIndex }) {
   const [elementsToStyle, setElementsToStyle] = useState([]);
   const [scope, animate] = useAnimate();
   // Select and option state
-
   const [selectedOption, setSelectedOption] = useState(() => {
     if (type === "edit") {
       return activeBoardColumns[columnIndex].name;
@@ -163,11 +169,15 @@ function NewTaskModal({ onClose, isModalOpen, type, task, columnIndex }) {
       return activeBoardColumns[0].name;
     }
   });
-  console.log(selectedOption);
+
+  // const [isStateChange, setStateChange] = useState(false);
+  // useEffect(()=>{
+  //   if(taskName)
+  // },[])
   function resetSubtasks() {
     setSubtasks([
-      { title: "", isCompleted: false },
-      { title: "", isCompleted: false },
+      { title: "", isCompleted: false, subtaskId: uuid() },
+      { title: "", isCompleted: false, subtaskId: uuid() },
     ]);
   }
   function submit() {
@@ -210,15 +220,16 @@ function NewTaskModal({ onClose, isModalOpen, type, task, columnIndex }) {
         resetSubtasks();
         setTaskName("");
       }, 300);
+    } else {
+      animate(
+        ".shakeIt, .animateIt",
+        { x: [-12, 0, 12, 0] },
+        { type: "spring", duration: 0.3, stiffness: 5000, delay: stagger(0.05) }
+      );
+      return;
     }
-    animate(
-      ".shakeIt, .animateIt",
-      { x: [-12, 0, 12, 0] },
-      { type: "spring", duration: 0.3, stiffness: 5000, delay: stagger(0.05) }
-    );
-    return;
   }
-  console.log(document.querySelectorAll(".shakeIt"));
+
   return (
     <MotionModal
       initial={{ opacity: 0, y: 50 }}
@@ -232,6 +243,9 @@ function NewTaskModal({ onClose, isModalOpen, type, task, columnIndex }) {
       <ModalBackdrop
         onClick={() => {
           onClose();
+          if (type == "edit") {
+            toggleTaskModal();
+          }
           // RESETTING state after 300ms
           setTimeout(() => {
             resetSubtasks();
@@ -268,7 +282,7 @@ recharge the batteries a little."
         <AnimatePresence>
           {subtasks?.map((subtask, index) => (
             <SubInputAddRemove
-              key={index}
+              key={subtask.subtaskId}
               currentIndex={index}
               defaultValue={subtask.title}
               subInputType="task"
@@ -289,6 +303,7 @@ recharge the batteries a little."
               {
                 title: "",
                 isCompleted: false,
+                subtaskId: uuid(),
               },
             ]);
           }}>
@@ -314,4 +329,4 @@ recharge the batteries a little."
   );
 }
 
-export default NewTaskModal;
+export default TaskModal;

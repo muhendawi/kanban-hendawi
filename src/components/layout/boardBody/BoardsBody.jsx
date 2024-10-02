@@ -6,6 +6,7 @@ import BoardColumn from "./BoardColumn";
 import { memo, useState } from "react";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
+import BoardModal from "../../modals/BoardModal";
 //------------------------------------------------------------------->
 
 const StyledAppBody = styled.main`
@@ -37,11 +38,10 @@ const StyledAppBody = styled.main`
 //------------------------------------------------------------------->
 const MotionMain = motion.create(StyledAppBody);
 const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
-  const [newColumnModalToggled, setNewColumnModal] = useState(false);
-  const boardsSlice = useSelector((store) => store.boards);
-  const activeBoardColumns = boardsSlice.boards.at(
-    boardsSlice.selectedBoardIndex
-  ).columns;
+  const [toggleNewColumnModal, setToggleNewColumnModal] = useState(false);
+  const activeBoardColumns = useSelector(
+    (store) => store.boards.boards[store.boards.selectedBoardIndex].columns
+  );
 
   return (
     <>
@@ -73,7 +73,7 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
             ))}
 
             <BoardColumn
-              onClick={() => setNewColumnModal(!newColumnModalToggled)}>
+              onClick={() => setToggleNewColumnModal(!toggleNewColumnModal)}>
               <p>+ New Column</p>
             </BoardColumn>
           </>
@@ -81,9 +81,19 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
           <NoData
             text="This board is empty. Create a new column to get started."
             btnText="+ Add New Column"
+            onClick={() => setToggleNewColumnModal(!toggleNewColumnModal)}
           />
         )}
       </MotionMain>
+      <AnimatePresence>
+        {toggleNewColumnModal && (
+          <BoardModal
+            onClose={() => setToggleNewColumnModal(!toggleNewColumnModal)}
+            isModalOpen={toggleNewColumnModal}
+            type="edit"
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 });

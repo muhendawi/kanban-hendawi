@@ -2,15 +2,12 @@ import Sidebar from "../components/layout/sidebar/Sidebar";
 import Navbar from "../components/layout/nav/Navbar";
 import BoardsBody from "../components/layout/boardBody/BoardsBody";
 import { useSelector } from "react-redux";
-
 import styled, { css } from "styled-components";
 import ToggleSidebarBtn from "../components/layout/sidebar/ToggleSidebarBtn";
-
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-
 import NoData from "./NoData";
-import NewBoardModal from "../components/modals/NewBoardModal";
+import BoardModal from "../components/modals/BoardModal";
 //------------------------------------------------------------------->
 
 // StyledMain should only laid out its children not style them
@@ -63,7 +60,7 @@ function Main() {
 
   return (
     <>
-      {boards.length == 0 ? (
+      {boards.length === 0 ? (
         <NoData
           text="There are no boards available. Create a new board to get started"
           btnText="Add New Board"
@@ -97,7 +94,7 @@ function Main() {
       )}
       <AnimatePresence>
         {isNewBoardModalOpen && (
-          <NewBoardModal
+          <BoardModal
             onClose={() => setIsNewBoardModalOpen(!isNewBoardModalOpen)}
             isModalOpen={isNewBoardModalOpen}
           />

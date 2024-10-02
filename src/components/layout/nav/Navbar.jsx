@@ -7,12 +7,13 @@ import MobileMenu from "./MobileMenu";
 import { AnimatePresence } from "framer-motion";
 import { memo, useState } from "react";
 import SubMenu from "../../modals/SubMenu";
-import NewBoardModal from "../../modals/NewBoardModal";
+import BoardModal from "../../modals/BoardModal";
 import { useDispatch } from "react-redux";
 import { deleteBoard } from "../../../store/board/board.slice";
 import DeleteModal from "../../modals/DeleteModal";
 import MainLogo from "../../universal/MainLogo";
-import NewTaskModal from "../../modals/NewTaskModal";
+import TaskModal from "../../modals/TaskModal";
+import { useSelector } from "react-redux";
 //------------------------------------------------------------------->
 
 const StyledNav = styled.nav`
@@ -21,11 +22,6 @@ const StyledNav = styled.nav`
   align-items: center;
   padding: 1rem 0.4rem 1rem 1.5rem;
   background-color: var(--white);
-  /* box-shadow: 0 2px 10px rgb(0, 0, 0, 0.45), inset 0 -1px 3px rgb(0, 0, 0, 0.45); */
-  /* box-shadow: 0 3px 7px rgb(0, 0, 0, 0.45), inset 0 1px 3px rgb(0, 0, 0, 0.25),
-    inset -0 -1px 3px rgb(0, 0, 0, 0.25); */
-  /* box-shadow: 0 1px 10px rgb(0, 0, 0, 0.45),
-    inset 0 -1px 10px rgb(0, 0, 0, 0.45); */
   box-shadow: 0.1px 0 2px rgb(0, 0, 0, 0.25),
     inset 0 -0.1px 2px rgb(0, 0, 0, 0.25);
   // laid out the NavBoardTitle and its adjacent div
@@ -42,7 +38,6 @@ const StyledNav = styled.nav`
     padding: 1rem 0.4rem 1rem 0.8rem;
   }
 `;
-
 // nav button - tablet/mobile verison
 const NewTaskBtnMobile = styled(Button)`
   padding: 0.6rem 1rem;
@@ -50,7 +45,6 @@ const NewTaskBtnMobile = styled(Button)`
     display: none;
   }
 `;
-
 // nav button - desktop verison
 const NewTaskBtnDesktop = styled(Button)`
   @media (max-width: 768px) {
@@ -60,13 +54,17 @@ const NewTaskBtnDesktop = styled(Button)`
 `;
 //------------------------------------------------------------------->
 
-const Navbar = memo(function Navbar({ isNewBoardModal }) {
+const Navbar = memo(function Navbar() {
   const [toggleNewTaskModal, setToggleNewTaskModal] = useState(false);
   const [mobileMenuToggled, setMobileMenu] = useState(false);
   const [toggleSubMenu, setToggleSubMenu] = useState(false);
   const [isNewBoardModalOpen, setIsNewBoardModalOpen] = useState(false);
   const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
+  const [toggleEditBoardModal, setToggleEditBoardModal] = useState(false);
   const dispatch = useDispatch();
+  const columns = useSelector(
+    (store) => store.boards.boards[store.boards.selectedBoardIndex].columns
+  );
 
   // delete board handler function
   function handleDeleteBoard() {
@@ -86,8 +84,10 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
         />
         <div>
           <NewTaskBtnDesktop
-            $variation="primary"
+            $disabled={columns.length === 0}
+            $variation={columns.length === 0 ? "secondary" : "primary"}
             $size="medium"
+            disabled={columns.length === 0}
             onClick={() => {
               setToggleSubMenu(false);
               setToggleNewTaskModal(!toggleNewTaskModal);
@@ -111,7 +111,7 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
             }}
           />
         </div>
-        {/* the Mobile menu conditional rendering */}
+        {/* The Mobile Menu */}
         <AnimatePresence>
           {mobileMenuToggled && (
             <MobileMenu
@@ -125,14 +125,17 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
             />
           )}
         </AnimatePresence>
-        {/* The SubMenu conditional rendering */}
+        {/* The SubMenu (Edit / Delete) */}
         <AnimatePresence>
           {toggleSubMenu && (
             <SubMenu
               onToggleSubmenu={() => setToggleSubMenu(!toggleSubMenu)}
               firstOption="Edit Board"
               secondOption="Delete Board"
-              onEdit={null}
+              onEdit={() => {
+                setToggleEditBoardModal(!toggleEditBoardModal);
+                setToggleSubMenu(!toggleSubMenu);
+              }}
               onDelete={() => {
                 setToggleDeleteModal(!toggleDeleteModal);
                 setToggleSubMenu(!toggleSubMenu);
@@ -141,6 +144,7 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
           )}
         </AnimatePresence>
       </StyledNav>
+      {/* The Delete Modal */}
       <AnimatePresence>
         {toggleDeleteModal && (
           <DeleteModal
@@ -152,18 +156,29 @@ const Navbar = memo(function Navbar({ isNewBoardModal }) {
           </DeleteModal>
         )}
       </AnimatePresence>
-      {/* The NewBoardModal conditional rendering */}
+      {/* The Task Modal */}
       <AnimatePresence>
         {toggleNewTaskModal && (
-          <NewTaskModal
+          <TaskModal
             onClose={() => setToggleNewTaskModal(!toggleNewTaskModal)}
             isModalOpen={toggleNewTaskModal}
           />
         )}
       </AnimatePresence>
+      {/* The Edit Board Modal */}
+      <AnimatePresence>
+        {toggleEditBoardModal && (
+          <BoardModal
+            onClose={() => setToggleEditBoardModal(!toggleEditBoardModal)}
+            isModalOpen={toggleEditBoardModal}
+            type="edit"
+          />
+        )}
+      </AnimatePresence>
+      {/* The New Board Modal */}
       <AnimatePresence>
         {isNewBoardModalOpen && (
-          <NewBoardModal
+          <BoardModal
             onClose={() => setIsNewBoardModalOpen(!isNewBoardModalOpen)}
             isModalOpen={isNewBoardModalOpen}
           />

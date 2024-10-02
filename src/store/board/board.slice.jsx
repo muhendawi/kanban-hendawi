@@ -30,6 +30,30 @@ const boardsSlice = createSlice({
       // to close the mobile menu when newboard modal is opened
       state.isNewBoardModalOpen = !state.isNewBoardModalOpen;
     },
+    addNewBoard: {
+      prepare(boardName, columns) {
+        return { payload: { boardName, columns } };
+      },
+      reducer(state, action) {
+        state.boards.push({
+          name: action.payload.boardName,
+          columns: action.payload.columns,
+        });
+      },
+    },
+    editBoard: {
+      prepare(boardName, columns) {
+        return { payload: { boardName, columns } };
+      },
+      reducer(state, action) {
+        const currentBoard = state.boards[state.selectedBoardIndex];
+        currentBoard.name = action.payload.boardName;
+        currentBoard.columns = action.payload.columns;
+
+        // const currentColumn = state.boards[state.selectedBoardIndex].columns;
+        // const currentTask = null;
+      },
+    },
     deleteBoard(state) {
       state.boards = state.boards.filter(
         (_, index) => index !== state.selectedBoardIndex
@@ -114,16 +138,18 @@ const boardsSlice = createSlice({
       currentTask.status = selectedOption;
       currentTask.subtasks = subtasks;
 
-      column.tasks = column.tasks.filter((t) => t.taskId !== task.taskId);
-
-      const newColumn = state.boards[state.selectedBoardIndex].columns.find(
-        (col) => col.name === selectedOption
-      );
-      if (!newColumn) return;
-      // const task = column.tasks.find((_, index) => index === taskIndex);
-      // if (!task) return;
-      newColumn.tasks.push(currentTask);
+      if (column.name !== selectedOption) {
+        column.tasks = column.tasks.filter((t) => t.taskId !== task.taskId);
+        const newColumn = state.boards[state.selectedBoardIndex].columns.find(
+          (col) => col.name === selectedOption
+        );
+        if (!newColumn) return;
+        // const task = column.tasks.find((_, index) => index === taskIndex);
+        // if (!task) return;
+        newColumn.tasks.push(currentTask);
+      }
     },
+
     // toggleNewTaskModal(state) {
     //   state.isNewTaskModalOpen = !state.isNewTaskModalOpen;
     // },
@@ -136,17 +162,6 @@ const boardsSlice = createSlice({
     // addNewBoard(state, payload) {
     //   state.boards.push(payload);
     // },
-    addNewBoard: {
-      prepare(boardName, columns) {
-        return { payload: { boardName, columns } };
-      },
-      reducer(state, action) {
-        state.boards.push({
-          name: action.payload.boardName,
-          columns: action.payload.columns,
-        });
-      },
-    },
   },
 });
 
@@ -158,6 +173,7 @@ export const {
   toggleMobileMenu,
   toggleDarkTheme,
   addNewBoard,
+  editBoard,
   deleteBoard,
   deleteTask,
   checkSubtask,

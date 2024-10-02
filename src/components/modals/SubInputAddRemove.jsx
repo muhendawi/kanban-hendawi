@@ -44,7 +44,6 @@ function SubInputAddRemove({
   onSetElementsToStyle,
   subInputType,
 }) {
-  console.log(elements);
   function removeElementToStyleOnTyping() {
     // REMOVE the elementToStyle when typing on it, when on focus
     onSetElementsToStyle((currentElements) =>
@@ -76,7 +75,7 @@ function SubInputAddRemove({
     <MotionSubInputAddRemove
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 10, transition: { duration: 0.15 } }}>
+      exit={{ opacity: 0, y: -15, transition: { duration: 0.25 } }}>
       <Input
         $shouldStyle={elementsToStyle.includes(currentIndex)}
         className={elementsToStyle.includes(currentIndex) ? "animateIt" : null}

@@ -2,18 +2,13 @@ import BoardItem from "./BoardItem";
 import Header from "./Header.styled";
 import LightDarkToggleItem from "./LightDarkToggleItem";
 import CreateNewBoard from "./CreateNewBoard";
-import ToggleSidebarBtn from "./ToggleSidebarBtn";
 import IconBoard from "../../../assets/IconBoardSVG";
 import IconHideSidebar from "../../../assets/IconHideSidebarSVG";
 import { useSelector, useDispatch } from "react-redux";
 import BoardName from "./BoardName";
-import { toggleNewBoardModal } from "../../../store/board/board.slice";
-import {
-  toggleSidebar,
-  setSelectedBoardIndex,
-} from "../../../store/board/board.slice";
-import NewBoardModal from "../../modals/NewBoardModal";
-import styled, { css } from "styled-components";
+import { setSelectedBoardIndex } from "../../../store/board/board.slice";
+import BoardModal from "../../modals/BoardModal";
+import styled from "styled-components";
 import { memo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -110,7 +105,7 @@ const Sidebar = memo(function Sidebar({ toggleSidebar, isSidebarOpened }) {
       </MotionSidebar>
       <AnimatePresence>
         {isNewBoardModalOpen && (
-          <NewBoardModal
+          <BoardModal
             onClose={() => setIsNewBoardModalOpen(!isNewBoardModalOpen)}
             isModalOpen={isNewBoardModalOpen}
           />

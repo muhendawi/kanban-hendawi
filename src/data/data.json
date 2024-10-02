@@ -4,6 +4,7 @@
       "name": "Platform Launch",
       "columns": [
         {
+          "colId": 7457288792348952,
           "name": "Todo",
           "tasks": [
             {
@@ -13,14 +14,17 @@
               "status": "Todo",
               "subtasks": [
                 {
+                  "subtaskId": 1267891234678912346789124,
                   "title": "Sign up page",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 56712367812348923589024,
                   "title": "Sign in page",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 678923567892345678912345678923,
                   "title": "Welcome page",
                   "isCompleted": false
                 }
@@ -33,6 +37,7 @@
               "status": "Todo",
               "subtasks": [
                 {
+                  "subtaskId": 67892345678923456789235678923,
                   "title": "Search page",
                   "isCompleted": false
                 }
@@ -45,10 +50,12 @@
               "status": "Todo",
               "subtasks": [
                 {
+                  "subtaskId": 890742356902345689072345690833,
                   "title": "Account page",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 6789234578923457892354789235789,
                   "title": "Billing page",
                   "isCompleted": false
                 }
@@ -61,10 +68,12 @@
               "status": "Todo",
               "subtasks": [
                 {
+                  "subtaskId": 5635636735235265326323,
                   "title": "Internal testing",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 453434343434342525252527347373,
                   "title": "External testing",
                   "isCompleted": false
                 }
@@ -73,6 +82,7 @@
           ]
         },
         {
+          "colId": 9013478902359072357890235,
           "name": "Doing",
           "tasks": [
             {
@@ -82,14 +92,17 @@
               "status": "Doing",
               "subtasks": [
                 {
+                  "subtaskId": 32323232323767676767676,
                   "title": "Settings - Account page",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 878787767564563453423,
                   "title": "Settings - Billing page",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 9898989876767676323231414,
                   "title": "Search page",
                   "isCompleted": false
                 }
@@ -102,14 +115,17 @@
               "status": "Doing",
               "subtasks": [
                 {
+                  "subtaskId": 7667564352341233658798896746,
                   "title": "Upgrade plan",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 99978677857456746757775757,
                   "title": "Cancel plan",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 3443452562634637374534525,
                   "title": "Update payment method",
                   "isCompleted": false
                 }
@@ -122,14 +138,17 @@
               "status": "Doing",
               "subtasks": [
                 {
+                  "subtaskId": 1212121212121878787656565,
                   "title": "Sign up page",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 25525252525252529069069696,
                   "title": "Sign in page",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 1111111111111177777777445454,
                   "title": "Welcome page",
                   "isCompleted": false
                 }
@@ -142,10 +161,12 @@
               "status": "Doing",
               "subtasks": [
                 {
+                  "subtaskId": 7575736363646737834643,
                   "title": "Add search endpoint",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 8678787784635234546357543,
                   "title": "Define search filters",
                   "isCompleted": false
                 }
@@ -158,10 +179,12 @@
               "status": "Doing",
               "subtasks": [
                 {
+                  "subtaskId": 878256252452525623562525252,
                   "title": "Define user model",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 919191919191919186868686,
                   "title": "Add auth endpoints",
                   "isCompleted": false
                 }
@@ -174,14 +197,17 @@
               "status": "Doing",
               "subtasks": [
                 {
+                  "subtaskId": 545454543663363627828128919367,
                   "title": "Research competitor pricing and business models",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 87878743434334020202020202,
                   "title": "Outline a business model that works for our solution",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 77777777777444444449999999,
                   "title": "Talk to potential customers about our proposed solution and ask for fair price expectancy",
                   "isCompleted": false
                 }
@@ -190,6 +216,7 @@
           ]
         },
         {
+          "colId": 902390235790235790235,
           "name": "Done",
           "tasks": [
             {
@@ -199,6 +226,7 @@
               "status": "Done",
               "subtasks": [
                 {
+                  "subtaskId": 789245789023456789345678934789342,
                   "title": "Complete 5 wireframe prototype tests",
                   "isCompleted": true
                 }
@@ -211,6 +239,7 @@
               "status": "Done",
               "subtasks": [
                 {
+                  "subtaskId": 56234652345672347562347624,
                   "title": "Create clickable wireframe prototype in Balsamiq",
                   "isCompleted": true
                 }
@@ -223,14 +252,17 @@
               "status": "Done",
               "subtasks": [
                 {
+                  "subtaskId": 43434343525252525290122917812346724,
                   "title": "Meet to review notes from previous tests and plan changes",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 4132412453512351253,
                   "title": "Make changes to paper prototypes",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 999999999999999995454554545454,
                   "title": "Conduct 5 usability tests",
                   "isCompleted": true
                 }
@@ -243,10 +275,12 @@
               "status": "Done",
               "subtasks": [
                 {
+                  "subtaskId": 67345563456743673476347623423476,
                   "title": "Create paper prototypes for version one",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 6789346789235678923456789235,
                   "title": "Complete 10 usability tests",
                   "isCompleted": true
                 }
@@ -259,6 +293,7 @@
               "status": "Done",
               "subtasks": [
                 {
+                  "subtaskId": 6723672356789234789325,
                   "title": "Interview 10 prospective customers",
                   "isCompleted": true
                 }
@@ -271,10 +306,12 @@
               "status": "Done",
               "subtasks": [
                 {
+                  "subtaskId": 45343452525252525252567352348592,
                   "title": "Find direct and indirect competitors",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 1111122227835678325786532678,
                   "title": "SWOT analysis for each competitor",
                   "isCompleted": true
                 }
@@ -287,10 +324,12 @@
               "status": "Done",
               "subtasks": [
                 {
+                  "subtaskId": 78523788357427896523786532,
                   "title": "Write up research analysis",
                   "isCompleted": true
                 },
                 {
+                  "subtaskId": 6782345685723456783241678,
                   "title": "Calculate TAM",
                   "isCompleted": true
                 }
@@ -304,6 +343,7 @@
       "name": "Marketing Plan",
       "columns": [
         {
+          "colId": 9999454545236737228,
           "name": "Todo",
           "tasks": [
             {
@@ -313,26 +353,32 @@
               "status": "Todo",
               "subtasks": [
                 {
+                  "subtaskId": 892345987578954789345789345,
                   "title": "Find hunter",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 76767676858585829020290294823,
                   "title": "Gather assets",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 54354535434563753784592,
                   "title": "Draft product page",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 9393939383783765353753,
                   "title": "Notify customers",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 6723754687234658234765,
                   "title": "Notify network",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 9834562890346780345687934568,
                   "title": "Launch!",
                   "isCompleted": false
                 }
@@ -345,14 +391,17 @@
               "status": "",
               "subtasks": [
                 {
+                  "subtaskId": 6723457682345796845236789234567893,
                   "title": "Draft out HN post",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 5353453535352828282828282,
                   "title": "Get feedback and refine",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 84765432675347926578923654,
                   "title": "Publish post",
                   "isCompleted": false
                 }
@@ -365,18 +414,22 @@
               "status": "",
               "subtasks": [
                 {
+                  "subtaskId": 834848458678875586734623542,
                   "title": "Write article",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 623652345642356745672356742,
                   "title": "Publish on LinkedIn",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 72345623465823746578235,
                   "title": "Publish on Inndie Hackers",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 7892453623476527893659,
                   "title": "Publish on Medium",
                   "isCompleted": false
                 }
@@ -385,10 +438,12 @@
           ]
         },
         {
+          "colId": 89123456789235189723458907235,
           "name": "Doing",
           "tasks": []
         },
         {
+          "colId": 9234589236712346389303,
           "name": "Done",
           "tasks": []
         }
@@ -398,6 +453,7 @@
       "name": "Roadmap",
       "columns": [
         {
+          "colId": 8902354890723590823590812359081235890731,
           "name": "Now",
           "tasks": [
             {
@@ -407,10 +463,12 @@
               "status": "",
               "subtasks": [
                 {
+                  "subtaskId": 89235890234852789235789234589,
                   "title": "Launch privately to our waitlist",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 8484847823747862623675923476,
                   "title": "Launch publicly on PH, HN, etc.",
                   "isCompleted": false
                 }
@@ -423,14 +481,17 @@
               "status": "",
               "subtasks": [
                 {
+                  "subtaskId": 789234566789346789435267893424978,
                   "title": "Interview 10 customers",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 23893547239876754237896523978,
                   "title": "Review common customer pain points and suggestions",
                   "isCompleted": false
                 },
                 {
+                  "subtaskId": 123412354237423764324,
                   "title": "Outline next steps for our roadmap",
                   "isCompleted": false
                 }
@@ -439,10 +500,12 @@
           ]
         },
         {
+          "colId": 528528905208952905352,
           "name": "Next",
           "tasks": []
         },
         {
+          "colId": 132492375823675892358923,
           "name": "Later",
           "tasks": []
         }

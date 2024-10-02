@@ -62,7 +62,23 @@ export const Button = styled.button`
   /* &:hover {
     transition: ease 0.4s;
   } */
-  &:active {
-    transform: scale(0.97);
-  }
+  ${({ $disabled }) =>
+    $disabled
+      ? css`
+          &:active {
+            transform: scale(1);
+          }
+          color: var(--hoverIndigoGrey);
+          &:hover {
+            background-color: var(--lightSilver);
+          }
+          box-shadow: 0 1px 5px rgb(0, 0, 0, 0.3),
+            inset 0 0.1px 2px rgb(0, 0, 0, 0.25),
+            inset -0 -0.1px 2px rgb(0, 0, 0, 0.25);
+        `
+      : css`
+          &:active {
+            transform: scale(0.97);
+          }
+        `}
 `;

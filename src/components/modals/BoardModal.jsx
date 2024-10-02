@@ -7,13 +7,16 @@ import { useAnimate, stagger, motion } from "framer-motion";
 import {
   addNewBoard,
   setSelectedBoardIndex,
+  editBoard,
 } from "../../store/board/board.slice";
 import { useSelector } from "react-redux";
 import { flushSync } from "react-dom";
 import { AnimatePresence } from "framer-motion";
+import uuid from "react-uuid";
+
 //------------------------------------------------------------------->
 
-const StyledNewBoardModal = styled.div`
+const StyledBoardModal = styled.div`
   position: fixed;
   inset: 0;
   top: -5rem;
@@ -100,18 +103,31 @@ const BoardNameInput = styled.input`
   }
 `;
 //------------------------------------------------------------------->
-const MotionModal = motion.create(StyledNewBoardModal);
-function NewBoardModal({ onClose, isModalOpen }) {
-  const boardsSlice = useSelector((store) => store.boards.boards);
+const MotionModal = motion.create(StyledBoardModal);
+function BoardModal({ onClose, isModalOpen, type }) {
+  const mainStore = useSelector((store) => store.boards);
+  const editColumns = mainStore.boards[mainStore.selectedBoardIndex]?.columns;
   const dispatch = useDispatch();
-  const [boardName, setBoardName] = useState("");
+  const [boardName, setBoardName] = useState(() => {
+    if (type === "edit") {
+      const editBoardName = mainStore.boards[mainStore.selectedBoardIndex].name;
+      return editBoardName;
+    } else {
+      return "";
+    }
+  });
   const [isBoardNameEmpty, setIsBoardNameEmpty] = useState(false);
-  const [columns, setColumns] = useState([
-    { name: "Todo", tasks: [] },
-    { name: "Doing", tasks: [] },
-  ]);
+  const [columns, setColumns] = useState(() => {
+    if (type === "edit") {
+      return editColumns.map((col) => ({ ...col }));
+    } else {
+      return [
+        { name: "Todo", tasks: [], colId: uuid() },
+        { name: "Doing", tasks: [], colId: uuid() },
+      ];
+    }
+  });
   const [elementsToStyle, setElementsToStyle] = useState([]);
-
   const [scope, animate] = useAnimate();
 
   function submit() {
@@ -133,24 +149,28 @@ function NewBoardModal({ onClose, isModalOpen }) {
       boardName.trim() !== "" &&
       columns.every((col) => col.name.trim() !== "")
     ) {
-      dispatch(addNewBoard(boardName, columns));
-      dispatch(setSelectedBoardIndex(boardsSlice.length));
+      if (type === "edit") {
+        dispatch(editBoard(boardName, columns));
+      } else {
+        dispatch(addNewBoard(boardName, columns));
+        dispatch(setSelectedBoardIndex(mainStore.boards.length));
+      }
       onClose();
       setTimeout(() => {
         setColumns([
-          { name: "Todo", tasks: [] },
-          { name: "Doing", tasks: [] },
+          { name: "Todo", tasks: [], colId: uuid() },
+          { name: "Doing", tasks: [], colId: uuid() },
         ]);
         setBoardName("");
       }, 400);
+    } else {
+      animate(
+        ".shakeIt, .animateIt",
+        { x: [-12, 0, 12, 0] },
+        { type: "spring", duration: 0.3, stiffness: 5000, delay: stagger(0.05) }
+      );
+      return;
     }
-
-    animate(
-      ".shakeIt, .animateIt",
-      { x: [-12, 0, 12, 0] },
-      { type: "spring", duration: 0.3, stiffness: 5000, delay: stagger(0.05) }
-    );
-    return;
   }
   return (
     <MotionModal
@@ -168,8 +188,8 @@ function NewBoardModal({ onClose, isModalOpen }) {
           // RESETTING state after 300ms
           setTimeout(() => {
             setColumns([
-              { name: "Todo", tasks: [] },
-              { name: "Doing", tasks: [] },
+              { name: "Todo", tasks: [], colId: uuid() },
+              { name: "Doing", tasks: [], colId: uuid() },
             ]);
             setBoardName("");
             setIsBoardNameEmpty(false);
@@ -178,11 +198,11 @@ function NewBoardModal({ onClose, isModalOpen }) {
         }}
       />
       <ModalContentContainer ref={scope}>
-        <Title>Add new Board</Title>
+        <Title>{type === "edit" ? "Edit Board" : "Add new Board"}</Title>
         <InputLabel htmlFor="bName">Board Name</InputLabel>
         <BoardNameInput
           $shouldStyle={isBoardNameEmpty}
-          className={!boardName.trim() ? "shakeIt" : null}
+          className={!boardName?.trim() ? "shakeIt" : null}
           placeholder="e.g. Web Design"
           type="text"
           id="bName"
@@ -195,10 +215,10 @@ function NewBoardModal({ onClose, isModalOpen }) {
         />
         <InputLabel>Board Columns</InputLabel>
         <AnimatePresence>
-          {columns.map((column, index) => (
+          {columns.map((col, index) => (
             <SubInputAddRemove
-              key={index}
-              defaultValue={column.name}
+              key={col.colId}
+              defaultValue={col.name}
               currentIndex={index}
               elements={columns}
               onSetElements={setColumns}
@@ -212,16 +232,16 @@ function NewBoardModal({ onClose, isModalOpen }) {
           $variation="secondary"
           $size="formSpecific"
           onClick={() => {
-            setColumns([...columns, { name: "", tasks: [] }]);
+            setColumns([...columns, { name: "", tasks: [], colId: uuid() }]);
           }}>
           + Add New Column
         </Button>
         <Button $variation="primary" $size="formSpecific" onClick={submit}>
-          Create New Board
+          {type === "edit" ? "Save Changes" : " Create New Board"}
         </Button>
       </ModalContentContainer>
     </MotionModal>
   );
 }
 
-export default NewBoardModal;
+export default BoardModal;
