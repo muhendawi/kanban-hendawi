@@ -54,7 +54,7 @@ const NewTaskBtnDesktop = styled(Button)`
   }
 `;
 //------------------------------------------------------------------->
-const MotionNewTaskBtnDesktop = motion.create(NewTaskBtnDesktop);
+
 const Navbar = memo(function Navbar() {
   const [toggleNewTaskModal, setToggleNewTaskModal] = useState(false);
   const [mobileMenuToggled, setMobileMenu] = useState(false);
@@ -84,9 +84,7 @@ const Navbar = memo(function Navbar() {
           isMobileMenuOpen={mobileMenuToggled}
         />
         <div>
-          <MotionNewTaskBtnDesktop
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+          <NewTaskBtnDesktop
             $disabled={columns.length === 0}
             $variation={columns.length === 0 ? "secondary" : "primary"}
             $size="medium"
@@ -96,7 +94,7 @@ const Navbar = memo(function Navbar() {
               setToggleNewTaskModal(!toggleNewTaskModal);
             }}>
             + Add New Task
-          </MotionNewTaskBtnDesktop>
+          </NewTaskBtnDesktop>
           <NewTaskBtnMobile
             $disabled={columns.length === 0}
             $variation={columns.length === 0 ? "secondary" : "primary"}
