@@ -95,8 +95,10 @@ const Navbar = memo(function Navbar() {
             + Add New Task
           </NewTaskBtnDesktop>
           <NewTaskBtnMobile
-            $variation="primary"
+            $disabled={columns.length === 0}
+            $variation={columns.length === 0 ? "secondary" : "primary"}
             $size="small"
+            disabled={columns.length === 0}
             onClick={() => {
               setMobileMenu(false);
               setToggleSubMenu(false);
