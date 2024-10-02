@@ -66,10 +66,14 @@ export const StyledBoardColumn = styled.div`
 `;
 //------------------------------------------------------------------->
 const MotionBoardColumn = motion.create(StyledBoardColumn);
-function BoardColumn({ onClick, columnName, tasksNo, children }) {
+function BoardColumn({ onClick, columnName, tasksNo, type, children }) {
   // const color = getRandomHexColor();
   return (
-    <MotionBoardColumn onClick={onClick}>
+    <MotionBoardColumn
+      initial={type === "noAnimation" ? {} : { opacity: 0, y: -15 }}
+      animate={type === "noAnimation" ? {} : { opacity: 1, y: 0 }}
+      // exit={type === "noAnimation" ? {} : { opacity: 0, y: -15 }}
+      onClick={onClick}>
       <Header>
         <span></span>
         {columnName} ({tasksNo})

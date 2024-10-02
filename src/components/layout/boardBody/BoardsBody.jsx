@@ -7,6 +7,7 @@ import { memo, useState } from "react";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import BoardModal from "../../modals/BoardModal";
+import uuid from "react-uuid";
 //------------------------------------------------------------------->
 
 const StyledAppBody = styled.main`
@@ -44,6 +45,7 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
       <MotionMain $columnLength={activeBoardColumns?.length}>
         {activeBoardColumns.length !== 0 ? (
           <>
+            {/* <AnimatePresence mode="wait"> */}
             {activeBoardColumns.map((column, colIndex) => (
               <BoardColumn
                 key={column.colId}
@@ -67,8 +69,9 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
                 </AnimatePresence>
               </BoardColumn>
             ))}
-
+            {/* </AnimatePresence> */}
             <BoardColumn
+              type="noAnimation"
               onClick={() => setToggleNewColumnModal(!toggleNewColumnModal)}>
               <p>+ New Column</p>
             </BoardColumn>

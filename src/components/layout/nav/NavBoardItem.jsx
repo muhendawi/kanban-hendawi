@@ -2,6 +2,12 @@ import styled from "styled-components";
 import NavBoardTitle from "./NavBoardTitle.styled/";
 import { ChevronDownIcon, MobileLogo } from "../..";
 import { useSelector } from "react-redux";
+import uuid from "react-uuid";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useRef } from "react";
+import { memo } from "react";
 //------------------------------------------------------------------->
 
 export const StyledNavBoardItem = styled.div`
@@ -21,13 +27,39 @@ export const StyledNavBoardItem = styled.div`
 
 //------------------------------------------------------------------->
 
-function NavBoardItem({ onClick, isMobileMenuOpen }) {
+const NavBoardItem = memo(function NavBoardItem({ onClick, isMobileMenuOpen }) {
   const boardsSlice = useSelector((store) => store.boards);
+  const boardName = boardsSlice.boards.at(boardsSlice.selectedBoardIndex)?.name;
+  const [letters, setLetters] = useState([]);
+
+  useEffect(() => {
+    setLetters(
+      boardName.split("").map((letter) => ({
+        letter: letter,
+        letterId: uuid(),
+      }))
+    );
+  }, [boardName]);
+
   return (
     <StyledNavBoardItem>
       <MobileLogo isMobileMenutoggled={isMobileMenuOpen} onClick={onClick} />
       <NavBoardTitle>
-        {boardsSlice.boards.at(boardsSlice.selectedBoardIndex)?.name}
+        {letters.map((le, index) => (
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: {
+                type: "spring",
+                duration: 0.3,
+                delay: 0.05 * index,
+              },
+            }}
+            key={le.letterId}>
+            {le.letter}
+          </motion.span>
+        ))}
       </NavBoardTitle>
       <ChevronDownIcon
         isMobileMenutoggled={isMobileMenuOpen}
@@ -35,6 +67,6 @@ function NavBoardItem({ onClick, isMobileMenuOpen }) {
       />
     </StyledNavBoardItem>
   );
-}
+});
 
 export default NavBoardItem;

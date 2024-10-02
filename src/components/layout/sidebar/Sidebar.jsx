@@ -64,7 +64,7 @@ const HideDarkContainer = styled.div`
 //------------------------------------------------------------------->
 const MotionSidebar = motion.create(StyledSidebar);
 const Sidebar = memo(function Sidebar({ toggleSidebar, isSidebarOpened }) {
-  const boardsSlice = useSelector((store) => store.boards);
+  const mainStore = useSelector((store) => store.boards);
   const dispatch = useDispatch();
   const [isNewBoardModalOpen, setIsNewBoardModalOpen] = useState(false);
   function handleSelectBoardIndex(id) {
@@ -78,15 +78,15 @@ const Sidebar = memo(function Sidebar({ toggleSidebar, isSidebarOpened }) {
         exit={{ opacity: 0, x: -300, transition: { duration: 0.2 } }}>
         <SidebarContentContainer>
           <TitleBoardsandCreateContainer>
-            <Header>All Boards ({boardsSlice.boards.length})</Header>
+            <Header>All Boards ({mainStore.boards.length})</Header>
             <BoardsContainer>
-              {boardsSlice.boards.map((board, index) => (
+              {mainStore.boards.map((board, index) => (
                 <BoardItem
                   key={index}
                   onClick={() => handleSelectBoardIndex(index)}
-                  active={index === boardsSlice.selectedBoardIndex}>
+                  active={index === mainStore.selectedBoardIndex}>
                   <IconBoard />
-                  <BoardName boardName={board.name} />
+                  <BoardName boardName={board.name} index={index} />
                 </BoardItem>
               ))}
             </BoardsContainer>
