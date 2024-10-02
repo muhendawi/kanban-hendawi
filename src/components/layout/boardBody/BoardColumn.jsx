@@ -60,7 +60,7 @@ export const StyledBoardColumn = styled.div`
       }
     }
     &:active {
-      transform: scale(0.97);
+      transform: scale(0.98);
     }
   }
 `;

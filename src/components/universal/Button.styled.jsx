@@ -51,6 +51,7 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  /* min-height: 2rem; */
   box-shadow: 0 2px 5px rgb(0, 0, 0, 0.45), inset 0 0.1px 2px rgb(0, 0, 0, 0.25),
     inset -0 -0.1px 2px rgb(0, 0, 0, 0.25);
   cursor: pointer;
@@ -72,7 +73,7 @@ export const Button = styled.button`
           &:hover {
             background-color: var(--lightSilver);
           }
-          box-shadow: 0 1px 5px rgb(0, 0, 0, 0.3),
+          box-shadow: 0 0px 3px rgb(0, 0, 0, 0.3),
             inset 0 0.1px 2px rgb(0, 0, 0, 0.25),
             inset -0 -0.1px 2px rgb(0, 0, 0, 0.25);
         `
