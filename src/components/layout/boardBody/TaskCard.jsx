@@ -73,7 +73,7 @@ function TaskCard({
     <>
       <MotionTaskcard
         onDrag={() => setIsTaskModalOpen(false)}
-        drag
+        // drag
         layout
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
