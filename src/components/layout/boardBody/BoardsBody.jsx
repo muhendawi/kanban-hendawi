@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import BoardModal from "../../modals/BoardModal";
 import uuid from "react-uuid";
+import { useRef } from "react";
 //------------------------------------------------------------------->
 
 const StyledAppBody = styled.main`
@@ -35,6 +36,7 @@ const StyledAppBody = styled.main`
 //------------------------------------------------------------------->
 const MotionMain = motion.create(StyledAppBody);
 const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
+  const mainRef = useRef();
   const [toggleNewColumnModal, setToggleNewColumnModal] = useState(false);
   const activeBoardColumns = useSelector(
     (store) => store.boards.boards[store.boards.selectedBoardIndex].columns
@@ -42,7 +44,7 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
 
   return (
     <>
-      <MotionMain $columnLength={activeBoardColumns?.length}>
+      <MotionMain $columnLength={activeBoardColumns?.length} ref={mainRef}>
         {activeBoardColumns.length !== 0 ? (
           <>
             {/* <AnimatePresence mode="wait"> */}
@@ -64,6 +66,7 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
                           .length
                       }
                       totalSubTasks={task.subtasks?.length}
+                      parentRef={mainRef}
                     />
                   ))}
                 </AnimatePresence>

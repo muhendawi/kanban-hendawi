@@ -29,7 +29,7 @@ export const StyledNavBoardItem = styled.div`
 
 const NavBoardItem = memo(function NavBoardItem({ onClick, isMobileMenuOpen }) {
   const boardsSlice = useSelector((store) => store.boards);
-  const boardName = boardsSlice.boards.at(boardsSlice.selectedBoardIndex)?.name;
+  const boardName = boardsSlice.boards.at(boardsSlice.selectedBoardIndex).name;
   const [letters, setLetters] = useState([]);
 
   useEffect(() => {

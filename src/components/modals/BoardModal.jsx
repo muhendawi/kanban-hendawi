@@ -22,8 +22,7 @@ const StyledBoardModal = styled.div`
   top: -5rem;
   bottom: -5rem;
   z-index: 801;
-  /* background-color: rgb(255, 255, 255, 0.85); */
-  /* backdrop-filter: blur(0.5px); */
+  backdrop-filter: blur(1px);
   display: flex;
   justify-content: center;
   align-items: center;

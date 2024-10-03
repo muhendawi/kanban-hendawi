@@ -3,7 +3,6 @@ import Header from "./Header.styled";
 import LightDarkToggleItem from "./LightDarkToggleItem";
 import CreateNewBoard from "./CreateNewBoard";
 import IconBoard from "../../../assets/IconBoardSVG";
-import IconHideSidebar from "../../../assets/IconHideSidebarSVG";
 import { useSelector, useDispatch } from "react-redux";
 import BoardName from "./BoardName";
 import { setSelectedBoardIndex } from "../../../store/board/board.slice";
@@ -16,11 +15,7 @@ import { useState } from "react";
 
 const StyledSidebar = styled.aside`
   background-color: var(--white);
-  z-index: 2;
-  /* border-right: 1.5px solid var(--lightSilver); */
-  /* box-shadow: 0 2px 10px rgb(0, 0, 0, 0.45),
-    inset 0 -2px 10px rgb(0, 0, 0, 0.45), inset 0 2px 10px rgb(0, 0, 0, 0.45); */
-  /* box-shadow: 1px 0 10px rgb(0, 0, 0, 0.45), inset 1px 0 10px rgb(0, 0, 0, 0.45); */
+  /* z-index: 2; */
   box-shadow: 0.1px 0 2px rgb(0, 0, 0, 0.25),
     inset 0.1px 0 2px rgb(0, 0, 0, 0.25), inset 0 -0.1px 2px rgb(0, 0, 0, 0.25);
   @media (max-width: 768px) {
@@ -51,7 +46,7 @@ const BoardsContainer = styled.div`
   align-items: flex-start;
   width: 100%;
   max-height: 60vh;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   overflow: auto;
 `;
 const HideDarkContainer = styled.div`
@@ -83,11 +78,10 @@ const Sidebar = memo(function Sidebar({ toggleSidebar, isSidebarOpened }) {
               {mainStore.boards.map((board, index) => (
                 <BoardItem
                   key={index}
+                  boardName={board.name}
+                  active={index === mainStore.selectedBoardIndex}
                   onClick={() => handleSelectBoardIndex(index)}
-                  active={index === mainStore.selectedBoardIndex}>
-                  <IconBoard />
-                  <BoardName boardName={board.name} index={index} />
-                </BoardItem>
+                />
               ))}
             </BoardsContainer>
             <CreateNewBoard
@@ -96,10 +90,11 @@ const Sidebar = memo(function Sidebar({ toggleSidebar, isSidebarOpened }) {
           </TitleBoardsandCreateContainer>
           <HideDarkContainer>
             <LightDarkToggleItem />
-            <BoardItem onClick={toggleSidebar}>
-              <IconHideSidebar />
-              <BoardName boardName="Hide Sidebar" />
-            </BoardItem>
+            <BoardItem
+              onClick={toggleSidebar}
+              boardName="Hide Sidebar"
+              type="hideSidebar"
+            />
           </HideDarkContainer>
         </SidebarContentContainer>
       </MotionSidebar>

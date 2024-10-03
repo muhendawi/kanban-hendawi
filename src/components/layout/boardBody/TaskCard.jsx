@@ -59,10 +59,12 @@ function TaskCard({
   taskIndex,
   task,
   columnIndex,
+  parentRef,
 }) {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
   const [toggleEditTaskModal, setToggleEditTaskModal] = useState(false);
+
   const dispatch = useDispatch();
 
   function handleDeleteTask() {
@@ -72,8 +74,6 @@ function TaskCard({
   return (
     <>
       <MotionTaskcard
-        onDrag={() => setIsTaskModalOpen(false)}
-        // drag
         layout
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -87,6 +87,10 @@ function TaskCard({
           duration: 0.5,
           delay: 0.05 * taskIndex,
         }}
+        drag
+        whileDrag={{ scale: 0.9 }}
+        // dragConstraints={parentRef}
+        // dragMomentum={false}
         onClick={() => setIsTaskModalOpen(!isTaskModalOpen)}>
         <h4>{title}</h4>
         <p>

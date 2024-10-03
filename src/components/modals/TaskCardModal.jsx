@@ -17,7 +17,7 @@ const StyledTaskCardModal = styled.div`
   top: -5rem;
   bottom: -5rem;
   z-index: 100;
-  /* backdrop-filter: blur(1px); */
+  backdrop-filter: blur(1px);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -117,14 +117,13 @@ function MobileMenu({
             {boardsSlice.boards.map((board, index) => (
               <BoardItem
                 key={index}
+                boardName={board.name}
                 onClick={() => {
                   handleSelectBoardIndex(index);
                   onCloseMobileMenu();
                 }}
-                active={index === boardsSlice.selectedBoardIndex}>
-                <IconBoard />
-                <BoardName boardName={board.name} />
-              </BoardItem>
+                active={index === boardsSlice.selectedBoardIndex}
+              />
             ))}
           </BoardsContainer>
           <HideDarkContainer>

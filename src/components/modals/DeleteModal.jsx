@@ -12,6 +12,7 @@ const StyledDeleteModal = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
+  backdrop-filter: blur(1px);
 `;
 const DeleteBackdrop = styled.div`
   background-color: rgb(255, 255, 255, 0.85);

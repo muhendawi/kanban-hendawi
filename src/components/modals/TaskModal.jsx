@@ -23,6 +23,7 @@ const StyledTaskModal = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
+  backdrop-filter: blur(1px);
   ${({ $isModalOpen }) =>
     $isModalOpen &&
     css`
