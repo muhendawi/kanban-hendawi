@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { deleteTask } from "../../../store/board/board.slice";
 import DeleteModal from "../../modals/DeleteModal";
 import TaskModal from "../../modals/TaskModal";
+import { useSelector } from "react-redux";
 //------------------------------------------------------------------->
 
 export const StyledTaskCard = styled.div`
@@ -64,7 +65,6 @@ function TaskCard({
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
   const [toggleEditTaskModal, setToggleEditTaskModal] = useState(false);
-
   const dispatch = useDispatch();
 
   function handleDeleteTask() {
@@ -88,7 +88,9 @@ function TaskCard({
           delay: 0.05 * taskIndex,
         }}
         drag
-        whileDrag={{ scale: 0.9 }}
+        whileDrag={{
+          cursor: "grabbing",
+        }}
         // dragConstraints={parentRef}
         // dragMomentum={false}
         onClick={() => setIsTaskModalOpen(!isTaskModalOpen)}>

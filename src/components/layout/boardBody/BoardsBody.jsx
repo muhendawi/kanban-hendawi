@@ -7,7 +7,6 @@ import { memo, useState } from "react";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import BoardModal from "../../modals/BoardModal";
-import uuid from "react-uuid";
 import { useRef } from "react";
 //------------------------------------------------------------------->
 
@@ -36,7 +35,7 @@ const StyledAppBody = styled.main`
 //------------------------------------------------------------------->
 const MotionMain = motion.create(StyledAppBody);
 const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
-  const mainRef = useRef();
+  const mainContainerRef = useRef();
   const [toggleNewColumnModal, setToggleNewColumnModal] = useState(false);
   const activeBoardColumns = useSelector(
     (store) => store.boards.boards[store.boards.selectedBoardIndex].columns
@@ -44,11 +43,13 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
 
   return (
     <>
-      <MotionMain $columnLength={activeBoardColumns?.length} ref={mainRef}>
+      <MotionMain
+        $columnLength={activeBoardColumns?.length}
+        ref={mainContainerRef}>
         {activeBoardColumns.length !== 0 ? (
           <>
             {/* <AnimatePresence mode="wait"> */}
-            {activeBoardColumns.map((column, colIndex) => (
+            {activeBoardColumns.map((column, columnIndex) => (
               <BoardColumn
                 key={column.colId}
                 columnName={column.name}
@@ -58,7 +59,8 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
                     <TaskCard
                       key={task.taskId}
                       task={task}
-                      columnIndex={colIndex}
+                      column={column}
+                      columnIndex={columnIndex}
                       taskIndex={taskIndex}
                       title={task?.title}
                       completedSubTasks={
@@ -66,7 +68,7 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
                           .length
                       }
                       totalSubTasks={task.subtasks?.length}
-                      parentRef={mainRef}
+                      parentRef={mainContainerRef}
                     />
                   ))}
                 </AnimatePresence>

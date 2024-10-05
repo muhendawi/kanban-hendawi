@@ -53,7 +53,7 @@ const NavBoardItem = memo(function NavBoardItem({ onClick, isMobileMenuOpen }) {
               transition: {
                 type: "spring",
                 duration: 0.3,
-                delay: 0.05 * index,
+                delay: 0.03 * index,
               },
             }}
             key={le.letterId}>

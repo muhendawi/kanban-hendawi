@@ -3,11 +3,10 @@ import { memo } from "react";
 import styled, { css } from "styled-components";
 import IconBoard from "../../../assets/IconBoardSVG";
 import BoardName from "./BoardName";
-import IconHideSidebar from "../../../assets/IconHideSidebarSVG";
 import { HideSidebarIcon } from "../../universal/Icons.styled";
 //------------------------------------------------------------------->
 
-export const StyledBoardItem = styled.div`
+export const StyledBoardItemForMobile = styled.div`
   /* border: 1px solid salmon; */
   min-height: 3rem;
   width: 92%;
@@ -20,25 +19,11 @@ export const StyledBoardItem = styled.div`
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
   position: relative;
+
   svg {
     fill: var(--veryLightGrey);
   }
-  /* &:hover {
-    background-color: var(--hoverGrey);
-    transition: ease-in 0.1s;
-    box-shadow: 0 2px 4px rgb(0, 0, 0, 0.45),
-      inset 0 0.1px 3px rgb(0, 0, 0, 0.25),
-      inset -0 -0.1px 3px rgb(0, 0, 0, 0.25);
-    > p {
-      color: var(--darkIndigo);
-    }
-    > svg {
-      fill: var(--darkIndigo);
-    }
-  } */
   /* Just to test the selected board */
-  > div {
-  }
   ${({ $active }) =>
     $active &&
     css`
@@ -56,36 +41,9 @@ export const StyledBoardItem = styled.div`
       }
     `}
 `;
-const ActiveBackdrop = styled.div`
-  height: 3rem;
-  width: 92%;
-  gap: 0.8rem;
-  display: flex;
-  align-items: center;
-  padding: 0.8rem 1.7rem;
 
-  /* position: "absolute";
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0; */
-  /* margin-bottom: 5px; */
-  cursor: pointer;
-  border-top-right-radius: 2rem;
-  border-bottom-right-radius: 2rem;
-  background-color: var(--darkIndigo);
-  box-shadow: 0 2px 4px rgb(0, 0, 0, 0.45), inset 0 0.1px 3px rgb(0, 0, 0, 0.25),
-    inset -0 -0.1px 3px rgb(0, 0, 0, 0.25);
-
-  > p {
-    color: var(--white);
-  }
-  > svg {
-    fill: var(--white);
-  }
-`;
 //------------------------------------------------------------------->
-const StyledBoardItem2 = styled.div`
+const StyledBoardItemForSidebar = styled.div`
   min-height: 3rem;
   width: 92%;
   padding: 0.8rem 1.7rem;
@@ -101,6 +59,7 @@ const StyledBoardItem2 = styled.div`
     display: flex;
     align-items: center;
     gap: 0.8rem;
+    /* mix-blend-mode: exclusion; */
     > svg {
       fill: ${({ $active }) =>
         $active ? css`var(--white)` : css`var(--veryLightGrey)`};
@@ -128,77 +87,43 @@ const StyledActiveTab = styled.div`
   background-color: var(--darkIndigo);
   box-shadow: 0 2px 4px rgb(0, 0, 0, 0.45), inset 0 0.1px 3px rgb(0, 0, 0, 0.25),
     inset -0 -0.1px 3px rgb(0, 0, 0, 0.25);
-
-  /* > p {
-    color: var(--white);
-  }
-  > svg {
-    fill: var(--white);
-  } */
 `;
 //------------------------------------------------------------------->
-// const MotionBoardItem = motion.create(StyledBoardItem);
-// const MotionActiveBackdrop = motion.create(ActiveBackdrop);
-// const MotionBackdropDiv = motion.create(BackdropDiv);
-// const BoardItem = memo(function BoardItem({
-//   active,
-//   onClick,
-//   boardName,
-//   type,
-// }) {
-//   return (
-//     <>
-//       <MotionBoardItem $active={active} onClick={onClick}>
-//         <motion.div layoutId="boardItem">
-//           {type === "hideSidebar" ? <IconHideSidebar /> : <IconBoard />}
-//           <BoardName boardName={boardName} />
-//         </motion.div>
-//       </MotionBoardItem>
-//     </>
-//   );
-//   // return (
-//   //   <>
-//   //     {active ? (
-//   //       <MotionActiveBackdrop layoutId="activeBoardItem" onClick={onClick}>
-//   //         <IconBoard />
-//   //         <BoardName boardName={boardName} />
-//   //       </MotionActiveBackdrop>
-//   //     ) : (
-//   //       <MotionBoardItem layoutId={boardName} onClick={onClick}>
-//   //         {type === "hideSidebar" ? <IconHideSidebar /> : <IconBoard />}
-//   //         <BoardName boardName={boardName} />
-//   //       </MotionBoardItem>
-//   //     )}
-//   //   </>
-//   // );
-// });
 
-// export default BoardItem;
 const MotionActiveTab = motion.create(StyledActiveTab);
 const BoardItem = memo(function BoardItem({
   active,
   onClick,
   boardName,
   type,
+  children,
 }) {
   return (
-    <StyledBoardItem2 onClick={onClick} $active={active}>
-      {active && (
-        <MotionActiveTab
-          layoutId="activeTab"
-          transition={{
-            type: "spring",
-            duration: 0.3,
-            stiffness: 230,
-            mass: 0.3,
-          }}
-        />
+    <>
+      {type === "mobileMenu" ? (
+        <StyledBoardItemForMobile onClick={onClick} $active={active}>
+          {children}
+        </StyledBoardItemForMobile>
+      ) : (
+        <StyledBoardItemForSidebar onClick={onClick} $active={active}>
+          {active && (
+            <MotionActiveTab
+              layoutId="activeTab"
+              transition={{
+                type: "spring",
+                duration: 0.2,
+                stiffness: 150,
+                mass: 0.3,
+              }}
+            />
+          )}
+          <span>
+            {type === "hideSidebar" ? <HideSidebarIcon /> : <IconBoard />}
+            <StyledBoardName boardName={boardName} />
+          </span>
+        </StyledBoardItemForSidebar>
       )}
-      <span>
-        {type === "hideSidebar" ? <HideSidebarIcon /> : <IconBoard />}
-        <StyledBoardName boardName={boardName} />
-      </span>
-    </StyledBoardItem2>
+    </>
   );
 });
 

@@ -21,7 +21,6 @@ const StyledMobileMenu = styled.div`
   right: 0;
   bottom: -5rem;
   z-index: -101;
-
   @media (min-width: 768px) {
     opacity: 0;
     top: -1000px;
@@ -37,6 +36,7 @@ const StyledMobileMenu = styled.div`
 const ModalBackdrop = styled.div`
   position: absolute;
   background-color: rgb(255, 255, 255, 0.85);
+  backdrop-filter: blur(1px);
   top: 0;
   left: 0;
   right: 0;
@@ -91,10 +91,6 @@ function MobileMenu({
     dispatch(setSelectedBoardIndex(id));
   }
 
-  // function handleToggleNewBoardModal() {
-  //   dispatch(toggleNewBoardModal());
-  // }
-
   return (
     <>
       <StyledMobileMenu $isMobileMenuOpen={isMobileMenuOpen}>
@@ -117,13 +113,15 @@ function MobileMenu({
             {boardsSlice.boards.map((board, index) => (
               <BoardItem
                 key={index}
-                boardName={board.name}
                 onClick={() => {
                   handleSelectBoardIndex(index);
                   onCloseMobileMenu();
                 }}
                 active={index === boardsSlice.selectedBoardIndex}
-              />
+                type="mobileMenu">
+                <IconBoard />
+                <BoardName boardName={board.name}></BoardName>
+              </BoardItem>
             ))}
           </BoardsContainer>
           <HideDarkContainer>
