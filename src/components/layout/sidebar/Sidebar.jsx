@@ -98,6 +98,7 @@ const Sidebar = memo(function Sidebar({ toggleSidebar, isSidebarOpened }) {
           </HideDarkContainer>
         </SidebarContentContainer>
       </MotionSidebar>
+      {/* The New Board Modal */}
       <AnimatePresence>
         {isNewBoardModalOpen && (
           <BoardModal

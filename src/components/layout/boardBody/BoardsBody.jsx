@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import BoardModal from "../../modals/BoardModal";
 import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { dragTaskToAnotherColumn } from "../../../store/board/board.slice";
 //------------------------------------------------------------------->
 
 const StyledAppBody = styled.main`
@@ -34,12 +36,37 @@ const StyledAppBody = styled.main`
 `;
 //------------------------------------------------------------------->
 const MotionMain = motion.create(StyledAppBody);
-const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
+const BoardsBody = memo(function BoardsBody() {
   const mainContainerRef = useRef();
   const [toggleNewColumnModal, setToggleNewColumnModal] = useState(false);
   const activeBoardColumns = useSelector(
     (store) => store.boards.boards[store.boards.selectedBoardIndex].columns
   );
+  // const [draggedTask, setDraggedTask] = useState(null);
+  // const dispatch = useDispatch();
+
+  // // Handle when a drag starts
+  // const handleDragStart = (task, columnIndex) => {
+  //   setDraggedTask({ task, columnIndex });
+  // };
+  // // Handle when drag ends (drop)
+  // const handleDragEnd = (event, info, columnIndex) => {
+  //   if (!draggedTask) return;
+
+  //   // Check if the task was dropped into a new column
+  //   if (draggedTask.columnIndex !== columnIndex) {
+  //     // Dispatch action to move task between columns
+  //     dispatch(
+  //       dragTaskToAnotherColumn({
+  //         fromColumnIndex: draggedTask.columnIndex,
+  //         toColumnIndex: columnIndex,
+  //         task: draggedTask.task,
+  //       })
+  //     );
+  //     console.log(draggedTask.columnIndex);
+  //   }
+  //   setDraggedTask(null); // Reset after drop
+  // };
 
   return (
     <>
@@ -68,7 +95,11 @@ const BoardsBody = memo(function BoardsBody({ isSidebarOpen }) {
                           .length
                       }
                       totalSubTasks={task.subtasks?.length}
-                      parentRef={mainContainerRef}
+                      // parentRef={mainContainerRef}
+                      // onDragStart={() => handleDragStart(task, columnIndex)}
+                      // onDragEnd={(event, info) =>
+                      //   handleDragEnd(event, info, columnIndex)
+                      // }
                     />
                   ))}
                 </AnimatePresence>

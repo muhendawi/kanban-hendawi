@@ -22,6 +22,7 @@ html {
   --hoverIndigo: #c4d2d2;
   /* --darkBlack: #000112; */
   --darkBlack: #383B3B;
+  /* --darkBlack: #131842; */
   --darkGrey: #20212C;
   --grey: #2B2C37;
   --lightGrey: #3E3F4E;

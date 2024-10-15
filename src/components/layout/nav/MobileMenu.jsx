@@ -118,7 +118,7 @@ function MobileMenu({
                   onCloseMobileMenu();
                 }}
                 active={index === boardsSlice.selectedBoardIndex}
-                type="mobileMenu">
+                mobileType="mobileMenu">
                 <IconBoard />
                 <BoardName boardName={board.name}></BoardName>
               </BoardItem>

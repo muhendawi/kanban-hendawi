@@ -17,18 +17,8 @@ const boardsSlice = createSlice({
   name: "boards",
   initialState,
   reducers: {
-    toggleSidebar(state) {
-      state.isSidebarHidden = !state.isSidebarHidden;
-    },
     setSelectedBoardIndex(state, action) {
       state.selectedBoardIndex = action.payload;
-    },
-    setSelectedTask(state, action) {
-      state.selectedItem = action.payload;
-    },
-    toggleNewBoardModal(state) {
-      // to close the mobile menu when newboard modal is opened
-      state.isNewBoardModalOpen = !state.isNewBoardModalOpen;
     },
     addNewBoard: {
       prepare(boardName, columns) {
@@ -49,9 +39,6 @@ const boardsSlice = createSlice({
         const currentBoard = state.boards[state.selectedBoardIndex];
         currentBoard.name = action.payload.boardName;
         currentBoard.columns = action.payload.columns;
-
-        // const currentColumn = state.boards[state.selectedBoardIndex].columns;
-        // const currentTask = null;
       },
     },
     deleteBoard(state) {
@@ -70,7 +57,6 @@ const boardsSlice = createSlice({
       if (!column) return;
       column.tasks = column.tasks.filter((_, index) => index !== taskIndex);
     },
-
     checkSubtask(state, action) {
       const { columnIndex, taskIndex, subtaskIndex } = action.payload;
       const board = state.boards.find(
@@ -150,27 +136,15 @@ const boardsSlice = createSlice({
       }
     },
 
-    // toggleNewTaskModal(state) {
-    //   state.isNewTaskModalOpen = !state.isNewTaskModalOpen;
-    // },
-    // toggleMobileMenu(state) {
-    //   state.isMobileMenuOpen = !state.isMobileMenuOpen;
-    // },
     toggleDarkTheme(state) {
       state.isDarkThemeOn = !state.isDarkThemeOn;
     },
-    // addNewBoard(state, payload) {
-    //   state.boards.push(payload);
-    // },
   },
 });
 
 export default boardsSlice.reducer;
 export const {
-  toggleSidebar,
   setSelectedBoardIndex,
-  toggleNewBoardModal,
-  toggleMobileMenu,
   toggleDarkTheme,
   addNewBoard,
   editBoard,

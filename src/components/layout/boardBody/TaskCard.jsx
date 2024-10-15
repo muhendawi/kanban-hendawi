@@ -60,7 +60,6 @@ function TaskCard({
   taskIndex,
   task,
   columnIndex,
-  parentRef,
 }) {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
@@ -87,10 +86,10 @@ function TaskCard({
           duration: 0.5,
           delay: 0.05 * taskIndex,
         }}
-        drag
-        whileDrag={{
-          cursor: "grabbing",
-        }}
+        // drag
+        // whileDrag={{ cursor: "grabbing" }}
+        // onDragStart={onDragStart}
+        // onDragEnd={onDragEnd}
         // dragConstraints={parentRef}
         // dragMomentum={false}
         onClick={() => setIsTaskModalOpen(!isTaskModalOpen)}>

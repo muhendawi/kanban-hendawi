@@ -88,6 +88,7 @@ const StyledActiveTab = styled.div`
   box-shadow: 0 2px 4px rgb(0, 0, 0, 0.45), inset 0 0.1px 3px rgb(0, 0, 0, 0.25),
     inset -0 -0.1px 3px rgb(0, 0, 0, 0.25);
 `;
+
 //------------------------------------------------------------------->
 
 const MotionActiveTab = motion.create(StyledActiveTab);
@@ -97,10 +98,11 @@ const BoardItem = memo(function BoardItem({
   boardName,
   type,
   children,
+  mobileType,
 }) {
   return (
     <>
-      {type === "mobileMenu" ? (
+      {mobileType === "mobileMenu" ? (
         <StyledBoardItemForMobile onClick={onClick} $active={active}>
           {children}
         </StyledBoardItemForMobile>

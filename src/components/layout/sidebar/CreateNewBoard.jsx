@@ -33,9 +33,9 @@ const StyledCreateNewBoard = styled.div`
       inset 0 0.1px 3px rgb(0, 0, 0, 0.25),
       inset -0 -0.1px 3px rgb(0, 0, 0, 0.25);
   }
-  &:active {
+  /* &:active {
     scale: 0.98;
-  }
+  } */
 `;
 
 //------------------------------------------------------------------->
