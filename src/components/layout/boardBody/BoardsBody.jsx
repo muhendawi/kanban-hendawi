@@ -8,8 +8,8 @@ import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import BoardModal from "../../modals/BoardModal";
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
-import { dragTaskToAnotherColumn } from "../../../store/board/board.slice";
+import DropArea from "./DropArea";
+import React from "react";
 //------------------------------------------------------------------->
 
 const StyledAppBody = styled.main`
@@ -19,7 +19,7 @@ const StyledAppBody = styled.main`
   display: grid;
   grid-auto-columns: 18rem;
   grid-auto-flow: column;
-  gap: 1rem;
+  /* gap: 1rem; */
   overflow: auto;
 
   @media (max-width: 768px) {
@@ -42,32 +42,8 @@ const BoardsBody = memo(function BoardsBody() {
   const activeBoardColumns = useSelector(
     (store) => store.boards.boards[store.boards.selectedBoardIndex].columns
   );
-  // const [draggedTask, setDraggedTask] = useState(null);
-  // const dispatch = useDispatch();
-
-  // // Handle when a drag starts
-  // const handleDragStart = (task, columnIndex) => {
-  //   setDraggedTask({ task, columnIndex });
-  // };
-  // // Handle when drag ends (drop)
-  // const handleDragEnd = (event, info, columnIndex) => {
-  //   if (!draggedTask) return;
-
-  //   // Check if the task was dropped into a new column
-  //   if (draggedTask.columnIndex !== columnIndex) {
-  //     // Dispatch action to move task between columns
-  //     dispatch(
-  //       dragTaskToAnotherColumn({
-  //         fromColumnIndex: draggedTask.columnIndex,
-  //         toColumnIndex: columnIndex,
-  //         task: draggedTask.task,
-  //       })
-  //     );
-  //     console.log(draggedTask.columnIndex);
-  //   }
-  //   setDraggedTask(null); // Reset after drop
-  // };
-
+  const [draggingCard, setDraggingCard] = useState(null);
+  const [currentColumnIndex, setCurrentColumnIndex] = useState(null);
   return (
     <>
       <MotionMain
@@ -75,37 +51,45 @@ const BoardsBody = memo(function BoardsBody() {
         ref={mainContainerRef}>
         {activeBoardColumns.length !== 0 ? (
           <>
-            {/* <AnimatePresence mode="wait"> */}
             {activeBoardColumns.map((column, columnIndex) => (
               <BoardColumn
                 key={column.colId}
                 columnName={column.name}
                 tasksNo={column.tasks.length}>
                 <AnimatePresence>
+                  <DropArea
+                    targetColumnIndex={columnIndex}
+                    draggringCard={draggingCard}
+                    currentColumnIndex={currentColumnIndex}
+                  />
                   {column.tasks.map((task, taskIndex) => (
-                    <TaskCard
-                      key={task.taskId}
-                      task={task}
-                      column={column}
-                      columnIndex={columnIndex}
-                      taskIndex={taskIndex}
-                      title={task?.title}
-                      completedSubTasks={
-                        task.subtasks.filter((sub) => sub.isCompleted === true)
-                          .length
-                      }
-                      totalSubTasks={task.subtasks?.length}
-                      // parentRef={mainContainerRef}
-                      // onDragStart={() => handleDragStart(task, columnIndex)}
-                      // onDragEnd={(event, info) =>
-                      //   handleDragEnd(event, info, columnIndex)
-                      // }
-                    />
+                    <React.Fragment key={task.taskId}>
+                      <TaskCard
+                        task={task}
+                        column={column}
+                        columnIndex={columnIndex}
+                        taskIndex={taskIndex}
+                        title={task?.title}
+                        completedSubTasks={
+                          task.subtasks.filter(
+                            (sub) => sub.isCompleted === true
+                          ).length
+                        }
+                        totalSubTasks={task.subtasks?.length}
+                        onSetDraggingCard={setDraggingCard}
+                        onSetCurrentColumnIndex={setCurrentColumnIndex}
+                      />
+                      <DropArea
+                        targetCardIndex={taskIndex}
+                        targetColumnIndex={columnIndex}
+                        draggringCard={draggingCard}
+                        currentColumnIndex={currentColumnIndex}
+                      />
+                    </React.Fragment>
                   ))}
                 </AnimatePresence>
               </BoardColumn>
             ))}
-            {/* </AnimatePresence> */}
             <BoardColumn
               type="noAnimation"
               onClick={() => setToggleNewColumnModal(!toggleNewColumnModal)}>

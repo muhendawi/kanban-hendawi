@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 //------------------------------------------------------------------->
 
 export const StyledTaskCard = styled.div`
-  width: 17.5rem;
+  width: 16rem;
   min-height: 5.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px rgb(0, 0, 0, 0.25), inset 0 0.1px 2px rgb(0, 0, 0, 0.25),
@@ -22,9 +22,9 @@ export const StyledTaskCard = styled.div`
   justify-content: center;
   gap: 0.4rem;
   padding: 1rem;
-  cursor: pointer;
-  overflow: auto;
 
+  overflow: auto;
+  cursor: grab;
   transition: font-color, color 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   > h4 {
     font-size: var(--fsM);
@@ -60,6 +60,8 @@ function TaskCard({
   taskIndex,
   task,
   columnIndex,
+  onSetDraggingCard,
+  onSetCurrentColumnIndex,
 }) {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
@@ -70,6 +72,15 @@ function TaskCard({
     dispatch(deleteTask({ columnIndex, taskIndex }));
     setToggleDeleteModal(!toggleDeleteModal);
   }
+
+  function handleSetDraggingCard(id) {
+    onSetDraggingCard(id);
+  }
+
+  function handleCurrentColumnIndex(index) {
+    onSetCurrentColumnIndex(index);
+  }
+
   return (
     <>
       <MotionTaskcard
@@ -86,6 +97,14 @@ function TaskCard({
           duration: 0.5,
           delay: 0.05 * taskIndex,
         }}
+        draggable="true"
+        onDragStart={() => {
+          handleSetDraggingCard(task);
+          handleCurrentColumnIndex(columnIndex);
+        }}
+        // onDragEnd={() => {
+        //   handleSetDraggingCard(null);
+        // }}
         // drag
         // whileDrag={{ cursor: "grabbing" }}
         // onDragStart={onDragStart}

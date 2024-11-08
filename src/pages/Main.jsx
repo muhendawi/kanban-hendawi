@@ -15,7 +15,7 @@ const StyledMain = styled.div`
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-columns: 290px 4fr;
+  grid-template-columns: 260px 4fr;
   grid-template-rows: 5rem 1fr;
 
   > nav {

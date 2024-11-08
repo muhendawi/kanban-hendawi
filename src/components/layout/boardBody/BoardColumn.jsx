@@ -6,10 +6,11 @@ import { motion } from "framer-motion";
 
 export const StyledBoardColumn = styled.div`
   height: 100%;
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  /* align-items: center; */
+  /* gap: 1rem; */
   > h3 {
     text-transform: uppercase;
     margin: 0;

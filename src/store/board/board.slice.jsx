@@ -139,6 +139,29 @@ const boardsSlice = createSlice({
     toggleDarkTheme(state) {
       state.isDarkThemeOn = !state.isDarkThemeOn;
     },
+    moveDraggingCard(state, action) {
+      const {
+        targetCardIndex,
+        targetColumnIndex,
+        draggringCard,
+        currentColumnIndex,
+      } = action.payload;
+      // removing the task from the current column
+      const board = state.boards[state.selectedBoardIndex];
+      if (!board) return;
+      const currentColumn = board.columns[currentColumnIndex];
+      if (!currentColumn) return;
+      // removing the task from its original position first.
+      currentColumn.tasks = currentColumn.tasks.filter(
+        (task) => task.taskId !== draggringCard.taskId
+      );
+      // adding the task to the new column.
+      const targetColumn = board.columns[targetColumnIndex];
+      if (!targetColumn) return;
+      // const task = column.tasks.find((_, index) => index === taskIndex);
+      // if (!task) return;
+      targetColumn.tasks.splice(targetCardIndex, 0, draggringCard);
+    },
   },
 });
 
@@ -154,4 +177,5 @@ export const {
   moveTask,
   addNewTask,
   editTask,
+  moveDraggingCard,
 } = boardsSlice.actions;

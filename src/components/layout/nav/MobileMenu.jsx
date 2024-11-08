@@ -6,10 +6,7 @@ import BoardName from "../sidebar/BoardName";
 import CreateNewBoard from "../sidebar/CreateNewBoard";
 import { useDispatch } from "react-redux";
 import LightDarkToggleItem from "../sidebar/LightDarkToggleItem";
-import {
-  setSelectedBoardIndex,
-  toggleNewBoardModal,
-} from "../../../store/board/board.slice";
+import { setSelectedBoardIndex } from "../../../store/board/board.slice";
 import IconBoard from "../../../assets/IconBoardSVG";
 import { motion } from "framer-motion";
 //------------------------------------------------------------------->

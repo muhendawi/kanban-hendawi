@@ -15,7 +15,7 @@ html {
   text-size-adjust: none;
   width: 100%;
   scroll-behavior: smooth;
-
+ 
   /* --darkIndigo: #635FC7; */
   --darkIndigo:#638889;
   /* --hoverIndigo: #A8A4FF; */
