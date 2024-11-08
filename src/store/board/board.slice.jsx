@@ -160,11 +160,12 @@ const boardsSlice = createSlice({
       if (!targetColumn) return;
       // const task = column.tasks.find((_, index) => index === taskIndex);
       // if (!task) return;
-      if (currentColumnIndex === targetColumnIndex) {
-        targetColumn.tasks.splice(targetCardIndex - 1, 0, draggringCard);
-      } else {
-        targetColumn.tasks.splice(targetCardIndex, 0, draggringCard);
-      }
+      // if (currentColumnIndex === targetColumnIndex) {
+      //   targetColumn.tasks.splice(targetCardIndex, 0, draggringCard);
+      // } else {
+      //   targetColumn.tasks.splice(targetCardIndex + 1, 0, draggringCard);
+      // }
+      targetColumn.tasks.splice(targetCardIndex, 0, draggringCard);
     },
   },
 });

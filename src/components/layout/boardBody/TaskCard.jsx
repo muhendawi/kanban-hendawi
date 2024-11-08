@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import TaskCardModal from "../../modals/TaskCardModal";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { deleteTask } from "../../../store/board/board.slice";
 import DeleteModal from "../../modals/DeleteModal";
 import TaskModal from "../../modals/TaskModal";
-import { useSelector } from "react-redux";
+
 //------------------------------------------------------------------->
 
 export const StyledTaskCard = styled.div`
@@ -22,9 +22,9 @@ export const StyledTaskCard = styled.div`
   justify-content: center;
   gap: 0.4rem;
   padding: 1rem;
-
   overflow: auto;
   cursor: grab;
+
   transition: font-color, color 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   > h4 {
     font-size: var(--fsM);
@@ -66,6 +66,7 @@ function TaskCard({
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
   const [toggleEditTaskModal, setToggleEditTaskModal] = useState(false);
+  const [isDraggingCard, setIsDraggingCard] = useState(false);
   const dispatch = useDispatch();
 
   function handleDeleteTask() {
@@ -85,11 +86,11 @@ function TaskCard({
     <>
       <MotionTaskcard
         layout
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
         exit={{
           opacity: 0,
-          y: -50,
+          scale: 0,
           transition: { duration: 0.3 },
         }}
         transition={{
@@ -101,10 +102,12 @@ function TaskCard({
         onDragStart={() => {
           handleSetDraggingCard(task);
           handleCurrentColumnIndex(columnIndex);
+          setIsDraggingCard(true);
         }}
-        // onDragEnd={() => {
-        //   handleSetDraggingCard(null);
-        // }}
+        onDragEnd={() => {
+          handleSetDraggingCard(null);
+          setIsDraggingCard(false);
+        }}
         // drag
         // whileDrag={{ cursor: "grabbing" }}
         // onDragStart={onDragStart}

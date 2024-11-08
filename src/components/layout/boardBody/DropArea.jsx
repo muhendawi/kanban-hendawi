@@ -52,12 +52,12 @@ function DropArea({
 
   function showArea() {
     setIsVisible(true);
-    console.log(
-      currentColumnIndex,
-      targetColumnIndex,
-      isNaN(targetCardIndex) ? 0 : targetCardIndex + 1,
-      draggringCard
-    );
+    // console.log(
+    //   currentColumnIndex,
+    //   targetColumnIndex,
+    //   isNaN(targetCardIndex) ? 0 : targetCardIndex + 1,
+    //   draggringCard.taskId
+    // );
   }
   function hideArea() {
     setIsVisible(false);
