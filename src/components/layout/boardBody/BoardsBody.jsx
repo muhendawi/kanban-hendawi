@@ -60,7 +60,7 @@ const BoardsBody = memo(function BoardsBody() {
                   <DropArea
                     targetColumnIndex={columnIndex}
                     draggringCard={draggingCard}
-                    currentColumnIndex={currentColumnIndex}
+                    currentColumnIndex={currentColumnIndex | columnIndex}
                   />
                   {column.tasks.map((task, taskIndex) => (
                     <React.Fragment key={task.taskId}>
