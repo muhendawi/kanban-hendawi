@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import TaskCardModal from "../../modals/TaskCardModal";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
@@ -62,11 +62,12 @@ function TaskCard({
   columnIndex,
   onSetDraggingCard,
   onSetCurrentColumnIndex,
+  onSetCurrentCardIndex,
 }) {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [toggleDeleteModal, setToggleDeleteModal] = useState(false);
   const [toggleEditTaskModal, setToggleEditTaskModal] = useState(false);
-  const [isDraggingCard, setIsDraggingCard] = useState(false);
+
   const dispatch = useDispatch();
 
   function handleDeleteTask() {
@@ -78,10 +79,12 @@ function TaskCard({
     onSetDraggingCard(id);
   }
 
-  function handleCurrentColumnIndex(index) {
+  function handleSetCurrentColumnIndex(index) {
     onSetCurrentColumnIndex(index);
   }
-
+  function handleSetCurrentCardIndex(index) {
+    onSetCurrentCardIndex(index);
+  }
   return (
     <>
       <MotionTaskcard
@@ -101,12 +104,11 @@ function TaskCard({
         draggable="true"
         onDragStart={() => {
           handleSetDraggingCard(task);
-          handleCurrentColumnIndex(columnIndex);
-          setIsDraggingCard(true);
+          handleSetCurrentColumnIndex(columnIndex);
+          handleSetCurrentCardIndex(taskIndex);
         }}
         onDragEnd={() => {
           handleSetDraggingCard(null);
-          setIsDraggingCard(false);
         }}
         // drag
         // whileDrag={{ cursor: "grabbing" }}

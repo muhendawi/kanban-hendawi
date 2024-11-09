@@ -44,6 +44,7 @@ const BoardsBody = memo(function BoardsBody() {
   );
   const [draggingCard, setDraggingCard] = useState(null);
   const [currentColumnIndex, setCurrentColumnIndex] = useState(null);
+  const [currentCardIndex, setCurrentCardIndex] = useState(null);
   return (
     <>
       <MotionMain
@@ -61,6 +62,7 @@ const BoardsBody = memo(function BoardsBody() {
                     targetColumnIndex={columnIndex}
                     draggringCard={draggingCard}
                     currentColumnIndex={currentColumnIndex}
+                    currentCardIndex={currentCardIndex}
                   />
                   {column.tasks.map((task, taskIndex) => (
                     <React.Fragment key={task.taskId}>
@@ -78,12 +80,14 @@ const BoardsBody = memo(function BoardsBody() {
                         totalSubTasks={task.subtasks?.length}
                         onSetDraggingCard={setDraggingCard}
                         onSetCurrentColumnIndex={setCurrentColumnIndex}
+                        onSetCurrentCardIndex={setCurrentCardIndex}
                       />
                       <DropArea
                         targetCardIndex={taskIndex}
                         targetColumnIndex={columnIndex}
                         draggringCard={draggingCard}
                         currentColumnIndex={currentColumnIndex}
+                        currentCardIndex={currentCardIndex}
                       />
                     </React.Fragment>
                   ))}

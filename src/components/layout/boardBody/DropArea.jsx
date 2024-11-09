@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled, { css } from "styled-components";
-import { moveDraggingCard } from "../../../store/board/board.slice";
+import {
+  moveDraggingCard,
+  reOrderItemInColumn,
+} from "../../../store/board/board.slice";
 
 const DropAreaContainer = styled.div`
   /* border: 1px solid blue; */
@@ -46,18 +49,13 @@ function DropArea({
   targetColumnIndex,
   draggringCard,
   currentColumnIndex,
+  currentCardIndex,
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
 
   function showArea() {
     setIsVisible(true);
-    // console.log(
-    //   currentColumnIndex,
-    //   targetColumnIndex,
-    //   isNaN(targetCardIndex) ? 0 : targetCardIndex + 1,
-    //   draggringCard.taskId
-    // );
   }
   function hideArea() {
     setIsVisible(false);
@@ -75,16 +73,28 @@ function DropArea({
             hideArea();
           }}
           onDrop={() => {
-            dispatch(
-              moveDraggingCard({
-                targetCardIndex: isNaN(targetCardIndex)
-                  ? 0
-                  : targetCardIndex + 1,
-                targetColumnIndex,
-                draggringCard,
-                currentColumnIndex,
-              })
-            );
+            if (currentColumnIndex === targetColumnIndex) {
+              dispatch(
+                reOrderItemInColumn({
+                  targetCardIndex: isNaN(targetCardIndex)
+                    ? -1
+                    : targetCardIndex,
+                  currentColumnIndex,
+                  currentCardIndex,
+                })
+              );
+            } else {
+              dispatch(
+                moveDraggingCard({
+                  targetCardIndex: isNaN(targetCardIndex)
+                    ? 0
+                    : targetCardIndex + 1,
+                  targetColumnIndex,
+                  draggringCard,
+                  currentColumnIndex,
+                })
+              );
+            }
             hideArea();
           }}
           onDragOver={(e) => e.preventDefault()}

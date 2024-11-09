@@ -145,13 +145,13 @@ const boardsSlice = createSlice({
         targetColumnIndex,
         draggringCard,
         currentColumnIndex,
+        currentCardIndex,
       } = action.payload;
-      // removing the task from the current column
       const board = state.boards[state.selectedBoardIndex];
       if (!board) return;
+      // removing the task from its original position first.
       const currentColumn = board.columns[currentColumnIndex];
       if (!currentColumn) return;
-      // removing the task from its original position first.
       currentColumn.tasks = currentColumn.tasks.filter(
         (task) => task.taskId !== draggringCard.taskId
       );
@@ -165,7 +165,36 @@ const boardsSlice = createSlice({
       // } else {
       //   targetColumn.tasks.splice(targetCardIndex + 1, 0, draggringCard);
       // }
+
       targetColumn.tasks.splice(targetCardIndex, 0, draggringCard);
+
+      // if (currentColumnIndex === targetColumnIndex) {
+      //   const [removedItem] = targetColumn.tasks.splice(currentCardIndex, 1);
+      //   targetColumn.tasks.splice(targetCardIndex, 0, removedItem);
+      // } else {
+      //   targetColumn.tasks.splice(targetCardIndex, 0, draggringCard);
+      // }
+    },
+    reOrderItemInColumn(state, action) {
+      const {
+        targetCardIndex,
+        currentColumnIndex,
+        currentCardIndex,
+        draggringCard,
+      } = action.payload;
+      const board = state.boards[state.selectedBoardIndex];
+      if (!board) return;
+      // removing the task from its original position first.
+      const originalColumn = board.columns[currentColumnIndex];
+      if (!originalColumn) return;
+      const [movingTask] = originalColumn.tasks.splice(currentCardIndex, 1);
+      originalColumn.tasks.splice(
+        targetCardIndex > currentCardIndex
+          ? targetCardIndex
+          : targetCardIndex + 1,
+        0,
+        movingTask
+      );
     },
   },
 });
@@ -183,4 +212,5 @@ export const {
   addNewTask,
   editTask,
   moveDraggingCard,
+  reOrderItemInColumn,
 } = boardsSlice.actions;
